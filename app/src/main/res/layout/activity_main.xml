@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/Logo" />
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView"
@@ -39,11 +39,10 @@
         android:id="@+id/LogBookBtn"
         android:layout_width="270dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="100dp"
         android:layout_marginTop="292dp"
-        android:layout_marginRight="100dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="#FFFFFF"
+        android:layout_centerHorizontal = "true"
         android:bottomLeftRadius="10dp"
         android:bottomRightRadius="10dp"
         android:topLeftRadius="10dp"
@@ -52,38 +51,36 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Log Book "
-        tools:textSize="20dp" />
+        android:text="Log Book "
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/SettingsBtn"
         android:layout_width="270dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="100dp"
         android:layout_marginTop="52dp"
-        android:layout_marginRight="100dp"
+        android:layout_centerHorizontal = "true"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LogBookBtn"
         android:background="@drawable/roundbutton"
-        tools:text="Settings"
-        tools:textSize="20dp"/>
+        android:text="Settings"
+        android:textSize="20dp"/>
 
     <Button
         android:id="@+id/HistoryBtn"
         android:layout_width="270dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginRight="100dp"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SettingsBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
         android:background="@drawable/roundbutton"
-        tools:text="View Histoty"
-        tools:textSize="20dp"/>
+        android:backgroundTint="#FFFFFF"
+        android:text="View History"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SettingsBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
