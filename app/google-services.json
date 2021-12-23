@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "368319839130",
+    "project_id": "diappetes-73193",
+    "storage_bucket": "diappetes-73193.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368319839130:android:27bf81ffe6ad33cc569823",
+        "android_client_info": {
+          "package_name": "com.example.diappetes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368319839130-0sfg21mn8avio1emjpr2dclupvde3frt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrOOid5p7v94s6YV73K3VZMJ9I61u9n9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368319839130-0sfg21mn8avio1emjpr2dclupvde3frt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
