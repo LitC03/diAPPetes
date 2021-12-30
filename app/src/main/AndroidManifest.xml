@@ -22,6 +22,8 @@
         <activity android:name=".Login"/>
         <activity android:name=".LogBook"/>
         <activity android:name=".SignUp1"/>
+        <activity android:name=".SignUp2"/>
+        <activity android:name=".BloodSugar"/>
 
 
     </application>
