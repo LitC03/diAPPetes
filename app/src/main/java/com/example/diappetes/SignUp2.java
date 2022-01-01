@@ -8,24 +8,24 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUp2 extends AppCompatActivity {
-    Button backbutton,continuebutton;
+    Button backButton,continueButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup2);
 
-        backbutton = findViewById(R.id.backBtn);
-        continuebutton = findViewById(R.id.continueBtn);
+        backButton = findViewById(R.id.backBtn);
+        continueButton = findViewById(R.id.continueBtn);
 
-        backbutton.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(),SignUp1.class));
             }
         });
 
-        continuebutton.setOnClickListener(new View.OnClickListener() {
+        continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));

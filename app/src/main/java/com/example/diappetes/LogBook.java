@@ -8,16 +8,16 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LogBook extends AppCompatActivity {
-    Button bloodbutton;
+    Button bloodButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logbook);
 
-        bloodbutton = findViewById(R.id.LogBookBtn);
+        bloodButton = findViewById(R.id.LogBookBtn);
 
-        bloodbutton.setOnClickListener(new View.OnClickListener() {
+        bloodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(),BloodSugar.class));

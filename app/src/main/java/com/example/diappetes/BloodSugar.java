@@ -2,10 +2,12 @@ package com.example.diappetes;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -17,6 +19,7 @@ import java.util.Locale;
 
 public class BloodSugar extends AppCompatActivity {
     TextView datepick,timepick;
+    Button cancelButton;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
 
@@ -36,6 +39,7 @@ public class BloodSugar extends AppCompatActivity {
 
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
+        cancelButton = findViewById(R.id.cancelBtn);
 
 
 
@@ -79,5 +83,14 @@ public class BloodSugar extends AppCompatActivity {
                 timepick.setText(time);
             }
         };
+
+
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(),LogBook.class));
+            }
+        });
     }
 }

@@ -8,7 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Welcome extends AppCompatActivity {
-    Button mlogin,msignup;
+    Button loginButton,signupButton;
 
 
     @Override
@@ -16,16 +16,16 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
-        mlogin = findViewById(R.id.LoginBtn);
-        msignup = findViewById(R.id.SignUpBtn);
+        loginButton = findViewById(R.id.LoginBtn);
+        signupButton = findViewById(R.id.SignUpBtn);
 
-        mlogin.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(),Login.class));
             }
         });
-        msignup.setOnClickListener(new View.OnClickListener() {
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(),SignUp1.class));

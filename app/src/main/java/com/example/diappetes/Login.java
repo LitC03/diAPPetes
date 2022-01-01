@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
 
-    Button mloginBtn;
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,9 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 
 
-        mloginBtn = findViewById(R.id.LoginBtn);
+        loginButton = findViewById(R.id.LoginBtn);
 
-        mloginBtn.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
