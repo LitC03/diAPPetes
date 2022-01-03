@@ -160,11 +160,12 @@
                     android:backgroundTint="#2DE160"
                     android:bottomLeftRadius="10dp"
                     android:bottomRightRadius="10dp"
-
                     android:text="SAVE CHANGES"
                     android:textSize="20dp"
                     android:topLeftRadius="10dp"
-                    android:topRightRadius="10dp" />
+                    android:topRightRadius="10dp"
+                    android:layout_marginStart="81dp"
+                    android:layout_marginEnd="81dp" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -181,7 +182,9 @@
                     android:text="CANCEL"
                     android:textSize="20dp"
                     android:topLeftRadius="10dp"
-                    android:topRightRadius="10dp" />
+                    android:topRightRadius="10dp"
+                    android:layout_marginStart="81dp"
+                    android:layout_marginEnd="81dp" />
 
             </LinearLayout>
         </ScrollView>
