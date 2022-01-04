@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <EditText
-        android:id="@+id/diatypeField"
+        android:id="@+id/diatype"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="48dp"
@@ -52,14 +52,14 @@
         android:textColorHint="#000000"
         app:layout_constraintBottom_toTopOf="@+id/continueBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:layout_constraintVertical_bias="0.017"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/instypeField"
+        android:id="@+id/instype"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -75,12 +75,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diatypeField"
-        app:layout_constraintVertical_bias="0.014"
+        app:layout_constraintTop_toBottomOf="@+id/diatype"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/insadmField"
+        android:id="@+id/insadm"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -94,14 +94,14 @@
         android:textColorHint="#000000"
         app:layout_constraintBottom_toTopOf="@+id/continueBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instypeField"
-        app:layout_constraintVertical_bias="0.027"
+        app:layout_constraintTop_toBottomOf="@+id/instype"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/docemailField"
+        android:id="@+id/docemail"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -117,12 +117,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insadmField"
-        app:layout_constraintVertical_bias="0.056"
+        app:layout_constraintTop_toBottomOf="@+id/insadm"
+        app:layout_constraintVertical_bias="0.014"
         tools:ignore="MissingConstraints" />
 
+
     <EditText
-        android:id="@+id/docphoneField"
+        android:id="@+id/docphone"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -138,13 +139,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/docemailField"
-        app:layout_constraintVertical_bias="0.056"
+        app:layout_constraintTop_toBottomOf="@+id/docemail"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
-
     <EditText
-        android:id="@+id/docnameField"
+        android:id="@+id/docname"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -160,8 +160,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/docphoneField"
-        app:layout_constraintVertical_bias="0.056"
+        app:layout_constraintTop_toBottomOf="@+id/docphone"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -179,17 +179,16 @@
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.92" />
 
     <Button
         android:id="@+id/backBtn"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="32dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="#FF0909"
         android:bottomLeftRadius="10dp"
@@ -199,11 +198,24 @@
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/LoginBtn"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.92" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="#FFFFFF"
+        android:secondaryProgressTint="#225324"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/docnameField"
+        app:layout_constraintVertical_bias="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
