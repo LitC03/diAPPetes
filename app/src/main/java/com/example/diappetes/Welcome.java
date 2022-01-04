@@ -1,8 +1,15 @@
 package com.example.diappetes;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +28,30 @@ public class Welcome extends AppCompatActivity {
 
         loginButton = findViewById(R.id.LoginBtn);
         signupButton = findViewById(R.id.SignUpBtn);
+
+
+        //Internet Error
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected() || !networkInfo.isAvailable()){
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.internet_dialog);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.MATCH_PARENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+            dialog.getWindow().getAttributes().windowAnimations=
+                    android.R.style.Animation_Dialog;
+            Button TryAgain = dialog.findViewById(R.id.errorBtn);
+            TryAgain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+            dialog.show();
+        }
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
