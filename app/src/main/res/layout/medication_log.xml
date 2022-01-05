@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#005EB8"
+    android:background="@color/colorPrimary"
     tools:context=".MedLog">
 
     <ImageView
-        android:id="@+id/logoView"
+        android:id="@+id/LogoView"
         android:layout_width="85dp"
         android:layout_height="89dp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
@@ -27,23 +26,23 @@
         android:layout_marginEnd="44dp"
         android:text="Medication"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorNeutralWhite"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toEndOf="@+id/logoView"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
 
     <EditText
-        android:id="@+id/typeField"
+        android:id="@+id/TypeField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Type of medication"
         android:inputType="text"
         android:padding="15dp"
@@ -60,11 +59,11 @@
 
 
     <EditText
-        android:id="@+id/doseField"
+        android:id="@+id/DoseField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Dose"
         android:inputType="text"
         android:padding="15dp"
@@ -75,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeField"
+        app:layout_constraintTop_toBottomOf="@+id/TypeField"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -84,7 +83,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Date and Time"
         android:inputType="datetime"
         android:padding="15dp"

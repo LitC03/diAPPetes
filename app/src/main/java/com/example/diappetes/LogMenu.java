@@ -8,14 +8,14 @@ import android.widget.Button;
 
 public class LogMenu extends AppCompatActivity {
 
-    Button BloodSugarLogBtn;
-    Button FoodLogBtn;
-    Button MedicationLogBtn;
-    Button ExerciseLogBtn;
-    Button ExtraNotesLogBtn;
+    Button bloodSugarLogBtn;
+    Button foodLogBtn;
+    Button medicationLogBtn;
+    Button exerciseLogBtn;
+    Button extraNotesLogBtn;
 
-    Button QuestionnaireBtn;
-    Button BacktoMainBtn;
+    Button questionnaireBtn;
+    Button backtoMainBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,53 +23,53 @@ public class LogMenu extends AppCompatActivity {
         setContentView(R.layout.log_menu);
 
         /* Blood sugar button opens blood sugar log page */
-        /*BloodSugarLogBtn = (Button) findViewById(R.id.BloodSugarLogBtn);
-        BloodSugarLogBtn.setOnClickListener(new View.OnClickListener() {
+        bloodSugarLogBtn = (Button) findViewById(R.id.BloodSugarLogBtn);
+        bloodSugarLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),__.class));
+                startActivity(new Intent(getApplicationContext(),BloodSugar.class));
             }
-        }); */
+        });
 
         /* Food button opens food log page */
-        /*FoodLogBtn = (Button) findViewById(R.id.FoodLogBtn);
-        FoodLogBtn.setOnClickListener(new View.OnClickListener() {
+        foodLogBtn = (Button) findViewById(R.id.FoodLogBtn);
+        foodLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),__.class));
+                startActivity(new Intent(getApplicationContext(),FoodLog.class));
             }
-        }); */
+        });
 
         /* Medication button opens medication log page */
-        /*MedicationLogBtn = (Button) findViewById(R.id.MedicationLogBtn);
-        MedicationLogBtn.setOnClickListener(new View.OnClickListener() {
+        medicationLogBtn = (Button) findViewById(R.id.MedicationLogBtn);
+        medicationLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),__.class));
+                startActivity(new Intent(getApplicationContext(),MedLog.class));
             }
-        }); */
+        });
 
         /* Exercise button opens exercise log page */
-        /*ExerciseLogBtn = (Button) findViewById(R.id.ExerciseLogBtn);
-        ExerciseLogBtn.setOnClickListener(new View.OnClickListener() {
+        exerciseLogBtn = (Button) findViewById(R.id.ExerciseLogBtn);
+        exerciseLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),__.class));
+                startActivity(new Intent(getApplicationContext(),ExerciseLog.class));
             }
-        });*/
+        });
 
         /* Extra Notes button opens extra notes log page */
-        /*ExtraNotesLogBtn = (Button) findViewById(R.id.ExtraNotesLogBtn);
-        ExtraNotesLogBtn.setOnClickListener(new View.OnClickListener() {
+        extraNotesLogBtn = (Button) findViewById(R.id.ExtraNotesLogBtn);
+        extraNotesLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),__.class));
+                startActivity(new Intent(getApplicationContext(),ExtraNotes.class));
             }
-        }); */
+        });
 
         /* Questionnaire button opens questionnaire log page */
-        QuestionnaireBtn = (Button) findViewById(R.id.QuestionnaireBtn);
-        QuestionnaireBtn.setOnClickListener(new View.OnClickListener() {
+        questionnaireBtn = (Button) findViewById(R.id.QuestionnaireBtn);
+        questionnaireBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Questionnaire.class));
@@ -77,8 +77,8 @@ public class LogMenu extends AppCompatActivity {
         });
 
         /* Back button leads back to main menu */
-        BacktoMainBtn = (Button) findViewById(R.id.BacktoMainBtn);
-        BacktoMainBtn.setOnClickListener(new View.OnClickListener() {
+        backtoMainBtn = (Button) findViewById(R.id.BacktoMainBtn);
+        backtoMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));

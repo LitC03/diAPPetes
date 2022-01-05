@@ -8,7 +8,7 @@
     tools:context=".Settings">
 
     <ImageView
-        android:id="@+id/logoView"
+        android:id="@+id/LogoView"
         android:layout_width="85dp"
         android:layout_height="89dp"
         android:layout_marginStart="28dp"
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toEndOf="@+id/logoView"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
 

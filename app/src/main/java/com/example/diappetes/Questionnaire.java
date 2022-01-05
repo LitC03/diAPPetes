@@ -16,7 +16,7 @@ import java.util.Calendar;
 
 public class Questionnaire extends AppCompatActivity {
     TextView datepick,timepick;
-    Button CancelBtn;
+    Button cancelBtn;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
 
@@ -33,8 +33,9 @@ public class Questionnaire extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.questoinnaire);
 
-        CancelBtn = (Button) findViewById(R.id.CancelBtn);
-        CancelBtn.setOnClickListener(new View.OnClickListener() {
+        // Cancel button to go back to log menu
+        cancelBtn = (Button) findViewById(R.id.CancelBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),LogMenu.class));

@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#005EB8"
+    android:background="@color/colorPrimary"
     tools:context=".BloodSugar">
 
     <ImageView
-        android:id="@+id/logoView"
+        android:id="@+id/LogoView"
         android:layout_width="85dp"
         android:layout_height="89dp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
@@ -27,23 +26,23 @@
         android:layout_marginEnd="44dp"
         android:text="Blood Sugar"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorNeutralWhite"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.859"
-        app:layout_constraintStart_toEndOf="@+id/logoView"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
 
     <EditText
-        android:id="@+id/sugarField"
+        android:id="@+id/SugarField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="88dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Blood Sugar (mmol/L)"
         android:inputType="textPersonName"
         android:padding="15dp"
@@ -55,8 +54,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:layout_constraintVertical_bias="0.008"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.008" />
 
     <TextView
         android:id="@+id/datePick"
@@ -64,7 +62,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Date"
         android:padding="15dp"
         android:textColor="#000000"
@@ -74,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sugarField"
+        app:layout_constraintTop_toBottomOf="@+id/SugarField"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -82,7 +80,7 @@
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Time"
         android:padding="15dp"
         android:textColor="#000000"
@@ -104,7 +102,7 @@
         android:layout_height="63dp"
         android:text="Have you eaten in the last 2 hours?"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorNeutralWhite"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/cancelBtn"

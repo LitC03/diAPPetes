@@ -10,14 +10,11 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity
-            android:name=".Questionnaire" />
-        <activity
-            android:name=".ProfileDetails" />
-        <activity
-            android:name=".Settings" />
-        <activity
-            android:name=".LogMenu" />
+        <activity android:name=".History"/>
+        <activity android:name=".Questionnaire" />
+        <activity android:name=".ProfileDetails" />
+        <activity android:name=".Settings" />
+        <activity android:name=".LogMenu" />
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".Login"/>
-        <activity android:name=".LogBook"/>
-        <activity android:name=".SignUp1"/>
-        <activity android:name=".SignUp2"/>
-        <activity android:name=".BloodSugar"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Login" />
+        <activity android:name=".SignUp1" />
+        <activity android:name=".SignUp2" />
+        <activity android:name=".BloodSugar" />
+        <activity android:name=".ExerciseLog" />
+        <activity android:name=".ExtraNotes" />
+        <activity android:name=".FoodLog" />
+        <activity android:name=".MedLog" />
+
+
 
     </application>
 

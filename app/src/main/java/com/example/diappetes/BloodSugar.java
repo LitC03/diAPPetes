@@ -89,7 +89,7 @@ public class BloodSugar extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(),LogBook.class));
+                startActivity(new Intent(getApplicationContext(),LogMenu.class));
             }
         });
     }

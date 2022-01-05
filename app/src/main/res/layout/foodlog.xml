@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#005EB8"
+    android:background="@color/colorPrimary"
     tools:context=".FoodLog">
 
     <ImageView
-        android:id="@+id/logoView"
+        android:id="@+id/LogoView"
         android:layout_width="85dp"
         android:layout_height="89dp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
@@ -27,23 +26,23 @@
         android:layout_marginEnd="44dp"
         android:text="Food Log"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorNeutralWhite"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toEndOf="@+id/logoView"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
 
 
     <EditText
-        android:id="@+id/carbField"
+        android:id="@+id/CarbField"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Carbohydrates"
         android:inputType="text"
         android:padding="15dp"
@@ -59,11 +58,11 @@
         app:layout_constraintVertical_bias="0.066" />
 
     <EditText
-        android:id="@+id/calField"
+        android:id="@+id/CalField"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Calories"
         android:inputType="text"
         android:padding="15dp"
@@ -75,13 +74,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sugarField"
+        app:layout_constraintTop_toBottomOf="@+id/SugarField"
         app:layout_constraintVertical_bias="0.095" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="230dp"
-        android:background="@android:color/white"
+        android:background="@color/colorNeutralWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.164"
@@ -93,7 +92,7 @@
         android:id="@+id/view2"
         android:layout_width="97dp"
         android:layout_height="4dp"
-        android:background="@android:color/white"
+        android:background="@color/colorNeutralWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.146"
@@ -105,7 +104,7 @@
         android:id="@+id/view4"
         android:layout_width="97dp"
         android:layout_height="4dp"
-        android:background="@android:color/white"
+        android:background="@color/colorNeutralWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.146"
@@ -117,7 +116,7 @@
         android:id="@+id/view5"
         android:layout_width="75dp"
         android:layout_height="4dp"
-        android:background="@android:color/white"
+        android:background="@color/colorNeutralWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.199"
@@ -126,11 +125,11 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <EditText
-        android:id="@+id/mealField"
+        android:id="@+id/MealField"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Meal"
         android:inputType="text"
         android:padding="15dp"
@@ -150,7 +149,7 @@
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Date and Time"
         android:inputType="datetime"
         android:padding="15dp"
@@ -162,13 +161,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealField"
+        app:layout_constraintTop_toBottomOf="@+id/MealField"
         app:layout_constraintVertical_bias="0.053" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="404dp"
-        android:background="@android:color/white"
+        android:background="@color/colorNeutralWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.113"
@@ -180,7 +179,7 @@
         android:id="@+id/view"
         android:layout_width="70dp"
         android:layout_height="4dp"
-        android:background="@android:color/white"
+        android:background="@color/colorNeutralWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
@@ -191,11 +190,11 @@
 
 
     <EditText
-        android:id="@+id/sugarField"
+        android:id="@+id/SugarField"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Of which is sugars"
         android:inputType="text"
         android:padding="15dp"
@@ -207,7 +206,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carbField"
+        app:layout_constraintTop_toBottomOf="@+id/CarbField"
         app:layout_constraintVertical_bias="0.088" />
 
     <Button
@@ -256,10 +255,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Intensive"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorNeutralWhite"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toTopOf="@+id/mealField"
+        app:layout_constraintBottom_toTopOf="@+id/MealField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/view2"
@@ -271,10 +270,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Comprehensive"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorNeutralWhite"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toTopOf="@+id/mealField"
+        app:layout_constraintBottom_toTopOf="@+id/MealField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/view2"

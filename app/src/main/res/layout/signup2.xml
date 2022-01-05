@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#005EB8"
+    android:background="@color/colorPrimary"
     tools:context=".SignUp2">
 
     <ImageView
-        android:id="@+id/logoView"
+        android:id="@+id/LogoView"
         android:layout_width="85dp"
         android:layout_height="89dp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
@@ -27,23 +26,23 @@
         android:layout_marginEnd="44dp"
         android:text="Sign Up"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorNeutralWhite"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toEndOf="@+id/logoView"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
 
     <EditText
-        android:id="@+id/diatypeField"
+        android:id="@+id/DiaTypeField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Type of Diabetes"
         android:inputType="text"
         android:padding="15dp"
@@ -59,12 +58,12 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/instypeField"
+        android:id="@+id/InsTypeField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Type of Insulin"
         android:inputType="text"
         android:padding="15dp"
@@ -75,17 +74,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diatypeField"
+        app:layout_constraintTop_toBottomOf="@+id/DiaTypeField"
         app:layout_constraintVertical_bias="0.014"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/insadmField"
+        android:id="@+id/InsAdmField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Insulin Administration"
         android:inputType="text"
         android:padding="15dp"
@@ -96,17 +95,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instypeField"
+        app:layout_constraintTop_toBottomOf="@+id/InsTypeField"
         app:layout_constraintVertical_bias="0.027"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/docemailField"
+        android:id="@+id/DocEmailField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Email of Doctor"
         android:inputType="textEmailAddress"
         android:padding="15dp"
@@ -117,17 +116,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insadmField"
+        app:layout_constraintTop_toBottomOf="@+id/InsAdmField"
         app:layout_constraintVertical_bias="0.056"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/docphoneField"
+        android:id="@+id/DocPhoneField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Phone Number of Doctor"
         android:inputType="phone"
         android:padding="15dp"
@@ -138,18 +137,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/docemailField"
+        app:layout_constraintTop_toBottomOf="@+id/DocEmailField"
         app:layout_constraintVertical_bias="0.056"
         tools:ignore="MissingConstraints" />
 
 
     <EditText
-        android:id="@+id/docnameField"
+        android:id="@+id/DocNameField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundbutton"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Name of Doctor"
         android:inputType="textPersonName"
         android:padding="15dp"
@@ -160,7 +159,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/docphoneField"
+        app:layout_constraintTop_toBottomOf="@+id/DocPhoneField"
         app:layout_constraintVertical_bias="0.056"
         tools:ignore="MissingConstraints" />
 
@@ -199,7 +198,6 @@
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/LoginBtn"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
