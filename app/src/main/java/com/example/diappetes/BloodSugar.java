@@ -20,6 +20,7 @@ import java.util.Locale;
 public class BloodSugar extends AppCompatActivity {
     TextView datepick,timepick;
     Button cancelButton;
+    Button saveButton;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
 
