@@ -122,13 +122,13 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/phoneField"
+        android:id="@+id/nhsNumField"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="#FFFFFF"
-        android:hint="Phone Number"
+        android:hint="NHS Number"
         android:inputType="phone"
         android:padding="15dp"
         android:textColor="#000000"
