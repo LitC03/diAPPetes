@@ -5,14 +5,14 @@
       <map>
         <entry key="app/src/main/res/drawable/largetextbox.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/roundbutton.xml" value="0.2375" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15896739130434784" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="10.0" />
         <entry key="app/src/main/res/layout/exercise_log.xml" value="0.2028985507246377" />
         <entry key="app/src/main/res/layout/extranotes.xml" value="0.2871431209749725" />
         <entry key="app/src/main/res/layout/food_log.xml" value="0.15628166160081053" />
         <entry key="app/src/main/res/layout/foodlog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/logbook.xml" value="0.15628166160081053" />
         <entry key="app/src/main/res/layout/login.xml" value="0.13438791813086395" />
-        <entry key="app/src/main/res/layout/medication_log.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/medication_log.xml" value="0.10179840637075685" />
         <entry key="app/src/main/res/layout/signup1.xml" value="0.23303302266065895" />
         <entry key="app/src/main/res/layout/welcome.xml" value="0.1" />
       </map>
