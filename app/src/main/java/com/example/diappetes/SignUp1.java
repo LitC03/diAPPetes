@@ -66,6 +66,9 @@ public class SignUp1 extends AppCompatActivity {
                 final String txt_fName = firstName.getText().toString();
                 final String txt_lName = lastName.getText().toString();
 
+                final Global global = (Global) getApplicationContext();
+                global.setNhsNum(txt_nhsNum);
+
                 //At some point this block should be converted to a switch
                 if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText( SignUp1.this, "Please enter a username and password", Toast.LENGTH_SHORT).show();
@@ -85,7 +88,8 @@ public class SignUp1 extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(SignUp1.this, "Success", Toast.LENGTH_SHORT).show();
-                                populateUserData(txt_email, txt_fName, txt_lName, txt_nhsNum);
+                                global.setUID(auth.getCurrentUser().getUid());
+                                populateUserData(txt_email, txt_fName, txt_lName, txt_nhsNum, global.getUID());
                                 startActivity(new Intent(getApplicationContext(),SignUp2.class));
                             }
                             else{
@@ -111,14 +115,17 @@ public class SignUp1 extends AppCompatActivity {
         return (password.length()>7)&&!(Pattern.compile(regex).matcher(password).matches());
     }
 
-    private void populateUserData(String email, String fName, String lName, String nhsNum){
+    private void populateUserData(String email, String fName, String lName, String nhsNum, String UID){
         Map<String, Object> patient = new HashMap<>(); //data submitted to Firestore as hashmaps
 
         patient.put("fName", fName);
         patient.put("lName", lName);
         patient.put("email", email);
+        patient.put("UID", UID);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
         db.collection("Patients").document(nhsNum).set(patient).addOnFailureListener(SignUp1.this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
