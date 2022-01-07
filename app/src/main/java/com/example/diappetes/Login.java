@@ -35,8 +35,8 @@ public class Login extends AppCompatActivity {
 
 
         loginButton = findViewById(R.id.LoginBtn);
-        emailField = findViewById(R.id.Email);
-        passwordField = findViewById(R.id.password);
+        emailField = findViewById(R.id.EmailField);
+        passwordField = findViewById(R.id.PasswordField);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+
                 String txt_email = emailField.getText().toString();
                 String txt_password = passwordField.getText().toString();
 

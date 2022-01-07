@@ -41,10 +41,10 @@ public class SignUp1 extends AppCompatActivity {
         backButton = findViewById(R.id.backBtn);
         continueButton = findViewById(R.id.continueBtn);
 
-        firstName = findViewById(R.id.firstNameField);
-        lastName = findViewById(R.id.lastNameField);
-        password = findViewById(R.id.passwordField);
-        email = findViewById(R.id.emailField);
+        firstName = findViewById(R.id.FirstNameField);
+        lastName = findViewById(R.id.LastNameField);
+        password = findViewById(R.id.PasswordField);
+        email = findViewById(R.id.EmailField);
         nhsNum = findViewById(R.id.nhsNumField);
 
         auth = FirebaseAuth.getInstance();
