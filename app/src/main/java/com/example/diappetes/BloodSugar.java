@@ -124,7 +124,7 @@ public class BloodSugar extends AppCompatActivity {
         log.put("BloodSugar", Bloodsugar);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("Patients").document(nhsNum).collection("Bloodsucker").document("log1").set(log);
+        db.collection("Patients").document(nhsNum).collection("Bloodsugar").document("log1").set(log);
     }
 
 }
