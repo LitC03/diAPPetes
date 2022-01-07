@@ -9,20 +9,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class BloodSugar extends AppCompatActivity {
-    TextView datepick,timepick;
-    Button cancelButton;
-    Button saveButton;
-    DatePickerDialog.OnDateSetListener datelistener;
-    TimePickerDialog.OnTimeSetListener timelistener;
+    private TextView datepick,timepick;
+    private Button cancelButton;
+    private Button saveButton;
+    private DatePickerDialog.OnDateSetListener datelistener;
+    private TimePickerDialog.OnTimeSetListener timelistener;
+    private EditText bloodSugarField;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
@@ -38,10 +48,12 @@ public class BloodSugar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bloodsugar);
 
+        //Set up buttons and fields
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
         cancelButton = findViewById(R.id.cancelBtn);
-
+        saveButton = findViewById(R.id.saveBtn);
+        bloodSugarField = findViewById(R.id.PasswordField);
 
 
         //Calendar appears when "Date" TextView is clicked
@@ -93,5 +105,26 @@ public class BloodSugar extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),LogMenu.class));
             }
         });
+
+        saveButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                final String blood_sugar = bloodSugarField.getText().toString();
+                populateBloodSugarLog(blood_sugar);
+
+            }
+        });
     }
+
+    private void populateBloodSugarLog(String Bloodsugar) {
+        Map<String, Object> log = new HashMap<>(); //data submitted to Firestore as hashmaps
+        final Global global = (Global) getApplicationContext();
+        String nhsNum = global.getNhsNum();
+
+        log.put("BloodSugar", Bloodsugar);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Patients").document(nhsNum).collection("Bloodsucker").document("log1").set(log);
+    }
+
 }
