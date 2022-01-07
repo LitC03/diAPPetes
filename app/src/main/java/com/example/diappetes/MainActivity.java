@@ -10,7 +10,10 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    Button LogButton;
+
+    Button logBookBtn;
+    Button settingsBtn;
+    Button historyBtn;
     Button LogOutButton;
 
     @Override
@@ -18,13 +21,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LogButton = findViewById(R.id.LogBookBtn);
-        LogOutButton = findViewById(R.id.logOutBtn);
-
-        LogButton.setOnClickListener(new View.OnClickListener() {
+        // Button that opens the Log Menu
+        logBookBtn = (Button) findViewById(R.id.LogBookBtn);
+        logBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(),LogBook.class));
+                startActivity(new Intent(getApplicationContext(),LogMenu.class));
+            }
+        });
+        LogOutButton = findViewById(R.id.logOutBtn);
+
+        // Button that opens Settings
+        settingsBtn = (Button) findViewById(R.id.SettingsBtn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Settings.class));
+            }
+        });
+
+        // Button that opens History
+        historyBtn = (Button) findViewById(R.id.HistoryBtn);
+        historyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),History.class));
             }
         });
 

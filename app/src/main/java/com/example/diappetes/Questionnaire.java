@@ -1,10 +1,10 @@
 package com.example.diappetes;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,44 +12,45 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Calendar;
-import java.util.Locale;
 
-public class BloodSugar extends AppCompatActivity {
+public class Questionnaire extends AppCompatActivity {
     TextView datepick,timepick;
-    Button cancelButton;
-    Button saveButton;
+    Button cancelBtn;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
-     int year = calendar.get(Calendar.YEAR);
-     int month = calendar.get(Calendar.MONTH);
-     int day = calendar.get(Calendar.DAY_OF_MONTH);
-     int hour = calendar.get(Calendar.HOUR_OF_DAY);
-     int minute = calendar.get(Calendar.MINUTE);
-
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
+    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+    int minute = calendar.get(Calendar.MINUTE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bloodsugar);
+        setContentView(R.layout.questoinnaire);
+
+        // Cancel button to go back to log menu
+        cancelBtn = (Button) findViewById(R.id.CancelBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),LogMenu.class));
+            }
+        });
 
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
-        cancelButton = findViewById(R.id.cancelBtn);
-
-
 
         //Calendar appears when "Date" TextView is clicked
         datepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        BloodSugar.this,R.style.DialogTheme,datelistener,year,month,day);
+                        Questionnaire.this,R.style.DialogTheme,datelistener,year,month,day);
                 datePickerDialog.show();
             }
         });
@@ -64,13 +65,12 @@ public class BloodSugar extends AppCompatActivity {
             }
         };
 
-
         //Clock appears on screen
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
-                        BloodSugar.this,android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,timelistener,hour,minute,true);
+                        Questionnaire.this,android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,timelistener,hour,minute,true);
                 timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 timePickerDialog.show();
             }
@@ -87,11 +87,5 @@ public class BloodSugar extends AppCompatActivity {
 
 
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(),LogMenu.class));
-            }
-        });
     }
 }
