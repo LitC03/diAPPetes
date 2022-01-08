@@ -170,7 +170,7 @@ public class FoodLog extends AppCompatActivity {
 
                     });
                 } catch (ParseException e) {
-                    Log.d("DB_BLOODSUGAR",e.toString());
+                    Log.d("DB_Foodlog",e.toString());
                 }
 
             }
