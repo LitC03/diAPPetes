@@ -133,7 +133,7 @@ public class ExtraNotes extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 int collectionSize = task.getResult().size();
                                 collectionSize++;
-                                db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").document("ML" + collectionSize)
+                                db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").document("EN" + collectionSize)
                                         .set(Notes_data)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
