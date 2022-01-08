@@ -44,7 +44,7 @@
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
         android:hint="Blood Sugar (mmol/L)"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:padding="15dp"
         android:textColor="#000000"
         android:textColorHighlight="#000000"
@@ -96,20 +96,34 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/hourSwitch"
-        android:theme="@style/SwitchCompatStyle"
-        android:checked="false"
         android:layout_width="249dp"
         android:layout_height="63dp"
+        android:checked="false"
         android:text="Have you eaten in the last 2 hours?"
         android:textAlignment="center"
         android:textColor="@color/colorNeutralWhite"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:theme="@style/SwitchCompatStyle"
         app:layout_constraintBottom_toTopOf="@+id/cancelBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timePick"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.169" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="84dp"
+        android:layout_height="80dp"
+        android:indeterminateTint="#FFFFFF"
+        android:secondaryProgressTint="#225324"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hourSwitch"
+        app:layout_constraintVertical_bias="0.05" />
 
     <Button
         android:id="@+id/saveBtn"
