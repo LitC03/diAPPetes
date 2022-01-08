@@ -3,7 +3,7 @@ package com.example.diappetes;
 import android.app.Application;
 
 public class Global extends Application {
-    //place to store the variables that need to persist between different activities
+//place to store the variables that need to persist between different activities
     public String getNhsNum() {
         return nhsNum;
     }
@@ -22,4 +22,6 @@ public class Global extends Application {
 
     private static String UID;
     private static String nhsNum;
+
+
 }
