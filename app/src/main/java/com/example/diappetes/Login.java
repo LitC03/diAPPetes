@@ -39,8 +39,8 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.LoginBtn);
         createButton = findViewById(R.id.CreateAccBtn);
         forgotButton = findViewById(R.id.ForgotPWBtn);
-        emailField = findViewById(R.id.EmailField);
-        passwordField = findViewById(R.id.PasswordField);
+        emailField = findViewById(R.id.Email);
+        passwordField = findViewById(R.id.password);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();

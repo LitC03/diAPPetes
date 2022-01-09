@@ -1,9 +1,11 @@
 package com.example.diappetes;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -44,22 +48,24 @@ public class Graph extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
         db = FirebaseFirestore.getInstance();
-//
-//        backButton = findViewById(R.id.backBtn);
+
+        backButton = findViewById(R.id.BackBtn);
         graph = findViewById(R.id.idGraphView);
         xView = findViewById(R.id.xValue);
         yView = findViewById(R.id.yValue);
 
-//        backButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), LogBook.class));
-//            }
-//        });
-
-
+        //Create series where data point will be added
         series = new LineGraphSeries<>();
 
+        //Button to go back to "History" activity
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), History.class));
+            }
+        });
+
+        //Get patient's blood sugar entries from oldest to newest
         db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar")
                 .orderBy("Time", Query.Direction.ASCENDING)
                 .get()
@@ -68,40 +74,49 @@ public class Graph extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
 
-                            ArrayList ideaArrayList = new ArrayList<>();
-                            ideaArrayList.clear();
-
+                            //Inspect every blood sugar entry
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
+
+                                //Get x and y coordinates from firestore
                                 double y = documentSnapshot.getDouble("BS");
                                 Log.d("DB_GRAPH", "added value " + y);
                                 Date x = documentSnapshot.getTimestamp("Time").toDate();
                                 Log.d("DB_GRAPH", "added value " + x);
+
+                                //Append data point to series
                                 series.appendData(new DataPoint(x, y), true, 500);
+
+                                //Format series
                                 series.setDrawDataPoints(true);
                                 series.setDataPointsRadius(15);
                                 series.setColor(Color.WHITE);
                                 series.setThickness(10);
 
+                                //Add series to graph
                                 graph.addSeries(series);
 
-                                graph.getViewport().setMaxX(series.getHighestValueX());
-                                graph.getViewport().setMinX(series.getLowestValueX());
-                                graph.getViewport().setXAxisBoundsManual(true);
-                                graph.getGridLabelRenderer().setNumHorizontalLabels(3);
-                                graph.getGridLabelRenderer().setVerticalLabelsColor(Color.WHITE);
-                                graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.WHITE);
+                                //Format graph
+                                Viewport viewPort = graph.getViewport();
+                                GridLabelRenderer labelRend = graph.getGridLabelRenderer();
 
-                                graph.getGridLabelRenderer().setPadding(50);
-                                graph.getGridLabelRenderer().setVerticalAxisTitle("Blood Sugar levels (mmol/L)");
-                                graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.WHITE);
-                                graph.getGridLabelRenderer().setTextSize(30);
+                                viewPort.setMaxX(series.getHighestValueX());
+                                viewPort.setMinX(series.getLowestValueX());
+                                viewPort.setMaxY(series.getHighestValueY()+2);
+                                viewPort.setXAxisBoundsManual(true);
+                                labelRend.setNumHorizontalLabels(3);
+                                labelRend.setVerticalLabelsColor(Color.WHITE);
+                                labelRend.setHorizontalLabelsColor(Color.WHITE);
+                                labelRend.setPadding(50);
+                                labelRend.setVerticalAxisTitle("Blood Sugar levels (mmol/L)");
+                                labelRend.setVerticalAxisTitleColor(Color.WHITE);
+                                labelRend.setTextSize(30);
 
-
+                                //Correct x axis so that it displays dates
                                 graph.getGridLabelRenderer().reloadStyles();
                                 final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy \n HH:mm");
                                 graph.getViewport().setBackgroundColor(Color.argb(20, 0, 0, 0));
 
-                                // set date label formatter
+                                //Set date label formatter
                                 graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
                                     @Override
                                     public String formatLabel(double value, boolean isValueX) {
@@ -114,6 +129,8 @@ public class Graph extends AppCompatActivity {
 
                                 });
 
+
+                                //When data point is clicked, TextViews set to corresponding value
                                 series.setOnDataPointTapListener(new OnDataPointTapListener() {
                                     @Override
                                     public void onTap(Series series, DataPointInterface dataPoint) {
@@ -125,15 +142,6 @@ public class Graph extends AppCompatActivity {
                                         String yStr = Double.toString(dataPoint.getY());
                                         yView.setText(yStr);
 
-//                                        final Toast toast = Toast.makeText(Graph.this, "Data Point pressed: ("+ xStr+" , "+dataPoint.getY()+")", Toast.LENGTH_LONG);
-//                                        toast.show();
-//                                        Handler handler = new Handler();
-//                                        handler.postDelayed(new Runnable() {
-//                                            @Override
-//                                            public void run() {
-//                                                toast.cancel();
-//                                            }
-//                                        }, 2500);
                                     }
                                 });
                             }
