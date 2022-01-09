@@ -8,8 +8,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="DiaLog"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:screenOrientation="portrait"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".DoctorDetails"
@@ -21,6 +21,7 @@
         <activity android:name=".Settings" />
         <activity android:name=".LogMenu" />
         <activity android:name=".Welcome">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,6 +37,10 @@
         <activity android:name=".ExtraNotes" />
         <activity android:name=".FoodLog" />
         <activity android:name=".MedLog" />
+        <activity android:name=".Graph"
+            android:screenOrientation="landscape"/>
+
+
     </application>
 
 </manifest>
