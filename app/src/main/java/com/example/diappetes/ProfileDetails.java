@@ -16,6 +16,9 @@ public class ProfileDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_details);
 
+
+
+
         CancelBtn = (Button) findViewById(R.id.CancelBtn);
         CancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

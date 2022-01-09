@@ -106,6 +106,7 @@ public class ExerciseLog extends AppCompatActivity {
             }
         };
 
+        //Cancel to go back to log menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,10 +114,12 @@ public class ExerciseLog extends AppCompatActivity {
             }
         });
 
+        //Save button
         saveButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View V){
+                //Fetch all entered data
                 final String exerciseTypeString = typeEdit.getText().toString();
                 final String durString = durEdit.getText().toString();
                 final String dateString = datepick.getText().toString();
@@ -127,20 +130,25 @@ public class ExerciseLog extends AppCompatActivity {
                     Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
                     Timestamp timestamp = new Timestamp(date);
 
+                    //Create an instance of the firebase
                     auth = FirebaseAuth.getInstance();
                     db = FirebaseFirestore.getInstance();
 
+                    //Create hashmap to submit to firebase
                     final Map<String, Object> Med_data = new HashMap<>();
                     Med_data.put("Exercise Type", exerciseTypeString);
                     Med_data.put("Duration", durString);
                     Med_data.put("Time", timestamp);
 
+                    //Fetch collection of previous logs to get index for new log
                     db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 int collectionSize = task.getResult().size();
                                 collectionSize++;
+
+                                //Submit new log to database
                                 db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").document("EL" + collectionSize)
                                         .set(Med_data)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -160,14 +168,11 @@ public class ExerciseLog extends AppCompatActivity {
                         }
 
                     });
-                } catch (ParseException e) {
+                }
+                catch (ParseException e) {
                     Log.d("DB_Exercise Log",e.toString());
                 }
-
             }
-
         });
-
-
     }
 }

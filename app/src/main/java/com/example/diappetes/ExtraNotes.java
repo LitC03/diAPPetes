@@ -111,6 +111,7 @@ public class ExtraNotes extends AppCompatActivity {
 
             @Override
             public void onClick(View V){
+                //Fetch entered values
                 final String notesString = notesEdit.getText().toString();
                 final String dateString = datepick.getText().toString();
                 final String timeString = timepick.getText().toString();
@@ -123,21 +124,26 @@ public class ExtraNotes extends AppCompatActivity {
                     auth = FirebaseAuth.getInstance();
                     db = FirebaseFirestore.getInstance();
 
+                    //Create hashmap for database
                     final Map<String, Object> Notes_data = new HashMap<>();
                     Notes_data.put("Notes", notesString);
                     Notes_data.put("Time", timestamp);
 
+                    //Fetch collection of previous collections to get index for new collection
                     db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 int collectionSize = task.getResult().size();
                                 collectionSize++;
+
+                                //Add new entry to database
                                 db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").document("EN" + collectionSize)
                                         .set(Notes_data)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
+                                                //Alert user data was submitted correctly
                                                 Toast.makeText(ExtraNotes.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                             }
@@ -145,6 +151,7 @@ public class ExtraNotes extends AppCompatActivity {
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
+                                                //Alert user data submission failed
                                                 Toast.makeText(ExtraNotes.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
                                             }
                                         });

@@ -53,7 +53,6 @@ public class BloodSugar extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
     SwitchCompat hasEaten;
-
     FirebaseAuth auth;
     FirebaseFirestore db;
 
@@ -65,9 +64,6 @@ public class BloodSugar extends AppCompatActivity {
     int hour = calendar.get(Calendar.HOUR_OF_DAY);
     int minute = calendar.get(Calendar.MINUTE);
 
-    //final Global global = (Global) getApplicationContext();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +71,6 @@ public class BloodSugar extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
-
-//        Intent n = getIntent();
-//        final Global global = (Global)n.getSerializableExtra("global");
-
-//        Log.d("DB_BLOODSUGAR",""+global.getNhsNum());
 
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
@@ -141,7 +132,6 @@ public class BloodSugar extends AppCompatActivity {
 
         saveButton.setOnClickListener(new View.OnClickListener() {
 
-
             @Override
             public void onClick(View v){
 
@@ -153,57 +143,79 @@ public class BloodSugar extends AppCompatActivity {
                 boolean eatenBool = hasEaten.isChecked();
                 final String eatenString = String.valueOf(eatenBool);
 
-                try {
-                    Log.d("DB_BLOODSUGAR",""+global.getNhsNum());
-                    Date bsDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
+                //Check that is a numeric and reasonable value (not a typo)
+                if(!isReasonable(bsString)) {
+                    Toast.makeText(BloodSugar.this, "Please re-enter the blood sugar value", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    try {
+                        Date bsDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
+                        Timestamp timestamp = new Timestamp(bsDate);
 
-                    Log.d("DB",""+bsDate);
+                        auth = FirebaseAuth.getInstance();
+                        db = FirebaseFirestore.getInstance();
 
-                    Timestamp timestamp = new Timestamp(bsDate);
+                        //Create hashmap to submit to database
+                        final Map<String, Object> BS_data = new HashMap<>();
+                        BS_data.put("BS", bsDouble);
+                        BS_data.put("Time", timestamp);
+                        BS_data.put("EatenIn2h", eatenString);
 
-                    Log.d("DB",""+timestamp);
+                        //Fetch collection of previous collections to get index for new collection
+                        db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    int collectionSize = task.getResult().size();
+                                    collectionSize++;
 
-                    auth = FirebaseAuth.getInstance();
-                    db = FirebaseFirestore.getInstance();
+                                    //Add new entry to database
+                                    db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar").document("BS" + collectionSize)
+                                            .set(BS_data)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    //Tell user data was submittec correctly
+                                                    Toast.makeText(BloodSugar.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    //Alert user data submission failed
+                                                    Toast.makeText(BloodSugar.this, "Your entry was not added, please try again", Toast.LENGTH_SHORT).show();
 
-                    final Map<String, Object> BS_data = new HashMap<>();
-                    BS_data.put("BS", bsDouble);
-                    BS_data.put("Time", timestamp);
-                    BS_data.put("EatenIn2h", eatenString);
-
-                    db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                Log.d("DB_BLOODSUGAR", ""+task.getResult().size());
-                                int collectionSize = task.getResult().size();
-                                collectionSize++;
-                                db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar").document("BS"+collectionSize)
-                                        .set(BS_data)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Log.d("DB_BLOODSUGAR","Inserted BS");
-                                                Toast.makeText(BloodSugar.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.d("TAG",e.toString());
-                                            }
-                                        });
-                            } else {
-                                Log.d("DB_BLOODSUGAR", "Error getting documents: ", task.getException());
+                                                }
+                                            });
+                                } else {
+                                    Log.d("DB_BLOODSUGAR", "Error getting documents: ", task.getException());
+                                    Toast.makeText(BloodSugar.this, "Your entry was not added, please try again", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
 
-                } catch (ParseException e) {
-                    Log.d("DB_BLOODSUGAR",e.toString());
+                    } catch (ParseException e) {
+                        Log.d("DB_BLOODSUGAR", e.toString());
+                    }
                 }
             }
         });
+    }
+
+    private static boolean isReasonable(String str){
+        double bloodSugar = 0;
+        try {
+            bloodSugar = Double.parseDouble(str);
+            //if it can be converted to an int, it is numeric
+        } catch(NumberFormatException e){
+            return false; //if it can't be converted to an int, it is not numeric
+        }
+        if ( bloodSugar < 0 || bloodSugar > 30){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

@@ -118,6 +118,7 @@ public class MedLog extends AppCompatActivity {
 
             @Override
             public void onClick(View V){
+                //Fetch entered values
                 final String medTypeString = medTypeEdit.getText().toString();
                 final String doseString = doseEdit.getText().toString();
                 final String dateString = datepick.getText().toString();
@@ -131,17 +132,21 @@ public class MedLog extends AppCompatActivity {
                     auth = FirebaseAuth.getInstance();
                     db = FirebaseFirestore.getInstance();
 
+                    //Create hashmap for database
                     final Map<String, Object> Med_data = new HashMap<>();
                     Med_data.put("Meal", medTypeString);
                     Med_data.put("Carbs", doseString);
                     Med_data.put("Time", timestamp);
 
+                    //Fetch collection of previous collections to get index for new collection
                     db.collection("Patients").document(global.getNhsNum()).collection("MedLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 int collectionSize = task.getResult().size();
                                 collectionSize++;
+
+                                //Add new entry to database
                                 db.collection("Patients").document(global.getNhsNum()).collection("MedLog").document("ML" + collectionSize)
                                         .set(Med_data)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {

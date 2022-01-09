@@ -23,5 +23,4 @@ public class Global extends Application {
     private String UID;
     private String nhsNum;
 
-
 }
