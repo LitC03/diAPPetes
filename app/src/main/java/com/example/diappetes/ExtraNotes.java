@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -117,52 +118,62 @@ public class ExtraNotes extends AppCompatActivity {
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                try {
-                    Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
-                    Timestamp timestamp = new Timestamp(date);
-
-                    auth = FirebaseAuth.getInstance();
-                    db = FirebaseFirestore.getInstance();
-
-                    //Create hashmap for database
-                    final Map<String, Object> Notes_data = new HashMap<>();
-                    Notes_data.put("Notes", notesString);
-                    Notes_data.put("Time", timestamp);
-
-                    //Fetch collection of previous collections to get index for new collection
-                    db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                int collectionSize = task.getResult().size();
-                                collectionSize++;
-
-                                //Add new entry to database
-                                db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").document("EN" + collectionSize)
-                                        .set(Notes_data)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                //Alert user data was submitted correctly
-                                                Toast.makeText(ExtraNotes.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                //Alert user data submission failed
-                                                Toast.makeText(ExtraNotes.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }
-                        }
-
-                    });
-                } catch (ParseException e) {
-                    Log.d("DB_ExtraNotes",e.toString());
+                //Following are checks that all required fields have values
+                if(TextUtils.isEmpty(notesString)){
+                    Toast.makeText( ExtraNotes.this, "Please do not leave the notes empty", Toast.LENGTH_SHORT).show();
                 }
 
+                else if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    Toast.makeText( ExtraNotes.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    try {
+                        Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
+                        Timestamp timestamp = new Timestamp(date);
+
+                        auth = FirebaseAuth.getInstance();
+                        db = FirebaseFirestore.getInstance();
+
+                        //Create hashmap for database
+                        final Map<String, Object> Notes_data = new HashMap<>();
+                        Notes_data.put("Notes", notesString);
+                        Notes_data.put("Time", timestamp);
+
+                        //Fetch collection of previous collections to get index for new collection
+                        db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    int collectionSize = task.getResult().size();
+                                    collectionSize++;
+
+                                    //Add new entry to database
+                                    db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").document("EN" + collectionSize)
+                                            .set(Notes_data)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    //Alert user data was submitted correctly
+                                                    Toast.makeText(ExtraNotes.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    //Alert user data submission failed
+                                                    Toast.makeText(ExtraNotes.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            }
+
+                        });
+                    } catch (ParseException e) {
+                        Log.d("DB_ExtraNotes",e.toString());
+                    }
+                }
             }
 
         });

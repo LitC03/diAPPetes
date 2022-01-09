@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -122,7 +123,6 @@ public class BloodSugar extends AppCompatActivity {
         };
 
 
-
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -139,15 +139,26 @@ public class BloodSugar extends AppCompatActivity {
                 final String dateString = datepick.getText().toString();
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString+" "+timeString+":00";
-                double bsDouble = Double.parseDouble(bsString);
                 boolean eatenBool = hasEaten.isChecked();
                 final String eatenString = String.valueOf(eatenBool);
 
-                //Check that is a numeric and reasonable value (not a typo)
-                if(!isReasonable(bsString)) {
+                //Following are checks that all required fields have values
+                if(TextUtils.isEmpty(bsString)){
+                    Toast.makeText( BloodSugar.this, "Please enter your blood sugar value", Toast.LENGTH_SHORT).show();
+                }
+
+                //To avoid recording a typo
+                else if(!isReasonable(bsString)) {
                     Toast.makeText(BloodSugar.this, "Please re-enter the blood sugar value", Toast.LENGTH_LONG).show();
                 }
+
+                else if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    Toast.makeText( BloodSugar.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
+                }
+
                 else {
+                    double bsDouble = Double.parseDouble(bsString);
+
                     try {
                         Date bsDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
                         Timestamp timestamp = new Timestamp(bsDate);

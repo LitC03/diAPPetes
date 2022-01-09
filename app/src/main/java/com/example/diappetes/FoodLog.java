@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -130,49 +131,59 @@ public class FoodLog extends AppCompatActivity {
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                try {
-                    Date foodDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
-                    Timestamp timestamp = new Timestamp(foodDate);
-
-                    auth = FirebaseAuth.getInstance();
-                    db = FirebaseFirestore.getInstance();
-
-                    final Map<String, Object> Food_data = new HashMap<>();
-                    Food_data.put("Meal", mealString);
-                    Food_data.put("Carbs", carbString);
-                    Food_data.put("Sugars", sugarString);
-                    Food_data.put("Calories", calString);
-                    Food_data.put("Time", timestamp);
-
-                    db.collection("Patients").document(global.getNhsNum()).collection("FoodLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                int collectionSize = task.getResult().size();
-                                collectionSize++;
-                                db.collection("Patients").document(global.getNhsNum()).collection("FoodLog").document("FL" + collectionSize)
-                                        .set(Food_data)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(FoodLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(FoodLog.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }
-                        }
-
-                    });
-                } catch (ParseException e) {
-                    Log.d("DB_Foodlog",e.toString());
+                //Following are checks that all required fields have values
+                if(TextUtils.isEmpty(mealString) || TextUtils.isEmpty(carbString)){
+                    Toast.makeText( FoodLog.this, "Please enter what you ate and the carbohydrates it contained", Toast.LENGTH_SHORT).show();
                 }
 
+                else if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    Toast.makeText( FoodLog.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    try {
+                        Date foodDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
+                        Timestamp timestamp = new Timestamp(foodDate);
+
+                        auth = FirebaseAuth.getInstance();
+                        db = FirebaseFirestore.getInstance();
+
+                        final Map<String, Object> Food_data = new HashMap<>();
+                        Food_data.put("Meal", mealString);
+                        Food_data.put("Carbs", carbString);
+                        Food_data.put("Sugars", sugarString);
+                        Food_data.put("Calories", calString);
+                        Food_data.put("Time", timestamp);
+
+                        db.collection("Patients").document(global.getNhsNum()).collection("FoodLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    int collectionSize = task.getResult().size();
+                                    collectionSize++;
+                                    db.collection("Patients").document(global.getNhsNum()).collection("FoodLog").document("FL" + collectionSize)
+                                            .set(Food_data)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(FoodLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(FoodLog.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            }
+
+                        });
+                    } catch (ParseException e) {
+                        Log.d("DB_Foodlog",e.toString());
+                    }
+                }
             }
 
         });

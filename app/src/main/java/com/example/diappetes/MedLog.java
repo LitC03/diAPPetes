@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -125,51 +126,61 @@ public class MedLog extends AppCompatActivity {
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                try {
-                    Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
-                    Timestamp timestamp = new Timestamp(date);
-
-                    auth = FirebaseAuth.getInstance();
-                    db = FirebaseFirestore.getInstance();
-
-                    //Create hashmap for database
-                    final Map<String, Object> Med_data = new HashMap<>();
-                    Med_data.put("Meal", medTypeString);
-                    Med_data.put("Carbs", doseString);
-                    Med_data.put("Time", timestamp);
-
-                    //Fetch collection of previous collections to get index for new collection
-                    db.collection("Patients").document(global.getNhsNum()).collection("MedLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                int collectionSize = task.getResult().size();
-                                collectionSize++;
-
-                                //Add new entry to database
-                                db.collection("Patients").document(global.getNhsNum()).collection("MedLog").document("ML" + collectionSize)
-                                        .set(Med_data)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(MedLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(MedLog.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }
-                        }
-
-                    });
-                } catch (ParseException e) {
-                    Log.d("DB_Medlog",e.toString());
+                //Following are checks that all required fields have values
+                if(TextUtils.isEmpty(doseString) || TextUtils.isEmpty(medTypeString)){
+                    Toast.makeText( MedLog.this, "Please enter your medication and dose", Toast.LENGTH_SHORT).show();
                 }
 
+                else if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    Toast.makeText( MedLog.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    try {
+                        Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
+                        Timestamp timestamp = new Timestamp(date);
+
+                        auth = FirebaseAuth.getInstance();
+                        db = FirebaseFirestore.getInstance();
+
+                        //Create hashmap for database
+                        final Map<String, Object> Med_data = new HashMap<>();
+                        Med_data.put("Meal", medTypeString);
+                        Med_data.put("Carbs", doseString);
+                        Med_data.put("Time", timestamp);
+
+                        //Fetch collection of previous collections to get index for new collection
+                        db.collection("Patients").document(global.getNhsNum()).collection("MedLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    int collectionSize = task.getResult().size();
+                                    collectionSize++;
+
+                                    //Add new entry to database
+                                    db.collection("Patients").document(global.getNhsNum()).collection("MedLog").document("ML" + collectionSize)
+                                            .set(Med_data)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(MedLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(MedLog.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            }
+
+                        });
+                    } catch (ParseException e) {
+                        Log.d("DB_Medlog",e.toString());
+                    }
+                }
             }
 
         });

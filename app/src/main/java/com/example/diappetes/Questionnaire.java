@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -139,9 +140,12 @@ public class Questionnaire extends AppCompatActivity {
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString+" "+timeString+":00";
 
-                if(false) {
-                    // Maybe some checks
+                //Following are checks that all required fields have values
+                if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    Toast.makeText( Questionnaire.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
                 }
+
+
                 else {
                     try {
                         Date queDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
