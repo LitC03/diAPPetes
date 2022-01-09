@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".ProfileDetails">
+    tools:context=".DoctorDetails">
 
     <ImageView
         android:id="@+id/LogoView"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="44dp"
-        android:text="Change\n Profile Details"
+        android:text="Change\n Doctor Details"
         android:textAlignment="center"
         android:textColor="@color/colorNeutralWhite"
         android:textSize="36sp"
@@ -58,21 +58,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
                 <TextView
-                    android:id="@+id/FirstNameView"
+                    android:id="@+id/DocNameView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="First Name"
+                    android:text="Name of Doctor"
                     android:textColor="@color/colorNeutralWhite"
                     android:textSize="22dp" />
 
                 <EditText
-                    android:id="@+id/FirstNameEdit"
+                    android:id="@+id/DocNameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/roundbutton"
                     android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current First Name"
+                    android:hint=" Current Name of Doctor"
                     android:inputType="textPersonName"
                     android:padding="15dp"
                     android:textColor="#000000"
@@ -80,22 +83,22 @@
                     android:textColorHint="#000000" />
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="17dp" />
+                    android:layout_height="24dp" />
                 <TextView
-                    android:id="@+id/LastNameView"
+                    android:id="@+id/DocPhoneNumView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Last Name"
+                    android:text="Phone Number of Doctor"
                     android:textColor="@color/colorNeutralWhite"
                     android:textSize="22dp" />
 
                 <EditText
-                    android:id="@+id/LastNameEdit"
+                    android:id="@+id/DocPhoneNumEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/roundbutton"
                     android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Last Name"
+                    android:hint=" Current Phone Number of Doctor"
                     android:inputType="textPersonName"
                     android:padding="15dp"
                     android:textColor="#000000"
@@ -103,150 +106,28 @@
                     android:textColorHint="#000000" />
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="17dp" />
+                    android:layout_height="24dp" />
                 <TextView
-                    android:id="@+id/EmailView"
+                    android:id="@+id/DocEmailView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Email Address"
+                    android:text="Email Address of Doctor"
                     android:textColor="@color/colorNeutralWhite"
                     android:textSize="22dp" />
 
                 <EditText
-                    android:id="@+id/EmailEdit"
+                    android:id="@+id/DocEmailEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/roundbutton"
                     android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Email Address"
+                    android:hint=" Current Email Address of Doctor"
                     android:inputType="textEmailAddress"
                     android:padding="15dp"
                     android:textColor="#000000"
                     android:textColorHighlight="#000000"
                     android:textColorHint="#000000" />
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp" />
-                <TextView
-                    android:id="@+id/PhoneView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
 
-                <EditText
-                    android:id="@+id/PhoneEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Phone Number"
-                    android:inputType="phone"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp" />
-
-                <TextView
-                    android:id="@+id/NHSView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="NHS Number"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
-
-                <EditText
-                    android:id="@+id/NHSEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current NHS Number"
-                    android:inputType="phone"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp" />
-
-                <TextView
-                    android:id="@+id/TypeDiaView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Type of Diabetes"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
-
-                <EditText
-                    android:id="@+id/TypeDiaEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Type of Diabetes"
-                    android:inputType="phone"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp" />
-
-                <TextView
-                    android:id="@+id/TypeInsView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Type of Insulin"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
-
-                <EditText
-                    android:id="@+id/TypeInsEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Type of Insulin"
-                    android:inputType="phone"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp" />
-
-                <TextView
-                    android:id="@+id/InsAdmView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Insulin Administration"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
-
-                <EditText
-                    android:id="@+id/InsAdmEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Insulin Administration"
-                    android:inputType="phone"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
 
 
 
@@ -254,7 +135,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="30dp" />
+                    android:layout_height="80dp" />
 
                 <Button
                     android:id="@+id/SaveBtn"
@@ -274,7 +155,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="30dp" />
+                    android:layout_height="40dp" />
 
                 <Button
                     android:id="@+id/CancelBtn"

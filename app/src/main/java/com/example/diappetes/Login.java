@@ -22,6 +22,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class Login extends AppCompatActivity {
 
     Button loginButton;
+    Button createButton;
+    Button forgotButton;
+
     EditText emailField;
     EditText passwordField;
 
@@ -33,8 +36,9 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-
         loginButton = findViewById(R.id.LoginBtn);
+        createButton = findViewById(R.id.CreateAccBtn);
+        forgotButton = findViewById(R.id.ForgotPWBtn);
         emailField = findViewById(R.id.EmailField);
         passwordField = findViewById(R.id.PasswordField);
 
@@ -66,17 +70,17 @@ public class Login extends AppCompatActivity {
                             db.collection("Patients").whereEqualTo("UID", auth.getCurrentUser().getUid())
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.getResult().getDocuments().isEmpty()) {
-                                        Log.d("DBACCESS", "No documents found");
-                                    } else {
-                                        Log.d("DBACCESS", task.getResult().getDocuments().get(0).getId());
-                                        global.setNhsNum(task.getResult().getDocuments().get(0).getId());
-                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                    }
-                                }
-                            });
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.getResult().getDocuments().isEmpty()) {
+                                                Log.d("DBACCESS", "No documents found");
+                                            } else {
+                                                Log.d("DBACCESS", task.getResult().getDocuments().get(0).getId());
+                                                global.setNhsNum(task.getResult().getDocuments().get(0).getId());
+                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            }
+                                        }
+                                    });
 
                         }
                         else{
@@ -91,5 +95,22 @@ public class Login extends AppCompatActivity {
 
             }
         });
+
+        // Button to go to first sign up page
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),SignUp1.class));
+            }
+        });
+
+        // Button to go to forgotten password page
+        forgotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),ForgotPassword.class));
+            }
+        });
+
     }
 }
