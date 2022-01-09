@@ -23,6 +23,7 @@ public class BloodSugar extends AppCompatActivity {
     Button saveButton;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
+    Button saveButton;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
@@ -40,8 +41,8 @@ public class BloodSugar extends AppCompatActivity {
 
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
-        cancelButton = findViewById(R.id.cancelBtn);
-
+        cancelButton = (Button) findViewById(R.id.cancelBtn);
+        saveButton = (Button) findViewById(R.id.saveBtn);
 
 
         //Calendar appears when "Date" TextView is clicked
@@ -85,13 +86,22 @@ public class BloodSugar extends AppCompatActivity {
             }
         };
 
-
-
+        // Cancel button to go back to log menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(),LogMenu.class));
             }
         });
+
+        // Save button to save log info in Firebase
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO BE WRITTEN
+                // action of the save button
+            }
+        });
+
     }
 }

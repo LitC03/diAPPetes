@@ -9,19 +9,33 @@ import android.widget.Button;
 
 public class ProfileDetails extends AppCompatActivity {
 
-    Button CancelBtn;
+    Button cancelButton;
+    Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_details);
 
-        CancelBtn = (Button) findViewById(R.id.CancelBtn);
-        CancelBtn.setOnClickListener(new View.OnClickListener() {
+        cancelButton = (Button) findViewById(R.id.CancelBtn);
+        saveButton =(Button) findViewById(R.id.SaveBtn);
+
+        // Cancel button to go back to main menu
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Settings.class));
             }
         });
+
+        // Save button to save changed info in Firebase
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO BE WRITTEN
+                // action of the save changes button
+            }
+        });
+
     }
 }
