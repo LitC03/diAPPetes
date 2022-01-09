@@ -23,7 +23,6 @@ public class BloodSugar extends AppCompatActivity {
     Button saveButton;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
-    Button saveButton;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
