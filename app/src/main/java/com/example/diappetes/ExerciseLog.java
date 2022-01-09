@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ExerciseLog extends AppCompatActivity {
 
+    Button saveButton;
     Button cancelButton;
 
     @Override
@@ -16,8 +17,10 @@ public class ExerciseLog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise_log);
 
-        // Cancel button to go back to log menu
         cancelButton = (Button) findViewById(R.id.cancelBtn);
+        saveButton = (Button) findViewById(R.id.saveBtn);
+
+        // Cancel button to go back to log menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,6 +28,14 @@ public class ExerciseLog extends AppCompatActivity {
             }
         });
 
+        // Save button to save log info in Firebase
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO BE WRITTEN
+                // action of the save button
+            }
+        });
 
     }
 }

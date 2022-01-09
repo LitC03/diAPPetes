@@ -9,24 +9,27 @@ import android.widget.Button;
 
 public class Settings extends AppCompatActivity {
 
-    Button profileSetBtn;
-    Button backtoMainBtn;
+    Button profileSetButton;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        profileSetBtn = (Button) findViewById(R.id.ProfileSetBtn);
-        profileSetBtn.setOnClickListener(new View.OnClickListener() {
+        profileSetButton = (Button) findViewById(R.id.ProfileSetBtn);
+        backButton = (Button) findViewById(R.id.BacktoMainBtn);
+
+        // Button that open Profile Details page
+        profileSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),ProfileDetails.class));
             }
         });
 
-        backtoMainBtn = (Button) findViewById(R.id.BacktoMainBtn);
-        backtoMainBtn.setOnClickListener(new View.OnClickListener() {
+        // Back button to go back to main menu
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
