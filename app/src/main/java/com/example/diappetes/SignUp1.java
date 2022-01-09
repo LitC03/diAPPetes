@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -69,6 +70,7 @@ public class SignUp1 extends AppCompatActivity {
                 final Global global = (Global) getApplicationContext();
                 global.setNhsNum(txt_nhsNum);
 
+                Task<DocumentSnapshot> checkNHSNumTask = FirebaseFirestore.getInstance().collection("Patients").document(txt_nhsNum).get();
                 //At some point this block should be converted to a switch
                 if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText( SignUp1.this, "Please enter a username and password", Toast.LENGTH_SHORT).show();
@@ -83,21 +85,28 @@ public class SignUp1 extends AppCompatActivity {
                     Toast.makeText(SignUp1.this, "Invalid NHS Number", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    auth.createUserWithEmailAndPassword(txt_email, txt_password).addOnCompleteListener( SignUp1.this,new OnCompleteListener<AuthResult>() {
+                    checkNHSNumTask.addOnCompleteListener(SignUp1.this, new OnCompleteListener<DocumentSnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Toast.makeText(SignUp1.this, "Success", Toast.LENGTH_SHORT).show();
-                                global.setUID(auth.getCurrentUser().getUid());
-                                populateUserData(txt_email, txt_fName, txt_lName, txt_nhsNum, global.getUID());
-                                startActivity(new Intent(getApplicationContext(),SignUp2.class));
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(checkNHSNumTask.getResult().exists()){ Toast.makeText(SignUp1.this, "NHS Number already used", Toast.LENGTH_SHORT).show();}
+                        else{
+                        auth.createUserWithEmailAndPassword(txt_email, txt_password).addOnCompleteListener( SignUp1.this,new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(SignUp1.this, "Success", Toast.LENGTH_SHORT).show();
+                                    global.setUID(auth.getCurrentUser().getUid());
+                                    populateUserData(txt_email, txt_fName, txt_lName, txt_nhsNum, global.getUID());
+                                    startActivity(new Intent(getApplicationContext(),SignUp2.class));
+                                }
+                                else{
+                                    Throwable e = task.getException();
+                                    Toast.makeText(SignUp1.this, "FAIL", Toast.LENGTH_SHORT).show();
+                                    Log.d(e.getClass().getName(), e.getMessage(), e);
+                                }
+                                }
+                            });}
                             }
-                            else{
-                                Throwable e = task.getException();
-                                Toast.makeText(SignUp1.this, "FAIL", Toast.LENGTH_SHORT).show();
-                                Log.d(e.getClass().getName(), e.getMessage(), e);
-                            }
-                        }
                     });
                 }
             }
@@ -122,6 +131,7 @@ public class SignUp1 extends AppCompatActivity {
         patient.put("lName", lName);
         patient.put("email", email);
         patient.put("UID", UID);
+        patient.put("nhsnumber", nhsNum);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

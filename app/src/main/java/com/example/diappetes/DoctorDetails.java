@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ProfileDetails extends AppCompatActivity {
+public class DoctorDetails extends AppCompatActivity {
 
     Button cancelBtn;
     Button saveBtn;
@@ -15,7 +15,7 @@ public class ProfileDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_details);
+        setContentView(R.layout.doctor_details);
 
         cancelBtn = (Button) findViewById(R.id.CancelBtn);
         saveBtn = (Button) findViewById(R.id.SaveBtn);
