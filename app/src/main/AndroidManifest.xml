@@ -25,7 +25,8 @@
         <activity android:name=".SignUp1"/>
         <activity android:name=".SignUp2"/>
         <activity android:name=".BloodSugar"/>
-        <activity android:name=".Graph"/>
+        <activity android:name=".Graph"
+            android:screenOrientation="landscape"/>
 
 
     </application>
