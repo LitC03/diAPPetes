@@ -42,7 +42,7 @@ public class Login extends AppCompatActivity {
         forgotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // startActivity(new Intent(getApplicationContext(),ForgotPassword.class));
+                startActivity(new Intent(getApplicationContext(),ForgotPassword.class));
             }
         });
 

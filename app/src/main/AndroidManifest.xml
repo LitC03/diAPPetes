@@ -10,7 +10,10 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".History"/>
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity android:name=".History" />
         <activity android:name=".Questionnaire" />
         <activity android:name=".ProfileDetails" />
         <activity android:name=".Settings" />
@@ -31,9 +34,6 @@
         <activity android:name=".ExtraNotes" />
         <activity android:name=".FoodLog" />
         <activity android:name=".MedLog" />
-
-
-
     </application>
 
 </manifest>
