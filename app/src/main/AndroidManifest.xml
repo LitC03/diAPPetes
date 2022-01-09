@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:name=".Global">
         <activity android:name=".History"/>
+        <activity android:name=".ForgotPassword" />
         <activity android:name=".Questionnaire" />
         <activity android:name=".ProfileDetails" />
         <activity android:name=".Settings" />
