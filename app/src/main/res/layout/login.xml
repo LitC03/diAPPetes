@@ -92,7 +92,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PasswordField" />
 
-    <TextView
+    <Button
         android:id="@+id/RegisterText"
         android:layout_width="270dp"
         android:layout_height="50dp"
@@ -100,6 +100,7 @@
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
         android:gravity="center"
+        android:textAllCaps="false"
         android:text="Create account"
         android:textAlignment="center"
         android:textColor="#000000"

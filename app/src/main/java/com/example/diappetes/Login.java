@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Login extends AppCompatActivity {
 
-    Button loginButton;
+    Button loginButton, createAccountButton;
     EditText emailField;
     EditText passwordField;
 
@@ -35,6 +35,7 @@ public class Login extends AppCompatActivity {
 
 
         loginButton = findViewById(R.id.LoginBtn);
+        createAccountButton = findViewById(R.id.RegisterText);
         emailField = findViewById(R.id.EmailField);
         passwordField = findViewById(R.id.PasswordField);
 
@@ -45,6 +46,13 @@ public class Login extends AppCompatActivity {
                 .build();
         db.setFirestoreSettings(settings); */
         final Global global = (Global) getApplicationContext();
+
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SignUp1.class));
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
