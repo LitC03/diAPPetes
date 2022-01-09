@@ -20,7 +20,7 @@ public class Global extends Application {
         this.UID = UID;
     }
 
-    private String UID;
-    private String nhsNum;
+    private static String UID;
+    private static String nhsNum;
 
 }

@@ -13,17 +13,24 @@ public class LogMenu extends AppCompatActivity {
     Button medicationLogBtn;
     Button exerciseLogBtn;
     Button extraNotesLogBtn;
-
     Button questionnaireBtn;
-    Button backtoMainBtn;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_menu);
 
-        /* Blood sugar button opens blood sugar log page */
         bloodSugarLogBtn = (Button) findViewById(R.id.BloodSugarLogBtn);
+        foodLogBtn = (Button) findViewById(R.id.FoodLogBtn);
+        medicationLogBtn = (Button) findViewById(R.id.MedicationLogBtn);
+        exerciseLogBtn = (Button) findViewById(R.id.ExerciseLogBtn);
+        extraNotesLogBtn = (Button) findViewById(R.id.ExtraNotesLogBtn);
+        questionnaireBtn = (Button) findViewById(R.id.QuestionnaireBtn);
+        backButton = (Button) findViewById(R.id.BacktoMainBtn);
+
+
+        /* Blood sugar button opens blood sugar log page */
         bloodSugarLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +39,6 @@ public class LogMenu extends AppCompatActivity {
         });
 
         /* Food button opens food log page */
-        foodLogBtn = (Button) findViewById(R.id.FoodLogBtn);
         foodLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +47,6 @@ public class LogMenu extends AppCompatActivity {
         });
 
         /* Medication button opens medication log page */
-        medicationLogBtn = (Button) findViewById(R.id.MedicationLogBtn);
         medicationLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +55,6 @@ public class LogMenu extends AppCompatActivity {
         });
 
         /* Exercise button opens exercise log page */
-        exerciseLogBtn = (Button) findViewById(R.id.ExerciseLogBtn);
         exerciseLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +63,6 @@ public class LogMenu extends AppCompatActivity {
         });
 
         /* Extra Notes button opens extra notes log page */
-        extraNotesLogBtn = (Button) findViewById(R.id.ExtraNotesLogBtn);
         extraNotesLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +71,6 @@ public class LogMenu extends AppCompatActivity {
         });
 
         /* Questionnaire button opens questionnaire log page */
-        questionnaireBtn = (Button) findViewById(R.id.QuestionnaireBtn);
         questionnaireBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,8 +79,7 @@ public class LogMenu extends AppCompatActivity {
         });
 
         /* Back button leads back to main menu */
-        backtoMainBtn = (Button) findViewById(R.id.BacktoMainBtn);
-        backtoMainBtn.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));

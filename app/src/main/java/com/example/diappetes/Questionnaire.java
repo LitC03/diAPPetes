@@ -16,7 +16,8 @@ import java.util.Calendar;
 
 public class Questionnaire extends AppCompatActivity {
     TextView datepick,timepick;
-    Button cancelBtn;
+    Button cancelButton;
+    Button saveButton;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
 
@@ -33,17 +34,10 @@ public class Questionnaire extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.questoinnaire);
 
-        // Cancel button to go back to log menu
-        cancelBtn = (Button) findViewById(R.id.CancelBtn);
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),LogMenu.class));
-            }
-        });
-
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
+        cancelButton = (Button) findViewById(R.id.CancelBtn);
+        saveButton = (Button) findViewById(R.id.SaveBtn);
 
         //Calendar appears when "Date" TextView is clicked
         datepick.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +79,22 @@ public class Questionnaire extends AppCompatActivity {
             }
         };
 
+        // Cancel button to go back to log menu
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),LogMenu.class));
+            }
+        });
 
+        // Save button to save log info in Firebase
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO BE WRITTEN
+                // action of the save button
+            }
+        });
 
     }
 }
