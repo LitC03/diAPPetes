@@ -41,10 +41,7 @@ public class Login extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-/*        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build();
-        db.setFirestoreSettings(settings); */
+
         final Global global = (Global) getApplicationContext();
 
         createAccountButton.setOnClickListener(new View.OnClickListener() {
