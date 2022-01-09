@@ -3,15 +3,18 @@
     package="com.example.diappetes">
 
     <application
+        android:name=".Global"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="DiaLog"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        android:name=".Global">
-        <activity android:name=".History"/>
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".DoctorDetails"
+            android:exported="false" />
+        <activity android:name=".History" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Questionnaire" />
         <activity android:name=".ProfileDetails" />
@@ -33,9 +36,6 @@
         <activity android:name=".ExtraNotes" />
         <activity android:name=".FoodLog" />
         <activity android:name=".MedLog" />
-
-
-
     </application>
 
 </manifest>

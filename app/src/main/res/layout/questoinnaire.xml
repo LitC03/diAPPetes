@@ -58,6 +58,15 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Are you experiencing any of the following symptoms?"
+                    android:textColor="@color/colorNeutralWhite"
+                    android:textSize="26dp"
+                    android:textStyle="bold"
+                    />
+
                 <CheckBox
                     android:id="@+id/UrinationCheckBox"
                     android:layout_width="match_parent"
