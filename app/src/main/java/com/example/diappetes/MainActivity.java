@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     Button logBookBtn;
     Button settingsBtn;
     Button historyBtn;
-    Button LogOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),LogMenu.class));
             }
         });
-        LogOutButton = findViewById(R.id.logOutBtn);
 
         // Button that opens Settings
         settingsBtn = (Button) findViewById(R.id.SettingsBtn);
@@ -49,13 +47,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LogOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Welcome.class));
-            }
-        });
     }
 
 
