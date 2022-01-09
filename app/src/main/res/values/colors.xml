@@ -8,4 +8,5 @@
     <color name="colorNeutralMidGray">#768692</color>
     <color name="colorNeutralDarkGray">#425563</color>
     <color name="colorNeutralBlack">#231f20</color>
+    <color name="colorTextBlack">#000000</color>
 </resources>
