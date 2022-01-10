@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -125,6 +126,10 @@ public class SignUp1 extends AppCompatActivity {
     }
 
     private void populateUserData(String email, String fName, String lName, String nhsNum, String UID){
+
+        //Create empty array for alerts
+        ArrayList<String> list = new ArrayList<String>();
+
         Map<String, Object> patient = new HashMap<>(); //data submitted to Firestore as hashmaps
 
         patient.put("fName", fName);
@@ -132,6 +137,8 @@ public class SignUp1 extends AppCompatActivity {
         patient.put("email", email);
         patient.put("UID", UID);
         patient.put("NHSNumber", nhsNum);
+        patient.put("nhsnumber", nhsNum);
+        patient.put("Alerts", list);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
