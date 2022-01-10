@@ -131,7 +131,7 @@ public class SignUp1 extends AppCompatActivity {
         patient.put("lName", lName);
         patient.put("email", email);
         patient.put("UID", UID);
-        patient.put("nhsnumber", nhsNum);
+        patient.put("NHSNumber", nhsNum);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
