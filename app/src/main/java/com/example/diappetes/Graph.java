@@ -77,57 +77,13 @@ public class Graph extends AppCompatActivity {
                             //Inspect every blood sugar entry
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
 
-                                //Get x and y coordinates from firestore
-                                double y = documentSnapshot.getDouble("BS");
-                                Log.d("DB_GRAPH", "added value " + y);
-                                Date x = documentSnapshot.getTimestamp("Time").toDate();
-                                Log.d("DB_GRAPH", "added value " + x);
-
-                                //Append data point to series
-                                series.appendData(new DataPoint(x, y), true, 500);
-
-                                //Format series
-                                series.setDrawDataPoints(true);
-                                series.setDataPointsRadius(15);
-                                series.setColor(Color.WHITE);
-                                series.setThickness(10);
+                                addPointsSeries(series, documentSnapshot);
 
                                 //Add series to graph
                                 graph.addSeries(series);
 
                                 //Format graph
-                                Viewport viewPort = graph.getViewport();
-                                GridLabelRenderer labelRend = graph.getGridLabelRenderer();
-
-                                viewPort.setMaxX(series.getHighestValueX());
-                                viewPort.setMinX(series.getLowestValueX());
-                                viewPort.setMaxY(series.getHighestValueY()+2);
-                                viewPort.setXAxisBoundsManual(true);
-                                labelRend.setNumHorizontalLabels(3);
-                                labelRend.setVerticalLabelsColor(Color.WHITE);
-                                labelRend.setHorizontalLabelsColor(Color.WHITE);
-                                labelRend.setPadding(50);
-                                labelRend.setVerticalAxisTitle("Blood Sugar levels (mmol/L)");
-                                labelRend.setVerticalAxisTitleColor(Color.WHITE);
-                                labelRend.setTextSize(30);
-
-                                //Correct x axis so that it displays dates
-                                graph.getGridLabelRenderer().reloadStyles();
-                                final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy \n HH:mm");
-                                graph.getViewport().setBackgroundColor(Color.argb(20, 0, 0, 0));
-
-                                //Set date label formatter
-                                graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
-                                    @Override
-                                    public String formatLabel(double value, boolean isValueX) {
-                                        if (isValueX) {
-                                            return sdf.format(new Date((long) value));
-                                        } else {
-                                            return super.formatLabel(value, isValueX);
-                                        }
-                                    }
-
-                                });
+                                formatGraph(graph);
 
 
                                 //When data point is clicked, TextViews set to corresponding value
@@ -136,6 +92,7 @@ public class Graph extends AppCompatActivity {
                                     public void onTap(Series series, DataPointInterface dataPoint) {
                                         double xDouble = dataPoint.getX();
                                         Date xDate = new Date((long) xDouble);
+
                                         String xStr = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(xDate);
                                         xView.setText(xStr);
 
@@ -152,6 +109,58 @@ public class Graph extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void addPointsSeries(LineGraphSeries<DataPoint> series, DocumentSnapshot documentSnapshot) {
+        //Get x and y coordinates from firestore
+        double y = documentSnapshot.getDouble("BS");
+        Log.d("DB_GRAPH", "added value " + y);
+        Date x = documentSnapshot.getTimestamp("Time").toDate();
+        Log.d("DB_GRAPH", "added value " + x);
+
+        //Append data point to series
+        series.appendData(new DataPoint(x, y), true, 500);
+
+        //Format series
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(15);
+        series.setColor(Color.WHITE);
+        series.setThickness(10);
+    }
+
+    private void formatGraph(GraphView graph) {
+        Viewport viewPort = graph.getViewport();
+        GridLabelRenderer labelRend = graph.getGridLabelRenderer();
+
+        viewPort.setMaxX(series.getHighestValueX());
+        viewPort.setMinX(series.getLowestValueX());
+        viewPort.setMaxY(series.getHighestValueY()+2);
+        viewPort.setXAxisBoundsManual(true);
+        labelRend.setNumHorizontalLabels(3);
+        labelRend.setVerticalLabelsColor(Color.WHITE);
+        labelRend.setHorizontalLabelsColor(Color.WHITE);
+        labelRend.setPadding(50);
+        labelRend.setVerticalAxisTitle("Blood Sugar levels (mmol/L)");
+        labelRend.setVerticalAxisTitleColor(Color.WHITE);
+        labelRend.setTextSize(30);
+        labelRend.reloadStyles();
+
+        //Correct x axis so that it displays dates
+        final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy \n HH:mm");
+        viewPort.setBackgroundColor(Color.argb(20, 0, 0, 0));
+
+        //Set date label formatter
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    return sdf.format(new Date((long) value));
+                } else {
+                    return super.formatLabel(value, isValueX);
+                }
+            }
+
+        });
     }
 }
 

@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -62,7 +63,7 @@ public class SignUp1 extends AppCompatActivity {
             public void onClick(View v){
 
                 final String txt_email = email.getText().toString();
-                String txt_password = password.getText().toString();
+                final String txt_password = password.getText().toString();
                 final String txt_nhsNum = nhsNum.getText().toString();
                 final String txt_fName = firstName.getText().toString();
                 final String txt_lName = lastName.getText().toString();
@@ -70,7 +71,7 @@ public class SignUp1 extends AppCompatActivity {
                 final Global global = (Global) getApplicationContext();
                 global.setNhsNum(txt_nhsNum);
 
-                Task<DocumentSnapshot> checkNHSNumTask = FirebaseFirestore.getInstance().collection("Patients").document(txt_nhsNum).get();
+                final Task<DocumentSnapshot> checkNHSNumTask = FirebaseFirestore.getInstance().collection("Patients").document(txt_nhsNum).get();
                 //At some point this block should be converted to a switch
                 if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText( SignUp1.this, "Please enter a username and password", Toast.LENGTH_SHORT).show();
@@ -125,6 +126,7 @@ public class SignUp1 extends AppCompatActivity {
     }
 
     private void populateUserData(String email, String fName, String lName, String nhsNum, String UID){
+        String AlertsArray[] = new String[0];
         Map<String, Object> patient = new HashMap<>(); //data submitted to Firestore as hashmaps
 
         patient.put("fName", fName);
@@ -132,6 +134,7 @@ public class SignUp1 extends AppCompatActivity {
         patient.put("email", email);
         patient.put("UID", UID);
         patient.put("nhsnumber", nhsNum);
+        patient.put("Alerts", AlertsArray);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
