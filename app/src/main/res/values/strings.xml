@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">diAPPetes</string>
+    <string-array name="DiaTypes">
+        <item>Type of Diabetes</item>
+        <item>Type 1</item>
+        <item>Type 2</item>
+        <item>Type 1 and 2</item>
+    </string-array>
+    <string-array name="InsulinAdm">
+        <item>Insulin Administration</item>
+        <item>Pen</item>
+        <item>Injection</item>
+        <item>Pump</item>
+    </string-array>
+
     <string name="title_activity_profile_details">ProfileDetails</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
