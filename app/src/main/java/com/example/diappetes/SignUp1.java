@@ -102,7 +102,7 @@ public class SignUp1 extends AppCompatActivity {
                                 }
                                 else{
                                     Throwable e = task.getException();
-                                    Toast.makeText(SignUp1.this, "FAIL", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUp1.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                     Log.d(e.getClass().getName(), e.getMessage(), e);
                                 }
                                 }
@@ -126,7 +126,10 @@ public class SignUp1 extends AppCompatActivity {
     }
 
     private void populateUserData(String email, String fName, String lName, String nhsNum, String UID){
-        String AlertsArray[] = new String[0];
+
+        //create empty array for alerts
+        ArrayList<String> list = new ArrayList<String>();
+
         Map<String, Object> patient = new HashMap<>(); //data submitted to Firestore as hashmaps
 
         patient.put("fName", fName);
@@ -134,7 +137,7 @@ public class SignUp1 extends AppCompatActivity {
         patient.put("email", email);
         patient.put("UID", UID);
         patient.put("nhsnumber", nhsNum);
-        patient.put("Alerts", AlertsArray);
+        patient.put("Alerts", list);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

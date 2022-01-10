@@ -180,7 +180,7 @@ public class BloodSugar extends AppCompatActivity {
                                 "hyperglucemia. If you continue, an alert will be sent to your doctor");
 
                         // Dialog Box remains on screen even if user clicks outside of it
-                        builder.setCancelable(true);
+                        builder.setCancelable(false);
 
                         builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                             @Override
