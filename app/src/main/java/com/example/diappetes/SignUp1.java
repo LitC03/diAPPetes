@@ -127,7 +127,7 @@ public class SignUp1 extends AppCompatActivity {
 
     private void populateUserData(String email, String fName, String lName, String nhsNum, String UID){
 
-        //create empty array for alerts
+        //Create empty array for alerts
         ArrayList<String> list = new ArrayList<String>();
 
         Map<String, Object> patient = new HashMap<>(); //data submitted to Firestore as hashmaps
