@@ -64,8 +64,7 @@
                     android:text="Are you experiencing any of the following symptoms?"
                     android:textColor="@color/colorNeutralWhite"
                     android:textSize="26dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
                 <CheckBox
                     android:id="@+id/UrinationCheckBox"
