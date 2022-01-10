@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -126,51 +127,62 @@ public class ExerciseLog extends AppCompatActivity {
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                try {
-                    Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
-                    Timestamp timestamp = new Timestamp(date);
-
-                    //Create an instance of the firebase
-                    auth = FirebaseAuth.getInstance();
-                    db = FirebaseFirestore.getInstance();
-
-                    //Create hashmap to submit to firebase
-                    final Map<String, Object> Med_data = new HashMap<>();
-                    Med_data.put("Exercise Type", exerciseTypeString);
-                    Med_data.put("Duration", durString);
-                    Med_data.put("Time", timestamp);
-
-                    //Fetch collection of previous logs to get index for new log
-                    db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                int collectionSize = task.getResult().size();
-                                collectionSize++;
-
-                                //Submit new log to database
-                                db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").document("EL" + collectionSize)
-                                        .set(Med_data)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(ExerciseLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(ExerciseLog.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }
-                        }
-
-                    });
+                //Following are checks that all required fields have values
+                if(TextUtils.isEmpty(exerciseTypeString) || TextUtils.isEmpty(durString)){
+                    Toast.makeText( ExerciseLog.this, "Please enter the type of exercise and duration", Toast.LENGTH_SHORT).show();
                 }
-                catch (ParseException e) {
-                    Log.d("DB_Exercise Log",e.toString());
+
+                else if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    Toast.makeText( ExerciseLog.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    try {
+                        Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);
+                        Timestamp timestamp = new Timestamp(date);
+
+                        //Create an instance of the firebase
+                        auth = FirebaseAuth.getInstance();
+                        db = FirebaseFirestore.getInstance();
+
+                        //Create hashmap to submit to firebase
+                        final Map<String, Object> Med_data = new HashMap<>();
+                        Med_data.put("Exercise Type", exerciseTypeString);
+                        Med_data.put("Duration", durString);
+                        Med_data.put("Time", timestamp);
+
+                        //Fetch collection of previous logs to get index for new log
+                        db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    int collectionSize = task.getResult().size();
+                                    collectionSize++;
+
+                                    //Submit new log to database
+                                    db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").document("EL" + collectionSize)
+                                            .set(Med_data)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(ExerciseLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(ExerciseLog.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            }
+
+                        });
+                    }
+                    catch (ParseException e) {
+                        Log.d("DB_Exercise Log",e.toString());
+                    }
                 }
             }
         });
