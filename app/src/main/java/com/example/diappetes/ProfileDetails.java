@@ -33,11 +33,12 @@ public class ProfileDetails extends AppCompatActivity {
     EditText firstNameEdit;
     EditText lastNameEdit;
     EditText emailEdit;
-    EditText phoneEdit;
     EditText nhsEdit;
-    EditText typeDiaEdit;
-    EditText typeInsEdit;
-    EditText insAdmEdit;
+
+//    EditText phoneEdit;
+//    EditText typeDiaEdit;
+//    EditText typeInsEdit;
+//    EditText insAdmEdit;
 
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -58,11 +59,11 @@ public class ProfileDetails extends AppCompatActivity {
         firstNameEdit = findViewById(R.id.FirstNameEdit);
         lastNameEdit = findViewById(R.id.LastNameEdit);
         emailEdit = findViewById(R.id.EmailEdit);
-        phoneEdit = findViewById(R.id.PhoneEdit);
         nhsEdit = findViewById(R.id.NHSEdit);
-        typeDiaEdit = findViewById(R.id.TypeDiaEdit);
-        typeInsEdit = findViewById(R.id.TypeInsEdit);
-        insAdmEdit = findViewById(R.id.InsAdmEdit);
+//        phoneEdit = findViewById(R.id.PhoneEdit);
+//        typeDiaEdit = findViewById(R.id.TypeDiaEdit);
+//        typeInsEdit = findViewById(R.id.TypeInsEdit);
+//        insAdmEdit = findViewById(R.id.InsAdmEdit);
 
         DocumentReference docRef = db.collection("Patients").document(global.getNhsNum());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
