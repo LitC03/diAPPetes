@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class History extends AppCompatActivity {
 
-    Button backButton,graphButton;
+    Button backButton,graphButton, prevEntryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,8 @@ public class History extends AppCompatActivity {
 
         backButton = (Button) findViewById(R.id.BacktoMainBtn);
         graphButton = (Button) findViewById(R.id.graphingBtn);
+        prevEntryButton = (Button) findViewById(R.id.previousEntries);
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +32,13 @@ public class History extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Graph.class));
+            }
+        });
+
+        prevEntryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),PastEntries.class));
             }
         });
 
