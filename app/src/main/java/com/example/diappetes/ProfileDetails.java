@@ -33,12 +33,11 @@ public class ProfileDetails extends AppCompatActivity {
     EditText firstNameEdit;
     EditText lastNameEdit;
     EditText emailEdit;
-    EditText nhsEdit;
-
-//    EditText phoneEdit;
-//    EditText typeDiaEdit;
-//    EditText typeInsEdit;
-//    EditText insAdmEdit;
+//    EditText nhsEdit;
+    EditText phoneEdit;
+    EditText typeDiaEdit;
+    EditText typeInsEdit;
+    EditText insAdmEdit;
 
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -59,11 +58,11 @@ public class ProfileDetails extends AppCompatActivity {
         firstNameEdit = findViewById(R.id.FirstNameEdit);
         lastNameEdit = findViewById(R.id.LastNameEdit);
         emailEdit = findViewById(R.id.EmailEdit);
-        nhsEdit = findViewById(R.id.NHSEdit);
-//        phoneEdit = findViewById(R.id.PhoneEdit);
-//        typeDiaEdit = findViewById(R.id.TypeDiaEdit);
-//        typeInsEdit = findViewById(R.id.TypeInsEdit);
-//        insAdmEdit = findViewById(R.id.InsAdmEdit);
+//        nhsEdit = findViewById(R.id.NHSEdit);
+        phoneEdit = findViewById(R.id.PhoneEdit);
+        typeDiaEdit = findViewById(R.id.TypeDiaEdit);
+        typeInsEdit = findViewById(R.id.TypeInsEdit);
+        insAdmEdit = findViewById(R.id.InsAdmEdit);
 
         DocumentReference docRef = db.collection("Patients").document(global.getNhsNum());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -76,12 +75,11 @@ public class ProfileDetails extends AppCompatActivity {
                         firstNameEdit.setText(document.getString("fName"));
                         lastNameEdit.setText(document.getString("lName"));
                         emailEdit.setText(document.getString("email"));
-                        nhsEdit.setText(document.getString("NHSNumber")); //Cannot change document name
-//                        Get correct names from firebase
-//                        phoneEdit.setText(document.getString("phoneNum"));
-//                        typeDiaEdit.setText(document.getString("Diabetes type"));
-//                        typeInsEdit.setText(document.getString("Insulin type"));
-//                        insAdmEdit.setText(document.getString("Insulin administration"));
+//                        nhsEdit.setText(document.getString("NHSNumber")); //Cannot change document name
+                        //phoneEdit.setText(document.getString("phoneNum"));
+                        typeDiaEdit.setText(document.getString("DType"));
+                        typeInsEdit.setText(document.getString("InsType"));
+                        insAdmEdit.setText(document.getString("InsAdm"));
                     } else {
                         Log.d("PD", "No such document");
                     }
@@ -105,12 +103,12 @@ public class ProfileDetails extends AppCompatActivity {
                 final String firstNameString = firstNameEdit.getText().toString();
                 final String lastNameString = lastNameEdit.getText().toString();
                 final String emailString = emailEdit.getText().toString();
-                final String nhsString = nhsEdit.getText().toString();
+//                final String nhsString = nhsEdit.getText().toString();
 //                This can be finalised once the signing up is working correctly
 //                final String phoneString = phoneEdit.getText().toString();
-//                final String typeDiaString = typeDiaEdit.getText().toString();
-//                final String typeInsString = typeInsEdit.getText().toString();
-//                final String insAdmString = insAdmEdit.getText().toString();
+                final String typeDiaString = typeDiaEdit.getText().toString();
+                final String typeInsString = typeInsEdit.getText().toString();
+                final String insAdmString = insAdmEdit.getText().toString();
 
                 if(false) {
 
@@ -136,10 +134,6 @@ public class ProfileDetails extends AppCompatActivity {
                     Toast.makeText(ProfileDetails.this, "Please enter your email", Toast.LENGTH_LONG).show();
                 }
 
-                else if(nhsString.length()!=10 || !(isNumeric(nhsString))){ //check the NHS num is a 10 digit sequence
-                    Toast.makeText(ProfileDetails.this, "Invalid NHS Number", Toast.LENGTH_LONG).show();
-                }
-
 
                 else{
                     //All fields can be updated once the signing up is finished
@@ -147,8 +141,11 @@ public class ProfileDetails extends AppCompatActivity {
                             .update(
                                     "fName", firstNameString,
                                     "lName", lastNameString,
-                                    "NHSNumber", nhsString,
-                                    "email", emailString)
+//                                    "NHSNumber", nhsString,
+                                    "email", emailString,
+                                    "DType", typeDiaString,
+                                    "InsType", typeInsString,
+                                    "InsAdm", insAdmString)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {

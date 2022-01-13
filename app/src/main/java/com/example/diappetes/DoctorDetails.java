@@ -1,24 +1,79 @@
 package com.example.diappetes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.regex.Pattern;
 
 public class DoctorDetails extends AppCompatActivity {
 
     Button cancelBtn;
     Button saveBtn;
 
+    EditText docNameEdit;
+    EditText docPhoneNumeEdit;
+    EditText docEmailEdit;
+
+    FirebaseAuth auth;
+    FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_details);
 
+        final Global global = (Global) getApplicationContext();
+
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
         cancelBtn = (Button) findViewById(R.id.CancelBtn);
         saveBtn = (Button) findViewById(R.id.SaveBtn);
+
+        docNameEdit = findViewById(R.id.DocNameEdit);
+        docEmailEdit = findViewById(R.id.DocEmailEdit);
+        docPhoneNumeEdit = findViewById(R.id.DocPhoneNumEdit);
+
+        DocumentReference docRef = db.collection("Patients").document(global.getNhsNum());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("PD", "DocumentSnapshot data: " + document.getData());
+                        docNameEdit.setText(document.getString("DocName"));
+                        docEmailEdit.setText(document.getString("DocEmail"));
+                        docPhoneNumeEdit.setText(document.getString("DocPhone"));
+                    } else {
+                        Log.d("PD", "No such document");
+                    }
+                } else {
+                    Log.d("PD", "get failed with ", task.getException());
+                }
+            }
+        });
+
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,10 +85,57 @@ public class DoctorDetails extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TO BE WRITTEN
+                final String docNameString = docNameEdit.getText().toString();
+                final String docPhoneString = docPhoneNumeEdit.getText().toString();
+                final String docEmailString = docEmailEdit.getText().toString();
 
+
+
+                if(false) {
+                    //Space for mandatory field checks.
+                    //However since none of these fields are mandatory for now this is left empty
+                }
+
+                else{
+                    //All fields can be updated once the signing up is finished
+                    db.collection("Patients").document(global.getNhsNum())
+                            .update(
+                                    "DocName", docNameString,
+                                    "DocEmail", docEmailString,
+                                    "DocPhone", docPhoneString)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("DD", "Document updated successfully!");
+                                    Toast.makeText(DoctorDetails.this, "Your details have been update", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(getApplicationContext(), Settings.class));
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(DoctorDetails.this, "Your could not be updated, please try again later", Toast.LENGTH_LONG).show();
+                                    Log.w("DD", "Error updating document", e);
+                                }
+                            });
+
+                }
             }
         });
+    }
 
+    private boolean validateEmail(String email){//check that the email is valid
+        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" //regex magic for a valid email address
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(regex).matcher(email).matches();
+    }
+
+    private static boolean isNumeric(String str){
+        try {
+            Double.parseDouble(str);
+            return true; //if it can be converted to an int, it is numeric
+        } catch(NumberFormatException e){
+            return false; //if it can't be converted to an int, it is not numeric
+        }
     }
 }
