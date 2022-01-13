@@ -1,10 +1,13 @@
 package com.example.diappetes;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,13 +17,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -34,15 +35,19 @@ import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
+import com.opencsv.CSVWriter;
 
-import java.text.ParseException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class Graph extends AppCompatActivity {
-    Button backButton;
+    Button backButton,exportButton;
     GraphView graph;
     TextView xView, yView;
     FirebaseFirestore db;
@@ -60,6 +65,7 @@ public class Graph extends AppCompatActivity {
         graph = findViewById(R.id.idGraphView);
         xView = findViewById(R.id.xValue);
         yView = findViewById(R.id.yValue);
+        exportButton = findViewById(R.id.ExportBtn);
 
         //Create series where data point will be added
         series = new LineGraphSeries<>();
@@ -87,9 +93,27 @@ public class Graph extends AppCompatActivity {
                             }
                             else{
                             //Inspect every blood sugar entry
+                                ArrayList<String> csvListDate = new ArrayList<String>();
+                                ArrayList <String> csvListBS = new ArrayList<String>();
+
                                 for (DocumentSnapshot documentSnapshot : task.getResult()) {
 
-                                    addPointsSeries(series, documentSnapshot);
+                                    //Get x and y coordinates from firestore
+                                    double y = documentSnapshot.getDouble("BS");
+                                    String yStr = documentSnapshot.getDouble("BS").toString();
+
+                                    Date x = documentSnapshot.getTimestamp("Time").toDate();
+                                    String xStr = documentSnapshot.getTimestamp("Time").toString();
+
+                                    Log.d("DB_GRAPH", "added value " + y);
+                                    Log.d("DB_GRAPH", "added value " + x);
+
+                                    csvListDate.add(xStr);
+                                    csvListBS.add(yStr);
+
+
+                                    //Add points to series
+                                    addPointsSeries(series, x,y);
 
                                     //Add series to graph
                                     graph.addSeries(series);
@@ -113,6 +137,14 @@ public class Graph extends AppCompatActivity {
 
                                         }
                                     });
+
+                                    //Export data to CSV file
+                                    exportButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            exportCVS(csvListDate,csvListBS);
+                                        }
+                                    });
                                 }
                             }
 
@@ -122,7 +154,49 @@ public class Graph extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
+
+
     }
+
+    private void exportCVS(List<String> csvListDate, List<String> csvListBS) {
+        // Declare path of document
+//        if(ContextCompat.checkSelfPermission(Graph.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(Graph.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+//        }
+//        else {
+//
+            FileOutputStream out = null;
+            try {
+                out = openFileOutput("CVSFile.csv",MODE_PRIVATE);
+                out.write(("Date,Blood Sugar Level\n").getBytes());
+                for (int i = 0; i < csvListBS.size(); i++) {
+                    String dateStr = csvListDate.get(i);
+                    String BSStr = csvListBS.get(i);
+                    out.write((dateStr + "," + BSStr + "\n").getBytes());
+                }
+                Toast.makeText(Graph.this,"Saved to "+getFilesDir()+"/CVSFile.csv", Toast.LENGTH_LONG).show();
+//
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            } finally{
+                if (out != null)
+                {
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+//        }
+    }
+
 
     private void displayProblemDialog(){
         //Prompt a Dialog Box to delete account
@@ -152,12 +226,7 @@ public class Graph extends AppCompatActivity {
     }
 
 
-    private void addPointsSeries(LineGraphSeries<DataPoint> series, DocumentSnapshot documentSnapshot) {
-        //Get x and y coordinates from firestore
-        double y = documentSnapshot.getDouble("BS");
-        Log.d("DB_GRAPH", "added value " + y);
-        Date x = documentSnapshot.getTimestamp("Time").toDate();
-        Log.d("DB_GRAPH", "added value " + x);
+    private void addPointsSeries(LineGraphSeries<DataPoint> series, Date x, double y) {
 
         //Append data point to series
         series.appendData(new DataPoint(x, y), true, 500);
