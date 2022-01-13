@@ -4,7 +4,6 @@
         <item>Type of Diabetes</item>
         <item>Type 1</item>
         <item>Type 2</item>
-        <item>Type 1 and 2</item>
     </string-array>
     <string-array name="InsulinAdm">
         <item>Insulin Administration</item>
