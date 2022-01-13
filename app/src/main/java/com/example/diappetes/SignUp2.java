@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +33,8 @@ import java.util.Map;
 
 public class SignUp2 extends AppCompatActivity {
     Button backButton,continueButton;
-    EditText diaTypeField,insTypeField,insAdmField,docEmailField,docPhoneField,docNameField;
+    Spinner typeDiaSpinner, insAdmSpinner;
+    EditText insTypeField,docEmailField,docPhoneField,docNameField;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
@@ -42,15 +46,27 @@ public class SignUp2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup2);
 
-        diaTypeField = findViewById(R.id.diatype);
         insTypeField = findViewById(R.id.instype);
-        insAdmField = findViewById(R.id.insadm);
         docEmailField = findViewById(R.id.docemail);
         docPhoneField = findViewById(R.id.docphone);
         docNameField = findViewById(R.id.docname);
 
-        backButton = findViewById(R.id.backBtn);
-        continueButton = findViewById(R.id.continueBtn);
+        backButton = (Button) findViewById(R.id.backBtn);
+        continueButton = (Button) findViewById(R.id.continueBtn);
+        typeDiaSpinner = (Spinner) findViewById(R.id.TypeDiaSpinner);
+        insAdmSpinner = (Spinner) findViewById(R.id.InsAdmSpinner);
+
+        ArrayAdapter<String> typeDiaAdapter = new ArrayAdapter<String>(SignUp2.this,
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.DiaTypes));
+        typeDiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeDiaSpinner.setAdapter(typeDiaAdapter);
+
+        ArrayAdapter<String> insAdmAdapter = new ArrayAdapter<String>(SignUp2.this,
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.InsulinAdm));
+        insAdmAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        insAdmSpinner.setAdapter(insAdmAdapter);
 
         auth = FirebaseAuth.getInstance();
 
@@ -79,9 +95,9 @@ public class SignUp2 extends AppCompatActivity {
                 }
 
                 //Get all the data from patient
-                final String diabetesType = diaTypeField.getText().toString().trim();
+                final String diabetesType = typeDiaSpinner.getSelectedItem().toString();
                 final String insulinType = insTypeField.getText().toString().trim();
-                final String insulinAdm = insAdmField.getText().toString();
+                final String insulinAdm = insAdmSpinner.getSelectedItem().toString();
                 final String docEmail = docEmailField.getText().toString();
                 final String docPhone = docPhoneField.getText().toString();
                 final String docName = docNameField.getText().toString();
@@ -94,20 +110,16 @@ public class SignUp2 extends AppCompatActivity {
 
                 //Display an error if email/password fields are empty
 
-                //COMMENTED OUT FOR SIMONA
-//                if(TextUtils.isEmpty(diabetesType)) {
-//                    diaTypeField.setError("Diabetes type is a mandatory field!");
-//                    return;
-//                }
-//                else if(TextUtils.isEmpty(insulinType)) {
-//                    insTypeField.setError("Insulin type is a mandatory field!");
-//                    return;
-//                }
-//                else if(TextUtils.isEmpty(insulinAdm)) {
-//                    insTypeField.setError("Insulin type is a mandatory field!");
-//                    return;
-//                }
-//                else {
+                if(!diabetesType.equals("Type 1") && !diabetesType.equals("Type 2")) {
+                    Toast.makeText( SignUp2.this, "Please select Diabetes type", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(insulinType)) {
+                    Toast.makeText( SignUp2.this, "Please enter Insulin type", Toast.LENGTH_SHORT).show();
+                }
+                else if(!insulinAdm.equals("Pen") && !insulinAdm.equals("Injection") && !insulinAdm.equals("Pump")) {
+                    Toast.makeText( SignUp2.this, "Please select Insulin Administration", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
                     //Check if another user already uses the same NHS number
                     Task<DocumentSnapshot> checkNHSNumTask = FirebaseFirestore.getInstance().collection("Patients")
@@ -128,7 +140,7 @@ public class SignUp2 extends AppCompatActivity {
                                             Toast.makeText(SignUp2.this, "Success", Toast.LENGTH_SHORT).show();
                                             global.setUID(auth.getCurrentUser().getUid());
                                             populateUserData(finalEmailStr, finalFNameStr, finalLNameStr, finalNhsNumStr, global.getUID(), diabetesType, insulinType, insulinAdm, docEmail, docPhone, docName);
-                                            startActivity(new Intent(getApplicationContext(), LogMenu.class));
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         } else {
                                             Throwable e = task.getException();
                                             Toast.makeText(SignUp2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -139,7 +151,7 @@ public class SignUp2 extends AppCompatActivity {
                             }
                         }
                     });
-                //} COMMENTED OUT FOR SIMONA
+                }
             }
         });
     }

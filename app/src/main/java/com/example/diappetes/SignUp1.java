@@ -66,7 +66,7 @@ public class SignUp1 extends AppCompatActivity {
                 final String txt_lName = lastName.getText().toString();
 
                 if(TextUtils.isEmpty(txt_fName) || TextUtils.isEmpty(txt_password)){
-                    Toast.makeText( SignUp1.this, "Please enter a username and password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( SignUp1.this, "Please enter a name and password", Toast.LENGTH_SHORT).show();
                 }
                 else if(!validateEmail(txt_email)){ //Check the email is valid
                     Toast.makeText(SignUp1.this, "Invalid Email Address", Toast.LENGTH_LONG).show();
