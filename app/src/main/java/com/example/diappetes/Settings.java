@@ -91,7 +91,7 @@ public class Settings extends AppCompatActivity {
                 builder.setTitle("Delete Account");
                 builder.setMessage("Are you sure you want to delete your account?");
 
-                // Dialog Box will disappear on screen even if user clicks outside of it
+                // Dialog Box will disappear if user clicks outside of it
                 builder.setCancelable(true);
 
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
