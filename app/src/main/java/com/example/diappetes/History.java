@@ -18,7 +18,7 @@ public class History extends AppCompatActivity {
 
         backButton = (Button) findViewById(R.id.BacktoMainBtn);
         graphButton = (Button) findViewById(R.id.graphingBtn);
-        prevEntryButton = (Button) findViewById(R.id.previousEntries);
+        prevEntryButton = (Button) findViewById(R.id.bsHistory);
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
