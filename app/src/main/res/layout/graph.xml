@@ -8,8 +8,6 @@
     android:background="#005EB8"
     tools:context=".Graph">
 
-    <!--line graph view where we will
-        be displaying our data-->
     <ImageView
         android:id="@+id/logoView"
         android:layout_width="58dp"
@@ -150,7 +148,29 @@
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.519" />
+
+    <Button
+        android:id="@+id/ExportBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:padding="15dp"
+        android:textColor="#FFFFFF"
+        android:text="Export to CSV"
+        android:textSize="15dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/BackBtn"
+        app:layout_constraintStart_toEndOf="@+id/idGraphView"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 
