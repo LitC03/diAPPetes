@@ -33,8 +33,6 @@ public class ProfileDetails extends AppCompatActivity {
     EditText firstNameEdit;
     EditText lastNameEdit;
     EditText emailEdit;
-//    EditText nhsEdit;
-    EditText phoneEdit;
     EditText typeDiaEdit;
     EditText typeInsEdit;
     EditText insAdmEdit;
@@ -58,8 +56,6 @@ public class ProfileDetails extends AppCompatActivity {
         firstNameEdit = findViewById(R.id.FirstNameEdit);
         lastNameEdit = findViewById(R.id.LastNameEdit);
         emailEdit = findViewById(R.id.EmailEdit);
-//        nhsEdit = findViewById(R.id.NHSEdit);
-        phoneEdit = findViewById(R.id.PhoneEdit);
         typeDiaEdit = findViewById(R.id.TypeDiaEdit);
         typeInsEdit = findViewById(R.id.TypeInsEdit);
         insAdmEdit = findViewById(R.id.InsAdmEdit);
@@ -75,8 +71,6 @@ public class ProfileDetails extends AppCompatActivity {
                         firstNameEdit.setText(document.getString("fName"));
                         lastNameEdit.setText(document.getString("lName"));
                         emailEdit.setText(document.getString("email"));
-//                        nhsEdit.setText(document.getString("NHSNumber")); //Cannot change document name
-                        //phoneEdit.setText(document.getString("phoneNum"));
                         typeDiaEdit.setText(document.getString("DType"));
                         typeInsEdit.setText(document.getString("InsType"));
                         insAdmEdit.setText(document.getString("InsAdm"));
@@ -103,9 +97,6 @@ public class ProfileDetails extends AppCompatActivity {
                 final String firstNameString = firstNameEdit.getText().toString();
                 final String lastNameString = lastNameEdit.getText().toString();
                 final String emailString = emailEdit.getText().toString();
-//                final String nhsString = nhsEdit.getText().toString();
-//                This can be finalised once the signing up is working correctly
-//                final String phoneString = phoneEdit.getText().toString();
                 final String typeDiaString = typeDiaEdit.getText().toString();
                 final String typeInsString = typeInsEdit.getText().toString();
                 final String insAdmString = insAdmEdit.getText().toString();

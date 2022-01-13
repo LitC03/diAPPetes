@@ -124,54 +124,6 @@
                     android:textColor="#000000"
                     android:textColorHighlight="#000000"
                     android:textColorHint="#000000" />
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp" />
-                <TextView
-                    android:id="@+id/PhoneView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
-
-                <EditText
-                    android:id="@+id/PhoneEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Phone Number"
-                    android:inputType="phone"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="17dp" />
-
-                <TextView
-                    android:id="@+id/NHSView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="NHS Number"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
-
-                <EditText
-                    android:id="@+id/NHSEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current NHS Number"
-                    android:inputType="phone"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
 
                 <Space
                     android:layout_width="match_parent"
