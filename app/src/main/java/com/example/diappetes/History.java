@@ -38,7 +38,7 @@ public class History extends AppCompatActivity {
         prevEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),PastEntries.class));
+                startActivity(new Intent(getApplicationContext(),PastBSEntries.class));
             }
         });
 

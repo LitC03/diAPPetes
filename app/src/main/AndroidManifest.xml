@@ -37,6 +37,7 @@
         <activity android:name=".ExerciseLog" />
         <activity android:name=".ExtraNotes" />
         <activity android:name=".FoodLog" />
+        <activity android:name=".PastBSEntries" />
         <activity android:name=".MedLog" />
         <activity android:name=".Graph"
             android:screenOrientation="landscape"/>
