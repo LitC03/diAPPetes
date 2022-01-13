@@ -29,7 +29,7 @@ public class BSHistoryAdapter extends RecyclerView.Adapter<BSHistoryAdapter.MyVi
     @Override
     public BSHistoryAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.bs_log_entry,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.bs_recycler,parent,false);
 
         return new MyViewHolder(v);
     }

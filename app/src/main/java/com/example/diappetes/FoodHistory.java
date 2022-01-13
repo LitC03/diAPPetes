@@ -1,7 +1,6 @@
 package com.example.diappetes;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -31,26 +29,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class PastBSEntries extends AppCompatActivity {
+public class FoodHistory extends AppCompatActivity {
 
     Button backButton, searchButton;
     RecyclerView recyclerView;
     FirebaseAuth auth;
     FirebaseFirestore db;
-    BSHistoryAdapter histAdapt;
-    TextView datepickStart;//, timepickStart;
-    TextView datepickEnd;//, timepickEnd;
+    FoodHistoryAdapter histAdapt;
+    TextView datepickStart;
+    TextView datepickEnd;
 
     DatePickerDialog.OnDateSetListener startDatelistener;
-//    TimePickerDialog.OnTimeSetListener startTimelistener;
     DatePickerDialog.OnDateSetListener endDatelistener;
-//    TimePickerDialog.OnTimeSetListener endTimelistener;
 
-    ArrayList<BSLogClass> logArray;
+    ArrayList<FoodLogClass> logArray;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
@@ -62,12 +56,10 @@ public class PastBSEntries extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bs_history);
+        setContentView(R.layout.food_history);
 
         datepickStart = findViewById(R.id.datePickStart);
-//        timepickStart = findViewById(R.id.timePickStart);
         datepickEnd = findViewById(R.id.datePickEnd);
-//        timepickEnd = findViewById(R.id.timePickEnd);
         searchButton = findViewById(R.id.searchBtn);
 
         recyclerView = findViewById(R.id.historyRecycler);
@@ -78,8 +70,8 @@ public class PastBSEntries extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        logArray = new ArrayList<BSLogClass>();
-        histAdapt = new BSHistoryAdapter(PastBSEntries.this,logArray);
+        logArray = new ArrayList<FoodLogClass>();
+        histAdapt = new FoodHistoryAdapter(FoodHistory.this,logArray);
         recyclerView.setAdapter(histAdapt);
 
 
@@ -87,7 +79,7 @@ public class PastBSEntries extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        PastBSEntries.this,R.style.DialogTheme,startDatelistener,year,month,day);
+                        FoodHistory.this,R.style.DialogTheme,startDatelistener,year,month,day);
                 datePickerDialog.show();
             }
         });
@@ -103,32 +95,11 @@ public class PastBSEntries extends AppCompatActivity {
         };
 
 
-//        //Clock appears on screen
-//        timepickStart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(
-//                        PastBSEntries.this,android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,startTimelistener,hour,minute,true);
-//                timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-//                timePickerDialog.show();
-//            }
-//        });
-//
-//        //Selected time is saved as string and appears on screen
-//        startTimelistener = new TimePickerDialog.OnTimeSetListener() {
-//            @Override
-//            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-//                String time = hour+":"+minute;
-//                timepickStart.setText(time);
-//            }
-//        };
-
-
         datepickEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        PastBSEntries.this,R.style.DialogTheme,endDatelistener,year,month,day);
+                        FoodHistory.this,R.style.DialogTheme,endDatelistener,year,month,day);
                 datePickerDialog.show();
             }
         });
@@ -143,27 +114,6 @@ public class PastBSEntries extends AppCompatActivity {
             }
         };
 
-
-//        //Clock appears on screen
-//        timepickEnd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(
-//                        PastBSEntries.this,android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,endTimelistener,hour,minute,true);
-//                timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-//                timePickerDialog.show();
-//            }
-//        });
-//
-//        //Selected time is saved as string and appears on screen
-//        endTimelistener = new TimePickerDialog.OnTimeSetListener() {
-//            @Override
-//            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-//                String time = hour+":"+minute;
-//                timepickEnd.setText(time);
-//            }
-//        };
-
         final Global global = (Global) getApplicationContext();
 
         Log.d("NHS:num", global.getNhsNum());
@@ -173,20 +123,18 @@ public class PastBSEntries extends AppCompatActivity {
             public void onClick(View v) {
                 //Start Date for search
                 final String startDateString = datepickStart.getText().toString();
-//                final String startTimeString = timepickStart.getText().toString();
                 String startTimeStampString = startDateString + " " + "00:00" + ":00";
 
                 //End date for search
                 final String endDateString = datepickEnd.getText().toString();
-//                final String endTimeString = timepickEnd.getText().toString();
                 String endTimeStampString = endDateString + " " + "23:59" + ":00";
 
-                if(TextUtils.isEmpty(startDateString) )/* || TextUtils.isEmpty(startTimeString))*/{
-                    Toast.makeText( PastBSEntries.this, "Please enter a start date and time", Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(startDateString) ){
+                    Toast.makeText( FoodHistory.this, "Please enter a start date and time", Toast.LENGTH_SHORT).show();
                 }
 
-                else if(TextUtils.isEmpty(endDateString) )/*|| TextUtils.isEmpty(endTimeString))*/{
-                    Toast.makeText( PastBSEntries.this, "Please enter an end date and time", Toast.LENGTH_SHORT).show();
+                else if(TextUtils.isEmpty(endDateString) ){
+                    Toast.makeText( FoodHistory.this, "Please enter an end date and time", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
@@ -198,7 +146,7 @@ public class PastBSEntries extends AppCompatActivity {
 
                         logArray.clear();
 
-                        db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar").whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
+                        db.collection("Patients").document(global.getNhsNum()).collection("FoodLog").whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                     @Override
                                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
@@ -211,7 +159,7 @@ public class PastBSEntries extends AppCompatActivity {
 
                                             if(dc.getType() == DocumentChange.Type.ADDED ) {
 
-                                                logArray.add(dc.getDocument().toObject(BSLogClass.class));
+                                                logArray.add(dc.getDocument().toObject(FoodLogClass.class));
                                             }
                                         }
                                         histAdapt.notifyDataSetChanged();
