@@ -40,6 +40,7 @@
         <activity android:name=".BSHistory" />
         <activity android:name=".MedLog" />
         <activity android:name=".FoodHistory" />
+        <activity android:name=".MedHistory" />
         <activity android:name=".Graph"
             android:screenOrientation="landscape"/>
 

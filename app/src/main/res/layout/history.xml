@@ -37,11 +37,32 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <Button
-        android:id="@+id/graphingBtn"
+        android:id="@+id/medHistory"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="192dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:text="Medicine Log History"
+        android:textSize="20dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/BacktoMainBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <Button
+        android:id="@+id/graphingBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="172dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
         android:bottomLeftRadius="10dp"
@@ -52,10 +73,10 @@
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/BacktoMainBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/bsHistory"
@@ -76,7 +97,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222" />
+        app:layout_constraintVertical_bias="0.153" />
 
     <Button
         android:id="@+id/foodHistory"
@@ -97,7 +118,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
+        app:layout_constraintVertical_bias="0.358" />
 
     <Button
         android:id="@+id/BacktoMainBtn"

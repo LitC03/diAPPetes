@@ -145,8 +145,8 @@ public class MedLog extends AppCompatActivity {
 
                         //Create hashmap for database
                         final Map<String, Object> Med_data = new HashMap<>();
-                        Med_data.put("Meal", medTypeString);
-                        Med_data.put("Carbs", doseString);
+                        Med_data.put("MedType", medTypeString);
+                        Med_data.put("Dose", doseString);
                         Med_data.put("Time", timestamp);
 
                         //Fetch collection of previous collections to get index for new collection
