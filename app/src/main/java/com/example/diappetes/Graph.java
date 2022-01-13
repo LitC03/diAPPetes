@@ -37,7 +37,6 @@ import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
-import com.opencsv.CSVWriter;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
