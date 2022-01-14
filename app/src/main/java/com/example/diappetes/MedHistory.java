@@ -53,7 +53,7 @@ public class MedHistory extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.food_history);
+        setContentView(R.layout.history_search);
 
         datepickStart = findViewById(R.id.datePickStart);
         datepickEnd = findViewById(R.id.datePickEnd);

@@ -56,7 +56,7 @@ public class BSHistory extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bs_history);
+        setContentView(R.layout.history_search);
 
         datepickStart = findViewById(R.id.datePickStart);
         datepickEnd = findViewById(R.id.datePickEnd);
