@@ -58,7 +58,7 @@
         android:gravity="center"
         android:text="Press a point in your graph to\nlook its details"
         android:textColor="#FFFFFF"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintHorizontal_bias="0.528"
@@ -86,7 +86,7 @@
             android:gravity="center"
             android:text="Date"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/yTitle"
@@ -96,7 +96,7 @@
             android:gravity="center"
             android:text="Blood Sugar (mmol/L)"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -119,7 +119,7 @@
             android:gravity="center"
             android:text="-- -- --  --:--"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/yValue"
@@ -129,7 +129,7 @@
             android:gravity="center"
             android:text="----"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -143,7 +143,7 @@
         android:bottomLeftRadius="10dp"
         android:bottomRightRadius="10dp"
         android:text="Back"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,7 +165,7 @@
         android:padding="15dp"
         android:textColor="#FFFFFF"
         android:text="Export to CSV"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

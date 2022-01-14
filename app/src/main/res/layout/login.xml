@@ -120,7 +120,7 @@
         android:bottomLeftRadius="10dp"
         android:bottomRightRadius="10dp"
         android:text="Login"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
