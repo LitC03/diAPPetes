@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="..\:/Programming_3/diAPPetes/app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
         <entry key="..\:/Programming_3/diAPPetes/app/src/main/res/layout/login.xml" value="0.20520833333333333" />
         <entry key="..\:/Programming_3/diAPPetes/app/src/main/res/layout/signup1.xml" value="0.18489583333333334" />
@@ -14,40 +13,26 @@
         <entry key="app/src/main/res/drawable/roundbutton.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/drawable/textbox.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1897644927536232" />
-        <entry key="app/src/main/res/layout/bloodsugar.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/bloodsugar_history.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/bs_history.xml" value="0.31633240600268525" />
-        <entry key="app/src/main/res/layout/bs_log_entry.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/bs_recycler.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/bloodsugar.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/bs_recycler.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/doctor_details.xml" value="0.209375" />
-        <entry key="app/src/main/res/layout/exercise_log.xml" value="0.1625" />
-        <entry key="app/src/main/res/layout/exercise_recycler.xml" value="0.6460674157303371" />
-        <entry key="app/src/main/res/layout/extranotes.xml" value="0.1625" />
-        <entry key="app/src/main/res/layout/food_history.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/food_log_recycler.xml" value="0.1644021739130435" />
-        <entry key="app/src/main/res/layout/food_recycler.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/exercise_log.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/exercise_recycler.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/extranotes.xml" value="0.25" />
         <entry key="app/src/main/res/layout/foodlog.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/forgot_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/history.xml" value="0.209375" />
-        <entry key="app/src/main/res/layout/log_entry.xml" value="0.1" />
         <entry key="app/src/main/res/layout/log_menu.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/logbook.xml" value="0.1897644927536232" />
         <entry key="app/src/main/res/layout/login.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/logmenu.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/medication_log.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/past_entries.xml" value="0.1644021739130435" />
-        <entry key="app/src/main/res/layout/prev_entries.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/profile_details.xml" value="0.209375" />
-        <entry key="app/src/main/res/layout/que_recycler.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/questionnare_recycler.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/questoinnaire.xml" value="0.25" />
         <entry key="app/src/main/res/layout/settings.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/signup1.xml" value="0.2342002745420004" />
-        <entry key="app/src/main/res/layout/signup2.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/signup2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/welcome.xml" value="0.1802536231884058" />
       </map>
     </option>

@@ -54,11 +54,16 @@
         <EditText
             android:id="@+id/extraNotes"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/largetextbox"
             android:backgroundTint="@color/colorNeutralWhite"
-            android:inputType="text"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:minLines="6"
+            android:gravity="top|start"
+            android:maxLines="10"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
             android:padding="15dp"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/colorTextBlack"
@@ -67,7 +72,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/LogoView" />
 
         <TextView
             android:id="@+id/DateTimeView"
