@@ -4,12 +4,15 @@ import android.util.Log;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class QuestionnaireClassValuesTest extends TestCase {
 
+    @Test
     public void testGettingAndSetting() {
         QuestionnaireClassValues log = new QuestionnaireClassValues();
         try {

@@ -4,12 +4,15 @@ import android.util.Log;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MedLogValuesTest extends TestCase {
 
+    @Test
     public void testGettingAndSetting() {
         MedLogValues log = new MedLogValues();
         try {

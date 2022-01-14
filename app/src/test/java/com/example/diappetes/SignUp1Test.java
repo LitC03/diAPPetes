@@ -3,9 +3,11 @@ package com.example.diappetes;
 import junit.framework.TestCase;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 public class SignUp1Test extends TestCase {
 
+    @Test
     public void testIsNumeric() {
 
         String testString = "0709947227";
@@ -15,6 +17,7 @@ public class SignUp1Test extends TestCase {
 
     }
 
+    @Test
     public void testValidateEmail() {
         SignUp1 page = new SignUp1();
         String invalidTestEmail = "bert@gmail";
@@ -24,6 +27,7 @@ public class SignUp1Test extends TestCase {
 
     }
 
+    @Test
     public void testValidatePassword(){
         SignUp1 page = new SignUp1();
         String badTestPassword = "PASSWORD";

@@ -2,8 +2,11 @@ package com.example.diappetes;
 
 import junit.framework.TestCase;
 
-public class GlobalTest extends TestCase {
+import org.junit.Test;
 
+
+public class GlobalTest extends TestCase {
+    @Test
     public void testGettingAndSetting(){
         Global globTest = new Global();
         String nhs = "0123456789";

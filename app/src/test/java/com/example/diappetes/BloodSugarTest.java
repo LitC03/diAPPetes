@@ -2,8 +2,11 @@ package com.example.diappetes;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+
 public class BloodSugarTest extends TestCase {
 
+    @Test
     public void testIsReasonable(){
         String alphabetical = "High";
         String tooHigh = "300";
@@ -16,6 +19,7 @@ public class BloodSugarTest extends TestCase {
 
     }
 
+    @Test
     public void testCheckHyperglucemia(){
         BloodSugar page = new BloodSugar();
         assertEquals(true, page.checkHyperglucemia(11.3,true));
