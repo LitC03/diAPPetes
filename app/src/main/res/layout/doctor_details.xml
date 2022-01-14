@@ -37,144 +37,144 @@
         app:layout_constraintVertical_bias="0.043" />
 
     <LinearLayout
-        android:layout_width="342dp"
-        android:layout_height="575dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="139dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/LogoView">
 
-        <ScrollView
+        <TextView
+            android:id="@+id/DocNameView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="Name of Doctor"
+            android:textColor="@color/colorNeutralWhite"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <EditText
+            android:id="@+id/DocNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="@color/colorNeutralWhite"
+            android:hint=" Current Name of Doctor"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHighlight="@color/colorTextBlack"
+            android:textColorHint="@color/colorTextBlack"
+            app:layout_constraintTop_toBottomOf="@id/DocNameView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="24dp" />
-                <TextView
-                    android:id="@+id/DocNameView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name of Doctor"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
+        <TextView
+            android:id="@+id/DocPhoneNumView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone Number of Doctor"
+            android:textColor="@color/colorNeutralWhite"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DocNameEdit"
+            android:layout_marginTop="30dp" />
 
-                <EditText
-                    android:id="@+id/DocNameEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Name of Doctor"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="24dp" />
-                <TextView
-                    android:id="@+id/DocPhoneNumView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number of Doctor"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
+        <EditText
+            android:id="@+id/DocPhoneNumEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="@color/colorNeutralWhite"
+            android:hint=" Current Phone Number of Doctor"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHighlight="@color/colorTextBlack"
+            android:textColorHint="@color/colorTextBlack"
+            app:layout_constraintTop_toBottomOf="@id/DocPhoneNumView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp" />
 
-                <EditText
-                    android:id="@+id/DocPhoneNumEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Phone Number of Doctor"
-                    android:inputType="textPersonName"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="24dp" />
-                <TextView
-                    android:id="@+id/DocEmailView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Email Address of Doctor"
-                    android:textColor="@color/colorNeutralWhite"
-                    android:textSize="22dp" />
+        <TextView
+            android:id="@+id/DocEmailView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Address of Doctor"
+            android:textColor="@color/colorNeutralWhite"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DocPhoneNumEdit"
+            android:layout_marginTop="30dp" />
 
-                <EditText
-                    android:id="@+id/DocEmailEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint=" Current Email Address of Doctor"
-                    android:inputType="textEmailAddress"
-                    android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
+        <EditText
+            android:id="@+id/DocEmailEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="@color/colorNeutralWhite"
+            android:hint=" Current Email Address of Doctor"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHighlight="@color/colorTextBlack"
+            android:textColorHint="@color/colorTextBlack"
+            app:layout_constraintTop_toBottomOf="@id/DocEmailView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp" />
 
+        <Button
+            android:id="@+id/SaveBtn"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="#2DE160"
+            android:text="Save Changes"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DocEmailEdit"
+            android:layout_marginTop="68dp" />
 
+        <Button
+            android:id="@+id/CancelBtn"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="#FF0909"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/SaveBtn"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp" />
 
-
-
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp" />
-
-                <Button
-                    android:id="@+id/SaveBtn"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="#2DE160"
-                    android:bottomLeftRadius="10dp"
-                    android:bottomRightRadius="10dp"
-                    android:text="Save Changes"
-                    android:textAllCaps="false"
-                    android:textSize="20dp"
-                    android:topLeftRadius="10dp"
-                    android:topRightRadius="10dp"
-                    android:layout_marginStart="81dp"
-                    android:layout_marginEnd="81dp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp" />
-
-                <Button
-                    android:id="@+id/CancelBtn"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
-                    android:backgroundTint="#FF0909"
-                    android:bottomLeftRadius="10dp"
-                    android:bottomRightRadius="10dp"
-                    android:text="Cancel"
-                    android:textAllCaps="false"
-                    android:textSize="20dp"
-                    android:topLeftRadius="10dp"
-                    android:topRightRadius="10dp"
-                    android:layout_marginStart="81dp"
-                    android:layout_marginEnd="81dp" />
-
-            </LinearLayout>
-        </ScrollView>
     </LinearLayout>
 
 
