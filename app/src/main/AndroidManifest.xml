@@ -43,6 +43,7 @@
         <activity android:name=".MedHistory" />
         <activity android:name=".ExerciseLogHistory" />
         <activity android:name=".ExtraNotesHistory" />
+        <activity android:name=".QuestionnaireHistory" />
         <activity android:name=".Graph"
             android:screenOrientation="landscape"/>
 

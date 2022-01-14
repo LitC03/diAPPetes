@@ -11,7 +11,7 @@ public class History extends AppCompatActivity {
 
     Button backButton,graphButton, bsHistButton;
     Button foodHistButton, medHistButton, exHistButton;
-    Button noteHistButton;
+    Button noteHistButton, queHistButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class History extends AppCompatActivity {
         medHistButton = (Button) findViewById(R.id.medHistory);
         exHistButton = (Button) findViewById(R.id.exerciseHistory);
         noteHistButton = (Button) findViewById(R.id.extraNotesHist);
+        queHistButton = (Button) findViewById(R.id.questionnaireHist);
 
 
 
@@ -75,6 +76,13 @@ public class History extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), ExtraNotesHistory.class));
+            }
+        });
+
+        queHistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), QuestionnaireHistory.class));
             }
         });
     }

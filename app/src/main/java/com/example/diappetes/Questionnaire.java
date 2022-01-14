@@ -162,7 +162,7 @@ public class Questionnaire extends AppCompatActivity {
                         QueData.put("ExtensiveHunger", hungerBool);
                         QueData.put("VisionChanges", visionBool);
                         QueData.put("TinglingSensation", tinglingBool);
-                        QueData.put("Notes on Symptoms", sympString);
+                        QueData.put("NotesOnSymptoms", sympString);
                         QueData.put("Time", timestamp);
 
 
