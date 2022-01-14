@@ -69,7 +69,7 @@ public class Questionnaire extends AppCompatActivity {
         urinationCheck = findViewById(R.id.UrinationCheckBox);
         thirstCheck = findViewById(R.id.ThirstCheckBox);
         weightCheck = findViewById(R.id.WeightLossCheckBox);
-        hungerCheck = findViewById(R.id.VisionCheckBox);
+        hungerCheck = findViewById(R.id.HungerCheckBox);
         visionCheck = findViewById(R.id.VisionCheckBox);
         tinglingCheck = findViewById(R.id.TinglingCheckBox);
         sympNotes = findViewById(R.id.TypeSympNotes);
@@ -180,9 +180,9 @@ public class Questionnaire extends AppCompatActivity {
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    //Tell user data was submittec correctly
+                                                    //Tell user data was submitted correctly
                                                     Toast.makeText(Questionnaire.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                    startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

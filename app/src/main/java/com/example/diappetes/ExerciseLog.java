@@ -166,7 +166,7 @@ public class ExerciseLog extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     Toast.makeText(ExerciseLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                    startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

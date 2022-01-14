@@ -167,7 +167,7 @@ public class FoodLog extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     Toast.makeText(FoodLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                    startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

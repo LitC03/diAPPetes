@@ -164,7 +164,7 @@ public class MedLog extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     Toast.makeText(MedLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                    startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

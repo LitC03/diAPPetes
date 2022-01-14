@@ -156,7 +156,7 @@ public class ExtraNotes extends AppCompatActivity {
                                                 public void onSuccess(Void aVoid) {
                                                     //Alert user data was submitted correctly
                                                     Toast.makeText(ExtraNotes.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                                    startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
