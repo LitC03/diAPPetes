@@ -44,7 +44,7 @@ public class FoodHistory extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener startDatelistener;
     DatePickerDialog.OnDateSetListener endDatelistener;
 
-    ArrayList<FoodLogClass> logArray;
+    ArrayList<FoodLogValues> logArray;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
@@ -70,7 +70,7 @@ public class FoodHistory extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        logArray = new ArrayList<FoodLogClass>();
+        logArray = new ArrayList<FoodLogValues>();
         histAdapt = new FoodHistoryAdapter(FoodHistory.this,logArray);
         recyclerView.setAdapter(histAdapt);
 
@@ -159,7 +159,7 @@ public class FoodHistory extends AppCompatActivity {
 
                                             if(dc.getType() == DocumentChange.Type.ADDED ) {
 
-                                                logArray.add(dc.getDocument().toObject(FoodLogClass.class));
+                                                logArray.add(dc.getDocument().toObject(FoodLogValues.class));
                                             }
                                         }
                                         histAdapt.notifyDataSetChanged();

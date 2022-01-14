@@ -2,14 +2,14 @@ package com.example.diappetes;
 
 import java.util.Date;
 
-public class FoodLogClass {
+public class FoodLogValues {
     String Calories;
     String Carbs;
     String Meal;
     String Sugars;
     Date Time;
 
-    public FoodLogClass(){}
+    public FoodLogValues(){}
 
     public String getCalories() {
         return Calories;

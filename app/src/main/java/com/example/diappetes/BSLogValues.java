@@ -2,7 +2,7 @@ package com.example.diappetes;
 
 import java.util.Date;
 
-public class BSLogClass {
+public class BSLogValues {
 
     Double BS;
     Date Time;
@@ -20,9 +20,9 @@ public class BSLogClass {
         EatenIn2h = eatenIn2h;
     }
 
-    public BSLogClass(){}
+    public BSLogValues(){}
 
-    public BSLogClass(Date Time, Double BS) {
+    public BSLogValues(Date Time, Double BS) {
         this.Time = Time;
         this.BS = BS;
     }

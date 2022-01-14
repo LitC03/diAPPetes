@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/doctor_details.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/exercise_log.xml" value="0.1625" />
+        <entry key="app/src/main/res/layout/exercise_recycler.xml" value="0.6460674157303371" />
         <entry key="app/src/main/res/layout/extranotes.xml" value="0.1625" />
         <entry key="app/src/main/res/layout/food_history.xml" value="0.1" />
         <entry key="app/src/main/res/layout/food_log_recycler.xml" value="0.1644021739130435" />
@@ -38,6 +39,7 @@
         <entry key="app/src/main/res/layout/past_entries.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/prev_entries.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/profile_details.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/questionnare_recycler.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/questoinnaire.xml" value="0.25" />
         <entry key="app/src/main/res/layout/settings.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/signup1.xml" value="0.2342002745420004" />

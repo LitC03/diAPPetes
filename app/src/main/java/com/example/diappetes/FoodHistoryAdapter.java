@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class FoodHistoryAdapter extends RecyclerView.Adapter<FoodHistoryAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<FoodLogClass> logArray;
+    ArrayList<FoodLogValues> logArray;
 
 
-    public FoodHistoryAdapter(Context context, ArrayList<FoodLogClass> logArray) {
+    public FoodHistoryAdapter(Context context, ArrayList<FoodLogValues> logArray) {
         this.context = context;
         this.logArray = logArray;
     }
@@ -37,7 +37,7 @@ public class FoodHistoryAdapter extends RecyclerView.Adapter<FoodHistoryAdapter.
     @Override
     public void onBindViewHolder(@NonNull FoodHistoryAdapter.MyViewHolder holder, int position) {
 
-        FoodLogClass log = logArray.get(position);
+        FoodLogValues log = logArray.get(position);
 
         holder.Time.setText((log.Time).toString());
         holder.Calories.setText(log.Calories);

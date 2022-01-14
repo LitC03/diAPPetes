@@ -31,20 +31,20 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class BSHistory extends AppCompatActivity {
+public class ExerciseLogHistory extends AppCompatActivity {
 
     Button backButton, searchButton;
     RecyclerView recyclerView;
     FirebaseAuth auth;
     FirebaseFirestore db;
-    BSHistoryAdapter histAdapt;
+    ExerciseLogAdapter histAdapt;
     TextView datepickStart;//, timepickStart;
     TextView datepickEnd;//, timepickEnd;
 
     DatePickerDialog.OnDateSetListener startDatelistener;
     DatePickerDialog.OnDateSetListener endDatelistener;
 
-    ArrayList<BSLogValues> logArray;
+    ArrayList<ExerciseLogValues> logArray;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
@@ -69,8 +69,8 @@ public class BSHistory extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        logArray = new ArrayList<BSLogValues>();
-        histAdapt = new BSHistoryAdapter(BSHistory.this,logArray);
+        logArray = new ArrayList<ExerciseLogValues>();
+        histAdapt = new ExerciseLogAdapter(ExerciseLogHistory.this,logArray);
         recyclerView.setAdapter(histAdapt);
 
 
@@ -78,7 +78,7 @@ public class BSHistory extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        BSHistory.this,R.style.DialogTheme,startDatelistener,year,month,day);
+                        ExerciseLogHistory.this,R.style.DialogTheme,startDatelistener,year,month,day);
                 datePickerDialog.show();
             }
         });
@@ -98,7 +98,7 @@ public class BSHistory extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        BSHistory.this,R.style.DialogTheme,endDatelistener,year,month,day);
+                        ExerciseLogHistory.this,R.style.DialogTheme,endDatelistener,year,month,day);
                 datePickerDialog.show();
             }
         });
@@ -129,11 +129,11 @@ public class BSHistory extends AppCompatActivity {
                 String endTimeStampString = endDateString + " " + "23:59" + ":00";
 
                 if(TextUtils.isEmpty(startDateString) ){
-                    Toast.makeText( BSHistory.this, "Please enter a start date and time", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( ExerciseLogHistory.this, "Please enter a start date and time", Toast.LENGTH_SHORT).show();
                 }
 
                 else if(TextUtils.isEmpty(endDateString) ){
-                    Toast.makeText( BSHistory.this, "Please enter an end date and time", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( ExerciseLogHistory.this, "Please enter an end date and time", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
@@ -145,7 +145,7 @@ public class BSHistory extends AppCompatActivity {
 
                         logArray.clear();
 
-                        db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar").whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
+                        db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                     @Override
                                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
@@ -158,7 +158,7 @@ public class BSHistory extends AppCompatActivity {
 
                                             if(dc.getType() == DocumentChange.Type.ADDED ) {
 
-                                                logArray.add(dc.getDocument().toObject(BSLogValues.class));
+                                                logArray.add(dc.getDocument().toObject(ExerciseLogValues.class));
                                             }
                                         }
                                         histAdapt.notifyDataSetChanged();

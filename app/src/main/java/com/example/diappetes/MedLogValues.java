@@ -2,12 +2,12 @@ package com.example.diappetes;
 
 import java.util.Date;
 
-public class MedLogClass {
+public class MedLogValues {
     String MedType;
     String Dose;
     Date Time;
 
-    public MedLogClass(){}
+    public MedLogValues(){}
 
     public String getMedType() {
         return MedType;

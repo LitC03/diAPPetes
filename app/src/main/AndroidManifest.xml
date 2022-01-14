@@ -41,6 +41,8 @@
         <activity android:name=".MedLog" />
         <activity android:name=".FoodHistory" />
         <activity android:name=".MedHistory" />
+        <activity android:name=".ExerciseLogHistory" />
+        <activity android:name=".ExtraNotesHistory" />
         <activity android:name=".Graph"
             android:screenOrientation="landscape"/>
 

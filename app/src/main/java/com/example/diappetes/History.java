@@ -10,7 +10,8 @@ import android.widget.Button;
 public class History extends AppCompatActivity {
 
     Button backButton,graphButton, bsHistButton;
-    Button foodHistButton, medHistButton;
+    Button foodHistButton, medHistButton, exHistButton;
+    Button noteHistButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,9 @@ public class History extends AppCompatActivity {
         bsHistButton = (Button) findViewById(R.id.bsHistory);
         foodHistButton = (Button) findViewById(R.id.foodHistory);
         medHistButton = (Button) findViewById(R.id.medHistory);
+        exHistButton = (Button) findViewById(R.id.exerciseHistory);
+        noteHistButton = (Button) findViewById(R.id.extraNotesHist);
+
 
 
 
@@ -57,6 +61,20 @@ public class History extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MedHistory.class));
+            }
+        });
+
+        exHistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ExerciseLogHistory.class));
+            }
+        });
+
+        noteHistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ExtraNotesHistory.class));
             }
         });
     }

@@ -42,7 +42,7 @@ public class MedHistory extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener startDatelistener;
     DatePickerDialog.OnDateSetListener endDatelistener;
 
-    ArrayList<MedLogClass> logArray;
+    ArrayList<MedLogValues> logArray;
 
     //Create date & time constants
     final Calendar calendar= Calendar.getInstance();
@@ -67,7 +67,7 @@ public class MedHistory extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        logArray = new ArrayList<MedLogClass>();
+        logArray = new ArrayList<MedLogValues>();
         histAdapt = new MedHistoryAdapter(MedHistory.this,logArray);
         recyclerView.setAdapter(histAdapt);
 
@@ -156,7 +156,7 @@ public class MedHistory extends AppCompatActivity {
 
                                             if(dc.getType() == DocumentChange.Type.ADDED ) {
 
-                                                logArray.add(dc.getDocument().toObject(MedLogClass.class));
+                                                logArray.add(dc.getDocument().toObject(MedLogValues.class));
                                             }
                                         }
                                         histAdapt.notifyDataSetChanged();

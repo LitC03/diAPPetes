@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class BSHistoryAdapter extends RecyclerView.Adapter<BSHistoryAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<BSLogClass> logArray;
+    ArrayList<BSLogValues> logArray;
 
 
-    public BSHistoryAdapter(Context context, ArrayList<BSLogClass> logArray) {
+    public BSHistoryAdapter(Context context, ArrayList<BSLogValues> logArray) {
         this.context = context;
         this.logArray = logArray;
     }
@@ -37,7 +37,7 @@ public class BSHistoryAdapter extends RecyclerView.Adapter<BSHistoryAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull BSHistoryAdapter.MyViewHolder holder, int position) {
 
-        BSLogClass log = logArray.get(position);
+        BSLogValues log = logArray.get(position);
 
         holder.Time.setText((log.Time).toString());
         holder.BS.setText((log.BS).toString());

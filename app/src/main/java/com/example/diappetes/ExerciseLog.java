@@ -147,7 +147,7 @@ public class ExerciseLog extends AppCompatActivity {
 
                         //Create hashmap to submit to firebase
                         final Map<String, Object> Med_data = new HashMap<>();
-                        Med_data.put("Exercise Type", exerciseTypeString);
+                        Med_data.put("ExerciseType", exerciseTypeString);
                         Med_data.put("Duration", durString);
                         Med_data.put("Time", timestamp);
 
