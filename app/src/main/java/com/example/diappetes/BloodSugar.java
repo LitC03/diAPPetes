@@ -272,7 +272,7 @@ public class BloodSugar extends AppCompatActivity {
         }
     }
 
-    private boolean checkHyperglucemia(double bsDouble, boolean eatenBool) {
+    public boolean checkHyperglucemia(double bsDouble, boolean eatenBool) {
         //Check blood sugar levels for hyperglucemia
         if (bsDouble>11) {
             return true;
@@ -376,7 +376,7 @@ public class BloodSugar extends AppCompatActivity {
         }
     }
 
-    private static boolean isReasonable(String str){
+    public static boolean isReasonable(String str){
         double bloodSugar = 0;
         try {
             bloodSugar = Double.parseDouble(str);

@@ -27,9 +27,6 @@ public class History extends AppCompatActivity {
         noteHistButton = (Button) findViewById(R.id.extraNotesHist);
         queHistButton = (Button) findViewById(R.id.questionnaireHist);
 
-
-
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
