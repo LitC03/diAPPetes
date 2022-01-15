@@ -70,14 +70,13 @@
                     android:id="@+id/FirstNameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current First Name"
                     android:inputType="textPersonName"
                     android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="17dp" />
@@ -93,14 +92,13 @@
                     android:id="@+id/LastNameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Last Name"
                     android:inputType="textPersonName"
                     android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="17dp" />
@@ -116,14 +114,13 @@
                     android:id="@+id/EmailEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Email Address"
                     android:inputType="textEmailAddress"
                     android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -141,14 +138,13 @@
                     android:id="@+id/TypeDiaEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Type of Diabetes"
                     android:inputType="phone"
                     android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -166,14 +162,13 @@
                     android:id="@+id/TypeInsEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Type of Insulin"
                     android:inputType="phone"
                     android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -191,14 +186,13 @@
                     android:id="@+id/InsAdmEdit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Insulin Administration"
                     android:inputType="phone"
                     android:padding="15dp"
-                    android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000" />
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -209,36 +203,33 @@
                     android:layout_width="180dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundbutton"
-                    android:backgroundTint="#2DE160"
-                    android:bottomLeftRadius="10dp"
-                    android:bottomRightRadius="10dp"
+                    android:backgroundTint="@color/save"
                     android:text="Save Changes"
                     android:textAllCaps="false"
                     android:textSize="20sp"
-                    android:topLeftRadius="10dp"
-                    android:topRightRadius="10dp"
+                    android:textColor="@color/colorPrimary"
                     android:layout_marginStart="81dp"
                     android:layout_marginEnd="81dp" />
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="30dp" />
+                    android:layout_height="20dp" />
 
                 <Button
                     android:id="@+id/CancelBtn"
                     android:layout_width="180dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundbutton"
-                    android:backgroundTint="#FF0909"
-                    android:bottomLeftRadius="10dp"
-                    android:bottomRightRadius="10dp"
                     android:text="Cancel"
+                    android:textColor="@color/save"
                     android:textAllCaps="false"
                     android:textSize="20sp"
-                    android:topLeftRadius="10dp"
-                    android:topRightRadius="10dp"
                     android:layout_marginStart="81dp"
                     android:layout_marginEnd="81dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
 
             </LinearLayout>
         </ScrollView>
