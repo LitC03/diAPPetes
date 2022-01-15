@@ -77,14 +77,13 @@
                     android:id="@+id/MealField"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint="Enter food"
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/colorTextBlack"
-                    android:textColorHighlight="@color/colorTextBlack"
-                    android:textColorHint="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray"
                     android:layout_marginTop="2dp" />
 
                 <TextView
@@ -102,14 +101,13 @@
                     android:id="@+id/CarbField"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint="Enter carbohydrates"
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/colorTextBlack"
-                    android:textColorHighlight="@color/colorTextBlack"
-                    android:textColorHint="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray"
                     android:layout_marginTop="2dp" />
 
                 <TextView
@@ -127,14 +125,13 @@
                     android:id="@+id/SugarField"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint="Enter sugars"
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/colorTextBlack"
-                    android:textColorHighlight="@color/colorTextBlack"
-                    android:textColorHint="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray"
                     android:layout_marginTop="2dp" />
 
                 <TextView
@@ -152,14 +149,13 @@
                     android:id="@+id/CalField"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint="Enter calories"
                     android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/colorTextBlack"
-                    android:textColorHighlight="@color/colorTextBlack"
-                    android:textColorHint="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray"
                     android:layout_marginTop="2dp" />
 
                 <TextView
@@ -177,28 +173,26 @@
                     android:id="@+id/datePick"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint="Date"
+                    android:hint="Select Date"
                     android:padding="15dp"
                     android:textAlignment="center"
                     android:textColor="@color/colorTextBlack"
-                    android:textColorHighlight="@color/colorTextBlack"
-                    android:textColorHint="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray"
                     android:layout_marginTop="8dp" />
 
                 <TextView
                     android:id="@+id/timePick"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/roundbutton"
+                    android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
-                    android:hint="Time"
+                    android:hint="Select Time"
                     android:padding="15dp"
                     android:textAlignment="center"
                     android:textColor="@color/colorTextBlack"
-                    android:textColorHighlight="@color/colorTextBlack"
-                    android:textColorHint="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray"
                     android:layout_marginTop="20dp" />
 
                 <Button
@@ -206,7 +200,8 @@
                     android:layout_width="180dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundbutton"
-                    android:backgroundTint="#2DE160"
+                    android:backgroundTint="@color/save"
+                    android:textColor="@color/colorPrimary"
                     android:text="Save"
                     android:textSize="16sp"
                     android:layout_gravity="center_horizontal"
@@ -217,13 +212,12 @@
                     android:layout_width="180dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundbutton"
-                    android:backgroundTint="#FF0909"
                     android:text="Cancel"
                     android:textSize="16sp"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/colorTextBlack"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp" />
+                    android:textColor="@color/save"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp" />
 
             </LinearLayout>
         </ScrollView>

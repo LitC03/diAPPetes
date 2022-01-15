@@ -9,4 +9,7 @@
     <color name="colorNeutralDarkGray">#425563</color>
     <color name="colorNeutralBlack">#231f20</color>
     <color name="colorTextBlack">#000000</color>
+    <color name="blueBackground">#0C4CA6</color>
+    <color name="save">#E8EDEE</color>
+
 </resources>
