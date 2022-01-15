@@ -18,7 +18,7 @@ public class ExtraNotesAdapter extends RecyclerView.Adapter<ExtraNotesAdapter.My
     Context context;
     ArrayList<ExtraNotesValues> logArray;
 
-
+    //Constructor
     public ExtraNotesAdapter(Context context, ArrayList<ExtraNotesValues> logArray) {
         this.context = context;
         this.logArray = logArray;
@@ -30,7 +30,7 @@ public class ExtraNotesAdapter extends RecyclerView.Adapter<ExtraNotesAdapter.My
     @NonNull
     @Override
     public ExtraNotesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        //Fetch view from exercise_recycler
         View v = LayoutInflater.from(context).inflate(R.layout.extranotes_recycler,parent,false);
 
         return new MyViewHolder(v);
@@ -40,7 +40,7 @@ public class ExtraNotesAdapter extends RecyclerView.Adapter<ExtraNotesAdapter.My
     public void onBindViewHolder(@NonNull ExtraNotesAdapter.MyViewHolder holder, int position) {
 
         ExtraNotesValues log = logArray.get(position);
-
+        //Set all the holders
         holder.Time.setText((log.Time).toString());
         holder.Notes.setText(log.Notes);
 
@@ -53,11 +53,12 @@ public class ExtraNotesAdapter extends RecyclerView.Adapter<ExtraNotesAdapter.My
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
+        //Initialise textview
         TextView Time, Notes;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            //Find correct textviews in recycler
             Time = itemView.findViewById(R.id.timeView);
             Notes = itemView.findViewById(R.id.noteView);
 

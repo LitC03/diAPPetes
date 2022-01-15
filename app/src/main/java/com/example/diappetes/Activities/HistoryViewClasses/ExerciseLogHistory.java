@@ -146,29 +146,33 @@ public class ExerciseLogHistory extends AppCompatActivity {
 
                 else {
                     try {
+                        //Try to parse the correct time format
                         Date start = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(startTimeStampString);
                         Date end = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(endTimeStampString);
                         Timestamp startTimeStamp = new Timestamp(start);
                         Timestamp endTimeStamp = new Timestamp(end);
 
+                        //Clear previous search results
                         logArray.clear();
-
-                        db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog").whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
+                        //Query database for documents in ExtraNotes within right time frame
+                        db.collection("Patients").document(global.getNhsNum()).collection("ExerciseLog")
+                                .whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                     @Override
                                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
                                         if (e != null){
+                                            //Log errors if there are any
                                             Log.e("Firestore error", e.getMessage());
                                             return;
                                         }
-
+                                        //Loop through retrieved documents
                                         for (DocumentChange dc : value.getDocumentChanges()){
-
+                                            //If new documents are fetched
                                             if(dc.getType() == DocumentChange.Type.ADDED ) {
-
+                                                //Add to array
                                                 logArray.add(dc.getDocument().toObject(ExerciseLogValues.class));
                                             }
-                                        }
+                                        } //Update adapter
                                         histAdapt.notifyDataSetChanged();
                                     }
                                 });

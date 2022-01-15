@@ -5,9 +5,9 @@ import java.util.Date;
 public class ExtraNotesValues {
     String Notes;
     Date Time;
-
+    //Empty constructors
     public ExtraNotesValues(){}
-
+    //Getters and setters
     public String getNotes() {
         return Notes;
     }

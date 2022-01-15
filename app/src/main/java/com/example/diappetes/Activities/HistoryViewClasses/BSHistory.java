@@ -169,7 +169,7 @@ public class BSHistory extends AppCompatActivity {
                                         }
                                         //Loop through retrieved documents
                                         for (DocumentChange dc : value.getDocumentChanges()){
-                                            //If documents are fetched now
+                                            //If new documents are fetched
                                             if(dc.getType() == DocumentChange.Type.ADDED ) {
                                                 //Add to array
                                                 logArray.add(dc.getDocument().toObject(BSLogValues.class));
