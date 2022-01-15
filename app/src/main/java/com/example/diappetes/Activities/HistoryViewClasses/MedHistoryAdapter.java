@@ -18,7 +18,7 @@ public class MedHistoryAdapter extends RecyclerView.Adapter<MedHistoryAdapter.My
     Context context;
     ArrayList<MedLogValues> logArray;
 
-
+    //Constructor
     public MedHistoryAdapter(Context context, ArrayList<MedLogValues> logArray) {
         this.context = context;
         this.logArray = logArray;
@@ -30,7 +30,7 @@ public class MedHistoryAdapter extends RecyclerView.Adapter<MedHistoryAdapter.My
     @NonNull
     @Override
     public MedHistoryAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        //Fetch view from med_recycler
         View v = LayoutInflater.from(context).inflate(R.layout.med_recycler,parent,false);
 
         return new MyViewHolder(v);
@@ -40,7 +40,7 @@ public class MedHistoryAdapter extends RecyclerView.Adapter<MedHistoryAdapter.My
     public void onBindViewHolder(@NonNull MedHistoryAdapter.MyViewHolder holder, int position) {
 
         MedLogValues log = logArray.get(position);
-
+        //Set all the holders
         holder.Time.setText((log.Time).toString());
         holder.Dose.setText(log.Dose);
         holder.MedType.setText(log.MedType);
@@ -54,11 +54,12 @@ public class MedHistoryAdapter extends RecyclerView.Adapter<MedHistoryAdapter.My
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
+        //Initialise textview
         TextView MedType, Dose, Time;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            //Find correct textviews in recycler
             Time = itemView.findViewById(R.id.timeView);
             MedType = itemView.findViewById(R.id.medTypeView);
             Dose = itemView.findViewById(R.id.doseView);

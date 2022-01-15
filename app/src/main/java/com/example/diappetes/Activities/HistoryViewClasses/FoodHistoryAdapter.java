@@ -18,7 +18,7 @@ public class FoodHistoryAdapter extends RecyclerView.Adapter<FoodHistoryAdapter.
     Context context;
     ArrayList<FoodLogValues> logArray;
 
-
+    //Constructor
     public FoodHistoryAdapter(Context context, ArrayList<FoodLogValues> logArray) {
         this.context = context;
         this.logArray = logArray;
@@ -30,7 +30,7 @@ public class FoodHistoryAdapter extends RecyclerView.Adapter<FoodHistoryAdapter.
     @NonNull
     @Override
     public FoodHistoryAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        //Fetch view from exercise_recycler
         View v = LayoutInflater.from(context).inflate(R.layout.food_recycler,parent,false);
 
         return new MyViewHolder(v);
@@ -40,7 +40,7 @@ public class FoodHistoryAdapter extends RecyclerView.Adapter<FoodHistoryAdapter.
     public void onBindViewHolder(@NonNull FoodHistoryAdapter.MyViewHolder holder, int position) {
 
         FoodLogValues log = logArray.get(position);
-
+        //Set all the holders
         holder.Time.setText((log.Time).toString());
         holder.Calories.setText(log.Calories);
         holder.Carbs.setText(log.Carbs);
@@ -57,11 +57,12 @@ public class FoodHistoryAdapter extends RecyclerView.Adapter<FoodHistoryAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
+        //Initialise textview
         TextView Calories, Time, Carbs, Meal, Sugars;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            //Find correct textviews in recycler
             Time = itemView.findViewById(R.id.timeView);
             Calories = itemView.findViewById(R.id.calView);
             Carbs = itemView.findViewById(R.id.carbView);

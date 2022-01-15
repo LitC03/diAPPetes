@@ -18,7 +18,7 @@ public class QuestionnaireHistAdapter extends RecyclerView.Adapter<Questionnaire
     Context context;
     ArrayList<QuestionnaireClassValues> logArray;
 
-
+    //Constructor
     public QuestionnaireHistAdapter(Context context, ArrayList<QuestionnaireClassValues> logArray) {
         this.context = context;
         this.logArray = logArray;
@@ -30,7 +30,7 @@ public class QuestionnaireHistAdapter extends RecyclerView.Adapter<Questionnaire
     @NonNull
     @Override
     public QuestionnaireHistAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        //Fetch view from que_recycler
         View v = LayoutInflater.from(context).inflate(R.layout.que_recycler,parent,false);
 
         return new MyViewHolder(v);
@@ -40,7 +40,7 @@ public class QuestionnaireHistAdapter extends RecyclerView.Adapter<Questionnaire
     public void onBindViewHolder(@NonNull QuestionnaireHistAdapter.MyViewHolder holder, int position) {
 
         QuestionnaireClassValues log = logArray.get(position);
-
+        //Set all the holders
         holder.Time.setText((log.Time).toString());
         holder.ExtensiveHunger.setText(String.valueOf(log.ExtensiveHunger));
         holder.ExtensiveThirst.setText(String.valueOf(log.ExtensiveThirst));
@@ -59,13 +59,14 @@ public class QuestionnaireHistAdapter extends RecyclerView.Adapter<Questionnaire
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
+        //Initialise textview
         TextView ExtensiveHunger, ExtensiveThirst, ExtensiveUrination, Time;
         TextView TinglingSensation, VisionChanges, WeightLoss, NotesOnSymptoms;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            //Find correct textviews in recycler
             Time = itemView.findViewById(R.id.timeView);
             ExtensiveHunger = itemView.findViewById(R.id.hungerView);
             ExtensiveThirst = itemView.findViewById(R.id.thirstView);

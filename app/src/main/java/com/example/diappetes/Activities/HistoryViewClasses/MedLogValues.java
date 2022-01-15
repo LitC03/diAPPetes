@@ -7,8 +7,10 @@ public class MedLogValues {
     String Dose;
     Date Time;
 
+    //Empty constructor
     public MedLogValues(){}
 
+    //Getters and setters
     public String getMedType() {
         return MedType;
     }

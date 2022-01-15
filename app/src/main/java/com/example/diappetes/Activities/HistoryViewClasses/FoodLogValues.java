@@ -8,9 +8,10 @@ public class FoodLogValues {
     String Meal;
     String Sugars;
     Date Time;
-
+    //Empty constructor
     public FoodLogValues(){}
 
+    //Getters and setters
     public String getCalories() {
         return Calories;
     }

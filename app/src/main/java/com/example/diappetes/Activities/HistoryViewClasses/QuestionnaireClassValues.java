@@ -12,8 +12,10 @@ public class QuestionnaireClassValues {
     String NotesOnSymptoms;
     Date Time;
 
+    //Empty constructor
     public QuestionnaireClassValues(){}
 
+    //Getters and setters
     public Boolean getExtensiveHunger() {
         return ExtensiveHunger;
     }

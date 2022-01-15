@@ -7,7 +7,7 @@ public class ExerciseLogValues {
     String Duration;
     String ExerciseType;
 
-    //Constructors
+    //Constructor
     public ExerciseLogValues(){}
 
     //Getters and setters

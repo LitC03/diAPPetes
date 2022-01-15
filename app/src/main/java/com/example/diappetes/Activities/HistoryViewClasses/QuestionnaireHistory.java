@@ -35,17 +35,17 @@ import java.util.Date;
 
 
 public class QuestionnaireHistory extends AppCompatActivity {
-
+    //Declaring all the UI components
     Button backButton, searchButton;
     RecyclerView recyclerView;
-    FirebaseAuth auth;
-    FirebaseFirestore db;
     QuestionnaireHistAdapter histAdapt;
-    TextView datepickStart;//, timepickStart;
-    TextView datepickEnd;//, timepickEnd;
-
+    TextView datepickStart;
+    TextView datepickEnd;
     DatePickerDialog.OnDateSetListener startDatelistener;
     DatePickerDialog.OnDateSetListener endDatelistener;
+
+    FirebaseAuth auth;
+    FirebaseFirestore db;
 
     ArrayList<QuestionnaireClassValues> logArray;
 
@@ -60,13 +60,17 @@ public class QuestionnaireHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_search);
 
+        //Fetch the dates
         datepickStart = findViewById(R.id.datePickStart);
         datepickEnd = findViewById(R.id.datePickEnd);
         searchButton = findViewById(R.id.searchBtn);
 
+        //Set up recycler
         recyclerView = findViewById(R.id.historyRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Find the back button
         backButton = (Button) findViewById(R.id.BacktoMainBtn);
 
         auth = FirebaseAuth.getInstance();
@@ -76,7 +80,7 @@ public class QuestionnaireHistory extends AppCompatActivity {
         histAdapt = new QuestionnaireHistAdapter(QuestionnaireHistory.this,logArray);
         recyclerView.setAdapter(histAdapt);
 
-
+        //Calendar appears when "Date" TextView is clicked
         datepickStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +100,7 @@ public class QuestionnaireHistory extends AppCompatActivity {
             }
         };
 
-
+        //Calendar appears when "Date" TextView is clicked
         datepickEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +122,7 @@ public class QuestionnaireHistory extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
+        //Log to make sure the right NHS number is fetched
         Log.d("NHS:num", global.getNhsNum());
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -141,29 +146,33 @@ public class QuestionnaireHistory extends AppCompatActivity {
 
                 else {
                     try {
+                        //Try to parse the correct time format
                         Date start = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(startTimeStampString);
                         Date end = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(endTimeStampString);
                         Timestamp startTimeStamp = new Timestamp(start);
                         Timestamp endTimeStamp = new Timestamp(end);
 
+                        //Clear previous search results
                         logArray.clear();
-
-                        db.collection("Patients").document(global.getNhsNum()).collection("Questionnaire").whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
+                        //Query database for documents in ExtraNotes within right time frame
+                        db.collection("Patients").document(global.getNhsNum()).collection("Questionnaire")
+                                .whereGreaterThan("Time", startTimeStamp).whereLessThan("Time", endTimeStamp)
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                     @Override
                                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
                                         if (e != null){
+                                            //Log errors if there are any
                                             Log.e("Firestore error", e.getMessage());
                                             return;
                                         }
-
+                                        //Loop through retrieved documents
                                         for (DocumentChange dc : value.getDocumentChanges()){
-
+                                            //If new documents are fetched
                                             if(dc.getType() == DocumentChange.Type.ADDED ) {
-
+                                                //Add to array
                                                 logArray.add(dc.getDocument().toObject(QuestionnaireClassValues.class));
                                             }
-                                        }
+                                        } //Update adapter
                                         histAdapt.notifyDataSetChanged();
                                     }
                                 });
