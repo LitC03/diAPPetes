@@ -56,7 +56,7 @@
         android:layout_weight="1"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
-        android:text="Press a point in your graph to\nlook its details"
+        android:text="Press a point in your graph to\nsee its details"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
