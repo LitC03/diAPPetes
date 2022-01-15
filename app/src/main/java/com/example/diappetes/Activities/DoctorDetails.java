@@ -49,7 +49,7 @@ public class DoctorDetails extends AppCompatActivity {
         docEmailEdit = findViewById(R.id.DocEmailEdit);
         docPhoneNumeEdit = findViewById(R.id.DocPhoneNumEdit);
 
-        // Display current details from the database
+        // Display current details from database
         DocumentReference docRef = db.collection("Patients").document(global.getNhsNum());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
