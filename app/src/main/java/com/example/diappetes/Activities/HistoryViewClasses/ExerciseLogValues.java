@@ -7,8 +7,10 @@ public class ExerciseLogValues {
     String Duration;
     String ExerciseType;
 
+    //Constructors
     public ExerciseLogValues(){}
 
+    //Getters and setters
     public Date getTime() {
         return Time;
     }
