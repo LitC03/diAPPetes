@@ -1,5 +1,7 @@
 package com.example.diappetes;
 
+import com.example.diappetes.Activities.BloodSugar;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#005EB8"
-    tools:context=".Graph">
+    tools:context=".Activities.Graph">
 
     <ImageView
         android:id="@+id/logoView"

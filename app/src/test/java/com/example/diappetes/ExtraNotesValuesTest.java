@@ -2,6 +2,8 @@ package com.example.diappetes;
 
 import android.util.Log;
 
+import com.example.diappetes.Activities.HistoryViewClasses.ExtraNotesValues;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;

@@ -1,7 +1,8 @@
 package com.example.diappetes;
 
+import com.example.diappetes.Activities.SignUp1;
+
 import junit.framework.TestCase;
-import org.junit.Assert;
 
 import org.junit.Test;
 
