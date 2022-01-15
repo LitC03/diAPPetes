@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firestore.admin.v1beta1.Progress;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
