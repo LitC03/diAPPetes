@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".LogMenu">
+    tools:context=".LogMenu"
+    android:isScrollContainer="true">
 
     <ImageView
         android:id="@+id/LogoView"
@@ -36,10 +37,85 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077" />
 
+    <View
+        android:id="@+id/RectInt"
+        android:layout_width="360dp"
+        android:layout_height="437.75dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LogoView"
+        android:layout_marginTop="18.75dp"/>
+
+    <TextView
+        android:id="@+id/IntView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Intensive"
+        android:textColor="@color/colorNeutralWhite"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/BloodSugarLogBtn"
+        app:layout_constraintTop_toBottomOf="@id/LogoView"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/text_rect"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp" />
+
+    <View
+        android:id="@+id/RectComp"
+        android:layout_width="320dp"
+        android:layout_height="340dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LogoView"
+        android:layout_marginTop="37.5dp"/>
+
+    <TextView
+        android:id="@+id/CompView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comprehensive"
+        android:textColor="@color/colorNeutralWhite"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/BloodSugarLogBtn"
+        app:layout_constraintTop_toBottomOf="@id/LogoView"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/text_rect"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp" />
+
+    <View
+        android:id="@+id/RectBasic"
+        android:layout_width="280dp"
+        android:layout_height="86dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LogoView"
+        android:layout_marginTop="56.25dp"/>
+
+    <TextView
+        android:id="@+id/BasicView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simple"
+        android:textColor="@color/colorNeutralWhite"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/BloodSugarLogBtn"
+        app:layout_constraintTop_toBottomOf="@id/LogoView"
+        android:layout_marginTop="46dp"
+        android:background="@drawable/text_rect"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp" />
+
     <Button
         android:id="@+id/BloodSugarLogBtn"
-        android:layout_width="270dp"
-        android:layout_height="54dp"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
@@ -50,12 +126,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogoView" />
+        app:layout_constraintTop_toBottomOf="@+id/LogoView"
+        android:layout_marginTop="48dp"
+        />
 
     <Button
         android:id="@+id/FoodLogBtn"
-        android:layout_width="270dp"
-        android:layout_height="54dp"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
@@ -70,8 +148,8 @@
 
     <Button
         android:id="@+id/MedicationLogBtn"
-        android:layout_width="270dp"
-        android:layout_height="54dp"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
@@ -86,67 +164,69 @@
 
     <Button
         android:id="@+id/ExerciseLogBtn"
-        android:layout_width="270dp"
-        android:layout_height="54dp"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
         android:text="Exercise"
         android:textAllCaps="false"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/ExtraNotesLogBtn"
+        app:layout_constraintBottom_toTopOf="@+id/QuestionnaireBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MedicationLogBtn" />
 
     <Button
-        android:id="@+id/ExtraNotesLogBtn"
-        android:layout_width="270dp"
-        android:layout_height="54dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/roundbutton"
-        android:backgroundTint="@color/colorNeutralWhite"
-        android:text="Extra Notes"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/QuestionnaireBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ExerciseLogBtn" />
-
-    <Button
         android:id="@+id/QuestionnaireBtn"
-        android:layout_width="270dp"
-        android:layout_height="54dp"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorNeutralWhite"
         android:text="Questionnaire"
         android:textAllCaps="false"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/ExtraNotesLogBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ExerciseLogBtn" />
+
+    <Button
+        android:id="@+id/ExtraNotesLogBtn"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Extra Notes"
+        android:textAllCaps="false"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/BacktoMainBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ExtraNotesLogBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/QuestionnaireBtn"
+
+        />
 
     <Button
         android:id="@+id/BacktoMainBtn"
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
         android:background="@drawable/roundbutton"
         android:backgroundTint="@color/colorPrimaryDark"
         android:text="Back"
         android:textSize="16sp"
         android:textColor="@color/colorNeutralWhite"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LogoView"
+        android:layout_marginTop="549dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
