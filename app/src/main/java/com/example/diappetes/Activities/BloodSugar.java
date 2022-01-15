@@ -303,7 +303,7 @@ public class BloodSugar extends AppCompatActivity {
                             //Obtain users details
                             String fName = document.getString("fName");
                             String lName = document.getString("lName");
-                            String phoneNum = document.getString("MobileNum");
+                            String userEmail = document.getString("email");
 
                             try {
 
@@ -312,18 +312,18 @@ public class BloodSugar extends AppCompatActivity {
                                 //if "Alerts" array exists in users document but is empty, send email to admin
                                 if (emailList.isEmpty()) {
                                     Log.d("DB_BLOODSUGAR","Alerts array was empty, sending email to admin");
-                                    send1Email(global, bsString, eatenString, dateString, timeString, phoneNum, diaEmail, diaPassword, fName, lName, diaEmail);
+                                    send1Email(global, bsString, eatenString, dateString, timeString, userEmail, diaEmail, diaPassword, fName, lName, diaEmail);
                                 }
                                 //If "Alerts" array exists, send email to every doctor in it
                                 for(String docEmail:emailList) {
-                                    send1Email(global,bsString,eatenString,dateString,timeString,phoneNum,diaEmail,diaPassword,fName,lName,docEmail);
+                                    send1Email(global,bsString,eatenString,dateString,timeString,userEmail,diaEmail,diaPassword,fName,lName,docEmail);
                                 }
 
                             }
                             catch (Exception e)
                             {
                                 //If "Alerts" array doesn't exist in users document, send email to admin
-                                send1Email(global,bsString,eatenString,dateString,timeString,phoneNum,diaEmail,diaPassword,fName,lName,diaEmail);
+                                send1Email(global,bsString,eatenString,dateString,timeString,userEmail,diaEmail,diaPassword,fName,lName,diaEmail);
                             }
                         }
                          else {
@@ -337,13 +337,13 @@ public class BloodSugar extends AppCompatActivity {
 
     }
 
-    private void send1Email(Global global, String bsString, String eatenString, String dateString, String timeString, String phoneNum, String diaEmail, String diaPassword, String fName, String lName, String docEmail) {
+    private void send1Email(Global global, String bsString, String eatenString, String dateString, String timeString, String userEmail, String diaEmail, String diaPassword, String fName, String lName, String docEmail) {
         //Prepare message for doctors/admin
         String messageToSend =
                 "Patient "+fName+" "+lName+" with NHS number "+global.getNhsNum()+
                 " has hyperglucemia, please check with them. Details:\nGlucose level: "
                 +bsString+ " mmol/L\nHas eaten in the last 2 hours?: "+eatenString+
-                "\nDate: "+dateString+"\nTime: "+timeString+"\nPhone Number: "+phoneNum;
+                "\nDate: "+dateString+"\nTime: "+timeString+"\nPatient's email: "+userEmail;
 
         Properties props = new Properties();
         props.put("mail.smtp.auth","true");
