@@ -141,7 +141,7 @@ public class ProfileDetails extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Log.d("PD", "Document updated successfully!");
-                                    Toast.makeText(ProfileDetails.this, "Your details have been update", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ProfileDetails.this, "Your details have been updated", Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(getApplicationContext(), Settings.class));
                                 }
                             })

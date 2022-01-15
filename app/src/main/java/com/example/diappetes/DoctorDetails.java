@@ -107,7 +107,7 @@ public class DoctorDetails extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Log.d("DD", "Document updated successfully!");
-                                    Toast.makeText(DoctorDetails.this, "Your details have been update", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(DoctorDetails.this, "Your details have been updated", Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(getApplicationContext(), Settings.class));
                                 }
                             })

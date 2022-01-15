@@ -141,7 +141,7 @@
                     android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Type of Diabetes"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/colorTextBlack"
                     android:textColorHint="@color/colorNeutralDarkGray" />
@@ -165,7 +165,7 @@
                     android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Type of Insulin"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/colorTextBlack"
                     android:textColorHint="@color/colorNeutralDarkGray" />
@@ -189,7 +189,7 @@
                     android:background="@drawable/roundtext"
                     android:backgroundTint="@color/colorNeutralWhite"
                     android:hint=" Current Insulin Administration"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:padding="15dp"
                     android:textColor="@color/colorTextBlack"
                     android:textColorHint="@color/colorNeutralDarkGray" />
