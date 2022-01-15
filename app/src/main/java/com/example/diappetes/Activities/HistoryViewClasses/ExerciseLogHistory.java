@@ -35,17 +35,17 @@ import java.util.Date;
 
 
 public class ExerciseLogHistory extends AppCompatActivity {
-
+    //Declaring all the UI components
     Button backButton, searchButton;
     RecyclerView recyclerView;
-    FirebaseAuth auth;
-    FirebaseFirestore db;
     ExerciseLogAdapter histAdapt;
-    TextView datepickStart;//, timepickStart;
-    TextView datepickEnd;//, timepickEnd;
-
+    TextView datepickStart;
+    TextView datepickEnd;
     DatePickerDialog.OnDateSetListener startDatelistener;
     DatePickerDialog.OnDateSetListener endDatelistener;
+
+    FirebaseAuth auth;
+    FirebaseFirestore db;
 
     ArrayList<ExerciseLogValues> logArray;
 
@@ -60,13 +60,17 @@ public class ExerciseLogHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_search);
 
+        //Fetch the dates
         datepickStart = findViewById(R.id.datePickStart);
         datepickEnd = findViewById(R.id.datePickEnd);
         searchButton = findViewById(R.id.searchBtn);
 
+        //Set up recycler
         recyclerView = findViewById(R.id.historyRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Find the back button
         backButton = (Button) findViewById(R.id.BacktoMainBtn);
 
         auth = FirebaseAuth.getInstance();
@@ -76,7 +80,7 @@ public class ExerciseLogHistory extends AppCompatActivity {
         histAdapt = new ExerciseLogAdapter(ExerciseLogHistory.this,logArray);
         recyclerView.setAdapter(histAdapt);
 
-
+        //Calendar appears when "Date" TextView is clicked
         datepickStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +100,7 @@ public class ExerciseLogHistory extends AppCompatActivity {
             }
         };
 
-
+        //Calendar appears when "Date" TextView is clicked
         datepickEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +122,7 @@ public class ExerciseLogHistory extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
+        //Log to make sure the right NHS number is fetched
         Log.d("NHS:num", global.getNhsNum());
 
         searchButton.setOnClickListener(new View.OnClickListener() {

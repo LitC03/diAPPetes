@@ -18,7 +18,7 @@ public class BSHistoryAdapter extends RecyclerView.Adapter<BSHistoryAdapter.MyVi
     Context context;
     ArrayList<BSLogValues> logArray;
 
-
+    //Constructor
     public BSHistoryAdapter(Context context, ArrayList<BSLogValues> logArray) {
         this.context = context;
         this.logArray = logArray;
@@ -30,7 +30,7 @@ public class BSHistoryAdapter extends RecyclerView.Adapter<BSHistoryAdapter.MyVi
     @NonNull
     @Override
     public BSHistoryAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        //Fetch view from bs_recycler
         View v = LayoutInflater.from(context).inflate(R.layout.bs_recycler,parent,false);
 
         return new MyViewHolder(v);
@@ -40,7 +40,7 @@ public class BSHistoryAdapter extends RecyclerView.Adapter<BSHistoryAdapter.MyVi
     public void onBindViewHolder(@NonNull BSHistoryAdapter.MyViewHolder holder, int position) {
 
         BSLogValues log = logArray.get(position);
-
+        //Set all the holders
         holder.Time.setText((log.Time).toString());
         holder.BS.setText((log.BS).toString());
         holder.EatenIn2h.setText(log.EatenIn2h.toString());
@@ -54,11 +54,12 @@ public class BSHistoryAdapter extends RecyclerView.Adapter<BSHistoryAdapter.MyVi
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
+        //Initialise textview
         TextView Time, BS, EatenIn2h;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            //Find correct textviews in recycler
             Time = itemView.findViewById(R.id.timeView);
             BS = itemView.findViewById(R.id.bloodSugarView);
             EatenIn2h = itemView.findViewById(R.id.eatBoolView);
