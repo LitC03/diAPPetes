@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Questionnaire extends AppCompatActivity {
+    // Create fields to associate ui components with
     TextView datepick,timepick;
     Button cancelButton;
     Button saveButton;
@@ -48,7 +49,7 @@ public class Questionnaire extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore db;
 
-    //Create date & time constants
+    // Create date & time constants
     final Calendar calendar= Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
@@ -63,6 +64,7 @@ public class Questionnaire extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
+        // Associating the variables with ui components
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
         cancelButton = (Button) findViewById(R.id.CancelBtn);
@@ -76,7 +78,7 @@ public class Questionnaire extends AppCompatActivity {
         tinglingCheck = findViewById(R.id.TinglingCheckBox);
         sympNotes = findViewById(R.id.TypeSympNotes);
 
-        //Calendar appears when "Date" TextView is clicked
+        // Calendar appears when "Date" TextView is clicked
         datepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +88,7 @@ public class Questionnaire extends AppCompatActivity {
             }
         });
 
-        //Selected date is saved as string and appears on screen
+        // Selected date is saved as string and appears on screen
         datelistener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -97,7 +99,7 @@ public class Questionnaire extends AppCompatActivity {
         };
 
 
-        //Clock appears on screen
+        // Clock appears on screen
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +110,7 @@ public class Questionnaire extends AppCompatActivity {
             }
         });
 
-        //Selected time is saved as string and appears on screen
+        // Selected time is saved as string and appears on screen
         timelistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
@@ -129,7 +131,7 @@ public class Questionnaire extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // action of the save button
+                // Fetch entered values
                 final boolean urinBool = urinationCheck.isChecked();
                 final boolean thirstBool = thirstCheck.isChecked();
                 final boolean weightBool = weightCheck.isChecked();
@@ -142,8 +144,9 @@ public class Questionnaire extends AppCompatActivity {
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString+" "+timeString+":00";
 
-                //Following are checks that all required fields have values
+                // Checking that all required fields have values
                 if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    // Informing the user of the missing information
                     Toast.makeText( Questionnaire.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
                 }
 
@@ -156,7 +159,7 @@ public class Questionnaire extends AppCompatActivity {
                         auth = FirebaseAuth.getInstance();
                         db = FirebaseFirestore.getInstance();
 
-                        //Create hashmap to submit to database
+                        // Create hashmap to submit to database
                         final Map<String, Object> QueData = new HashMap<>();
                         QueData.put("ExtensiveUrination", urinBool);
                         QueData.put("ExtensiveThirst", thirstBool);
@@ -168,7 +171,7 @@ public class Questionnaire extends AppCompatActivity {
                         QueData.put("Time", timestamp);
 
 
-                        //Fetch collection of previous collections to get index for new collection
+                        // Fetch collection of previous collections to get index for new collection
                         db.collection("Patients").document(global.getNhsNum()).collection("Questionnaire").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -176,13 +179,13 @@ public class Questionnaire extends AppCompatActivity {
                                     int collectionSize = task.getResult().size();
                                     collectionSize++;
 
-                                    //Add new entry to database
+                                    // Add new entry to database
                                     db.collection("Patients").document(global.getNhsNum()).collection("Questionnaire").document("QUE" + collectionSize)
                                             .set(QueData)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    //Tell user data was submitted correctly
+                                                    // Tell user data was submitted correctly
                                                     Toast.makeText(Questionnaire.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
@@ -190,7 +193,7 @@ public class Questionnaire extends AppCompatActivity {
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    //Alert user data submission failed
+                                                    // Alert user data submission failed
                                                     Toast.makeText(Questionnaire.this, "Your entry was not added, please try again", Toast.LENGTH_SHORT).show();
 
                                                 }

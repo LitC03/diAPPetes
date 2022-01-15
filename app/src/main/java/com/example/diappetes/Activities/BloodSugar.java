@@ -53,6 +53,7 @@ import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 
 public class BloodSugar extends AppCompatActivity {
+    // Create fields to associate ui components with
     TextView datepick,timepick;
     Button cancelButton,saveButton;
     EditText bloodSugarEdit;
@@ -78,7 +79,7 @@ public class BloodSugar extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
-
+        // Associating the variables with ui components
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
         cancelButton = findViewById(R.id.cancelBtn);
@@ -87,7 +88,7 @@ public class BloodSugar extends AppCompatActivity {
         hasEaten = findViewById(R.id.hourSwitch);
 
 
-        //Calendar appears when "Date" TextView is clicked
+        // Calendar appears when "Date" TextView is clicked
         datepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,7 +98,7 @@ public class BloodSugar extends AppCompatActivity {
             }
         });
 
-        //Selected date is saved as string and appears on screen
+        // Selected date is saved as string and appears on screen
         datelistener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -108,7 +109,7 @@ public class BloodSugar extends AppCompatActivity {
         };
 
 
-        //Clock appears on screen
+        // Clock appears on screen
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +120,7 @@ public class BloodSugar extends AppCompatActivity {
             }
         });
 
-        //Selected time is saved as string and appears on screen
+        // Selected time is saved as string and appears on screen
         timelistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
@@ -128,7 +129,7 @@ public class BloodSugar extends AppCompatActivity {
             }
         };
 
-
+        // Cancel button to go back to previous menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -136,10 +137,12 @@ public class BloodSugar extends AppCompatActivity {
             }
         });
 
+        // Save button to check and save data to be sent to firebase database
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
 
+                // Get values inputted by the user
                 final String bsString = bloodSugarEdit.getText().toString();
                 final String dateString = datepick.getText().toString();
                 final String timeString = timepick.getText().toString();
@@ -147,35 +150,37 @@ public class BloodSugar extends AppCompatActivity {
                 boolean eatenBool = hasEaten.isChecked();
                 final String eatenString = String.valueOf(eatenBool);
 
-                //Following are checks that all required fields have values
+                // Checking that all required fields have values
                 if(TextUtils.isEmpty(bsString)){
                     Toast.makeText( BloodSugar.this, "Please enter your blood sugar value", Toast.LENGTH_SHORT).show();
                 }
 
-                //To avoid recording a typo
+                // To avoid recording a typo
                 else if(!isReasonable(bsString)) {
                     Toast.makeText(BloodSugar.this, "Please re-enter the blood sugar value", Toast.LENGTH_LONG).show();
                 }
 
                 else if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
+                    // Informing the user of the missing information
                     Toast.makeText( BloodSugar.this, "Please enter date and time", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
                     double bsDouble = Double.parseDouble(bsString);
 
-                    //Check if patient has hyperglucemia
+                    // Check if patient has hyperglucemia
                     Boolean hasHyperglucemia = checkHyperglucemia(bsDouble,eatenBool);
 
+                    // Print in android studio console
                     Log.d("DB_BLOODSUGAR","Sugar: "+bsDouble+"\nHas eaten in last 2 hours: "
                             +eatenBool+"\nHas hyperglucemia:"+hasHyperglucemia);
 
-                    //If the patient has hyperglucemia, Alert Dialog Box pops up
+                    // If the patient has hyperglucemia, Alert Dialog Box pops up
                     if (hasHyperglucemia){
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(BloodSugar.this);
 
-                        //Alert patient that an email will be sent to doctor
+                        // Alert patient that an email will be sent to doctor
                         builder.setTitle("Hyperglucemia!");
                         builder.setMessage("The blood sugar levels you have entered suggest you have " +
                                 "hyperglucemia. If you continue, an alert will be sent to your doctor");
@@ -207,7 +212,7 @@ public class BloodSugar extends AppCompatActivity {
                         alertDialog.show();
 
                     }
-                    //If patient doesn't have hyperglucemia, data will be stored normally in Firebase
+                    // If patient doesn't have hyperglucemia, data will be stored normally in Firebase
                     else addSugarFirebase(bsDouble,timeStampString,eatenString,global);
 
 
@@ -215,11 +220,12 @@ public class BloodSugar extends AppCompatActivity {
             }
         });
 
-        //Set policy for emails
+        // Set policy for emails
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
 
+    // Sending the data to firebase
     private void addSugarFirebase(double bsDouble, String timeStampString, String eatenString, Global global) {
         try {
             Date bsDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(timeStampString);

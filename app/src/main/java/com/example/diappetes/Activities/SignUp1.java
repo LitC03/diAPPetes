@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.regex.Pattern;
 
 public class SignUp1 extends AppCompatActivity {
+    // Create fields to associate ui components with
     Button backButton,continueButton;
     private EditText firstName;
     private EditText lastName;
@@ -28,16 +29,16 @@ public class SignUp1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup1);
 
-
+        // Associating the variables with ui components
         backButton = findViewById(R.id.backBtn);
         continueButton = findViewById(R.id.continueBtn);
-
         firstName = findViewById(R.id.FirstNameField);
         lastName = findViewById(R.id.LastNameField);
         password = findViewById(R.id.PasswordField);
         email = findViewById(R.id.EmailField);
         nhsNum = findViewById(R.id.nhsNumField);
 
+        // Button to go back to previous page
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -45,6 +46,7 @@ public class SignUp1 extends AppCompatActivity {
             }
         });
 
+        // Continue button to get the sign up user data and store to pass to next sign up page
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -83,23 +85,24 @@ public class SignUp1 extends AppCompatActivity {
         });
     }
 
-    public boolean validateEmail(String email){//Check that the email is valid
+    // Check that the email is valid
+    public boolean validateEmail(String email){
         String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" //regex magic for a valid email address
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         return Pattern.compile(regex).matcher(email).matches();
     }
 
     public boolean validatePassword(String password){
-        String regex = "[a-zA-Z0-9 ]*"; //More regex magic, this time you check it doesn't match this regex (to prove it contains a character outside the alphanumeric set)
+        String regex = "[a-zA-Z0-9 ]*"; // More regex magic, this time you check it doesn't match this regex (to prove it contains a character outside the alphanumeric set)
         return (password.length()>7)&&!(Pattern.compile(regex).matcher(password).matches());
     }
 
     public static boolean isNumeric(String str){
         try {
             Double.parseDouble(str);
-            return true; //If it can be converted to an int, it is numeric
+            return true; // If it can be converted to an int, it is numeric
         } catch(NumberFormatException e){
-            return false; //If it can't be converted to an int, it is not numeric
+            return false; // If it can't be converted to an int, it is not numeric
         }
     }
 }

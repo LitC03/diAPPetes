@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Settings extends AppCompatActivity {
-
+    // Create fields to associate ui components with
     Button profileSetButton;
     Button doctorSetButton;
     Button deleteAccButton;
@@ -40,6 +40,7 @@ public class Settings extends AppCompatActivity {
         final Global global = (Global) getApplicationContext();
         db = FirebaseFirestore.getInstance();
 
+        // Associating the variables with ui components
         profileSetButton = (Button) findViewById(R.id.ProfileSetBtn);
         doctorSetButton = (Button) findViewById(R.id.DoctorSetBtn);
         deleteAccButton = (Button) findViewById(R.id.DeleteAccBtn);
@@ -85,10 +86,10 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Prompt a Dialog Box to delete account
+                // Prompt a Dialog Box to delete account
                 AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
 
-                //Ask if user wants to delete account
+                // Ask if user wants to delete account
                 builder.setTitle("Delete Account");
                 builder.setMessage("Are you sure you want to delete your account?");
 
@@ -99,7 +100,7 @@ public class Settings extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // When the user clicks Continue button
-                        //entry is stored in firebase and email is sent to doctor
+                        // entry is stored in firebase and email is sent to doctor
 
                         db.collection("Patients").document(global.getNhsNum())
                                 .delete()

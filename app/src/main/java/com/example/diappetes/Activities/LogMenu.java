@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.example.diappetes.R;
 
 public class LogMenu extends AppCompatActivity {
-
+    // Create fields to associate ui components with
     Button bloodSugarLogBtn;
     Button foodLogBtn;
     Button medicationLogBtn;
@@ -23,6 +23,7 @@ public class LogMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_menu);
 
+        // Associating the variables with ui components
         bloodSugarLogBtn = (Button) findViewById(R.id.BloodSugarLogBtn);
         foodLogBtn = (Button) findViewById(R.id.FoodLogBtn);
         medicationLogBtn = (Button) findViewById(R.id.MedicationLogBtn);
@@ -32,7 +33,7 @@ public class LogMenu extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.BacktoMainBtn);
 
 
-        /* Blood sugar button opens blood sugar log page */
+        // Blood sugar button opens blood sugar log page
         bloodSugarLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +41,7 @@ public class LogMenu extends AppCompatActivity {
             }
         });
 
-        /* Food button opens food log page */
+        // Food button opens food log page
         foodLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +49,7 @@ public class LogMenu extends AppCompatActivity {
             }
         });
 
-        /* Medication button opens medication log page */
+        // Medication button opens medication log page
         medicationLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +57,7 @@ public class LogMenu extends AppCompatActivity {
             }
         });
 
-        /* Exercise button opens exercise log page */
+        // Exercise button opens exercise log page
         exerciseLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +65,7 @@ public class LogMenu extends AppCompatActivity {
             }
         });
 
-        /* Extra Notes button opens extra notes log page */
+        // Extra Notes button opens extra notes log page
         extraNotesLogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +73,7 @@ public class LogMenu extends AppCompatActivity {
             }
         });
 
-        /* Questionnaire button opens questionnaire log page */
+        // Questionnaire button opens questionnaire log page
         questionnaireBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +81,7 @@ public class LogMenu extends AppCompatActivity {
             }
         });
 
-        /* Back button leads back to main menu */
+        // Back button leads back to main menu
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

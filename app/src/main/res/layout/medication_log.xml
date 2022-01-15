@@ -90,7 +90,7 @@
             android:layout_height="50dp"
             android:background="@drawable/roundtext"
             android:backgroundTint="@color/colorNeutralWhite"
-            android:hint="Dose"
+            android:hint="Enter dose"
             android:inputType="text"
             android:padding="15dp"
             android:textColor="@color/colorTextBlack"

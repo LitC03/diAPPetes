@@ -26,6 +26,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class Welcome extends AppCompatActivity {
+
+    // Create fields to associate ui components with
     Button loginButton, signupButton;
     FirebaseAuth auth;
 
@@ -35,6 +37,8 @@ public class Welcome extends AppCompatActivity {
         setContentView(R.layout.welcome);
         auth = FirebaseAuth.getInstance();
 
+        // Checks if the user wsa previously logged in on the device
+        // If yes they get logged in automatically and sent to Main menu
         if (auth.getCurrentUser() != null) {
             Toast.makeText(Welcome.this, "Automatically Logging In", Toast.LENGTH_SHORT).show();
             final Global global = (Global) getApplicationContext();
@@ -43,11 +47,12 @@ public class Welcome extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 
+        // Associating the variables with ui components
         loginButton = findViewById(R.id.LoginBtn);
         signupButton = findViewById(R.id.SignUpBtn);
 
 
-        //Internet Error
+        // Internet Error in case of connection failure
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -69,7 +74,7 @@ public class Welcome extends AppCompatActivity {
             dialog.show();
         }
 
-
+        // Button opens log in page
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +82,7 @@ public class Welcome extends AppCompatActivity {
             }
         });
 
+        // Button opens sign up page
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +91,7 @@ public class Welcome extends AppCompatActivity {
         });
     }
 
-
+    // NHS number to allow access to patient's document in the database
     private void setNHSNum(String UID, Global global) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Patients").whereEqualTo("UID", auth.getCurrentUser().getUid())

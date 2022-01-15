@@ -36,13 +36,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MedLog extends AppCompatActivity {
-
+    // Create fields to associate ui components with
     Button cancelButton, saveButton;
     TextView datepick, timepick;
     EditText medTypeEdit, doseEdit;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
-
     FirebaseAuth auth;
     FirebaseFirestore db;
 
@@ -61,7 +60,7 @@ public class MedLog extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
-        // Cancel button to go back to log menu
+        // Associating the variables with ui components
         cancelButton = (Button) findViewById(R.id.cancelBtn);
         saveButton = findViewById(R.id.saveBtn);
         datepick = findViewById(R.id.datePick);
@@ -69,7 +68,7 @@ public class MedLog extends AppCompatActivity {
         medTypeEdit = findViewById(R.id.TypeField);
         doseEdit = findViewById(R.id.DoseField);
 
-        //Calendar appears when "Date" TextView is clicked
+        // Calendar appears when "Date" TextView is clicked
         datepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +78,7 @@ public class MedLog extends AppCompatActivity {
             }
         });
 
-        //Selected date is saved as string and appears on screen
+        // Selected date is saved as string and appears on screen
         datelistener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -90,7 +89,7 @@ public class MedLog extends AppCompatActivity {
         };
 
 
-        //Clock appears on screen
+        // Clock appears on screen
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +100,7 @@ public class MedLog extends AppCompatActivity {
             }
         });
 
-        //Selected time is saved as string and appears on screen
+        // Selected time is saved as string and appears on screen
         timelistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
@@ -110,6 +109,7 @@ public class MedLog extends AppCompatActivity {
             }
         };
 
+        // Cancel button to go back to log menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,18 +117,19 @@ public class MedLog extends AppCompatActivity {
             }
         });
 
+        // Save button to get user logged data and send to the database
         saveButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View V){
-                //Fetch entered values
+                // Fetch entered values
                 final String medTypeString = medTypeEdit.getText().toString();
                 final String doseString = doseEdit.getText().toString();
                 final String dateString = datepick.getText().toString();
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                //Following are checks that all required fields have values
+                // Following are checks that all required fields have values
                 if(TextUtils.isEmpty(doseString) || TextUtils.isEmpty(medTypeString)){
                     Toast.makeText( MedLog.this, "Please enter your medication and dose", Toast.LENGTH_SHORT).show();
                 }
@@ -145,13 +146,13 @@ public class MedLog extends AppCompatActivity {
                         auth = FirebaseAuth.getInstance();
                         db = FirebaseFirestore.getInstance();
 
-                        //Create hashmap for database
+                        // Create hashmap for database
                         final Map<String, Object> Med_data = new HashMap<>();
                         Med_data.put("MedType", medTypeString);
                         Med_data.put("Dose", doseString);
                         Med_data.put("Time", timestamp);
 
-                        //Fetch collection of previous collections to get index for new collection
+                        // Fetch collection of previous collections to get index for new collection
                         db.collection("Patients").document(global.getNhsNum()).collection("MedLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -159,7 +160,7 @@ public class MedLog extends AppCompatActivity {
                                     int collectionSize = task.getResult().size();
                                     collectionSize++;
 
-                                    //Add new entry to database
+                                    // Add new entry to database
                                     db.collection("Patients").document(global.getNhsNum()).collection("MedLog").document("ML" + collectionSize)
                                             .set(Med_data)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {

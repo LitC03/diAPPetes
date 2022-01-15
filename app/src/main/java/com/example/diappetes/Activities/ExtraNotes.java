@@ -36,18 +36,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExtraNotes extends AppCompatActivity {
-
+    // Create fields to associate ui components with
     Button cancelButton, saveButton;
     TextView datepick, timepick;
     EditText notesEdit;
-
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
-
     FirebaseAuth auth;
     FirebaseFirestore db;
 
-    //Create date & time constants
+    // Create date & time constants
     final Calendar calendar= Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
@@ -62,14 +60,14 @@ public class ExtraNotes extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
-        // Cancel button to go back to log menu
+        // Associating the variables with ui components
         cancelButton = (Button) findViewById(R.id.cancelBtn);
         saveButton = findViewById(R.id.saveBtn);
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
         notesEdit = findViewById(R.id.extraNotes);
 
-        //Calendar appears when "Date" TextView is clicked
+        // Calendar appears when "Date" TextView is clicked
         datepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +77,7 @@ public class ExtraNotes extends AppCompatActivity {
             }
         });
 
-        //Selected date is saved as string and appears on screen
+        // Selected date is saved as string and appears on screen
         datelistener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -90,7 +88,7 @@ public class ExtraNotes extends AppCompatActivity {
         };
 
 
-        //Clock appears on screen
+        // Clock appears on screen
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +99,7 @@ public class ExtraNotes extends AppCompatActivity {
             }
         });
 
-        //Selected time is saved as string and appears on screen
+        // Selected time is saved as string and appears on screen
         timelistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
@@ -110,18 +108,20 @@ public class ExtraNotes extends AppCompatActivity {
             }
         };
 
+        // Save button to get user logged data and send to the database
         saveButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View V){
-                //Fetch entered values
+                // Fetch entered values
                 final String notesString = notesEdit.getText().toString();
                 final String dateString = datepick.getText().toString();
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                //Following are checks that all required fields have values
+                // Checking that all required fields have values
                 if(TextUtils.isEmpty(notesString)){
+                    // Informing the user of the missing information
                     Toast.makeText( ExtraNotes.this, "Please do not leave the notes empty", Toast.LENGTH_SHORT).show();
                 }
 
@@ -137,12 +137,12 @@ public class ExtraNotes extends AppCompatActivity {
                         auth = FirebaseAuth.getInstance();
                         db = FirebaseFirestore.getInstance();
 
-                        //Create hashmap for database
+                        // Create hashmap for database
                         final Map<String, Object> Notes_data = new HashMap<>();
                         Notes_data.put("Notes", notesString);
                         Notes_data.put("Time", timestamp);
 
-                        //Fetch collection of previous collections to get index for new collection
+                        // Fetch collection of previous collections to get index for new collection
                         db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -150,13 +150,13 @@ public class ExtraNotes extends AppCompatActivity {
                                     int collectionSize = task.getResult().size();
                                     collectionSize++;
 
-                                    //Add new entry to database
+                                    // Add new entry to database
                                     db.collection("Patients").document(global.getNhsNum()).collection("ExtraNotes").document("EN" + collectionSize)
                                             .set(Notes_data)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    //Alert user data was submitted correctly
+                                                    // Alert user data was submitted correctly
                                                     Toast.makeText(ExtraNotes.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
@@ -164,7 +164,7 @@ public class ExtraNotes extends AppCompatActivity {
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    //Alert user data submission failed
+                                                    // Alert user data submission failed
                                                     Toast.makeText(ExtraNotes.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
@@ -180,6 +180,7 @@ public class ExtraNotes extends AppCompatActivity {
 
         });
 
+        // Cancel button to go back to log menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
