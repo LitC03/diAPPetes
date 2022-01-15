@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExerciseLog extends AppCompatActivity {
+    // Create fields to associate ui components with
     TextView datepick, timepick;
     Button cancelButton, saveButton;
     EditText typeEdit, durEdit;
@@ -60,6 +61,7 @@ public class ExerciseLog extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
+        // Associating the variables with ui components
         datepick = findViewById(R.id.datePick);
         timepick = findViewById(R.id.timePick);
         cancelButton = findViewById(R.id.cancelBtn);
@@ -68,7 +70,7 @@ public class ExerciseLog extends AppCompatActivity {
         durEdit = findViewById(R.id.DurationField);
 
 
-        //Calendar appears when "Date" TextView is clicked
+        // Calendar appears when "Date" TextView is clicked
         datepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +80,7 @@ public class ExerciseLog extends AppCompatActivity {
             }
         });
 
-        //Selected date is saved as string and appears on screen
+        // Selected date is saved as string and appears on screen
         datelistener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -89,7 +91,7 @@ public class ExerciseLog extends AppCompatActivity {
         };
 
 
-        //Clock appears on screen
+        // Clock appears on screen
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +102,7 @@ public class ExerciseLog extends AppCompatActivity {
             }
         });
 
-        //Selected time is saved as string and appears on screen
+        // Selected time is saved as string and appears on screen
         timelistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
@@ -109,7 +111,7 @@ public class ExerciseLog extends AppCompatActivity {
             }
         };
 
-        //Cancel to go back to log menu
+        // Cancel to go back to log menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,20 +119,21 @@ public class ExerciseLog extends AppCompatActivity {
             }
         });
 
-        //Save button
+        // Save button to check and send data to firebase database
         saveButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View V){
-                //Fetch all entered data
+                // Fetch all entered data
                 final String exerciseTypeString = typeEdit.getText().toString();
                 final String durString = durEdit.getText().toString();
                 final String dateString = datepick.getText().toString();
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                //Following are checks that all required fields have values
+                // Checking that all required fields have values
                 if(TextUtils.isEmpty(exerciseTypeString) || TextUtils.isEmpty(durString)){
+                    // Informing the user of the missing information
                     Toast.makeText( ExerciseLog.this, "Please enter the type of exercise and duration", Toast.LENGTH_SHORT).show();
                 }
 

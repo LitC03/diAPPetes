@@ -25,14 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.regex.Pattern;
 
 public class DoctorDetails extends AppCompatActivity {
-
-    Button cancelBtn;
-    Button saveBtn;
-
-    EditText docNameEdit;
-    EditText docPhoneNumeEdit;
-    EditText docEmailEdit;
-
+    // Create fields to associate ui components with
+    Button cancelBtn, saveBtn;
+    EditText docNameEdit, docPhoneNumeEdit, docEmailEdit;
     FirebaseAuth auth;
     FirebaseFirestore db;
 
@@ -43,6 +38,7 @@ public class DoctorDetails extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
+        // Associating the variables with ui components
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -53,6 +49,7 @@ public class DoctorDetails extends AppCompatActivity {
         docEmailEdit = findViewById(R.id.DocEmailEdit);
         docPhoneNumeEdit = findViewById(R.id.DocPhoneNumEdit);
 
+        // Display current details from the database
         DocumentReference docRef = db.collection("Patients").document(global.getNhsNum());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -73,7 +70,7 @@ public class DoctorDetails extends AppCompatActivity {
             }
         });
 
-
+        // Cancel button to go back to previous menu
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,14 +78,13 @@ public class DoctorDetails extends AppCompatActivity {
             }
         });
 
+        // Save button to check and update data to be sent to firebase database
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String docNameString = docNameEdit.getText().toString();
                 final String docPhoneString = docPhoneNumeEdit.getText().toString();
                 final String docEmailString = docEmailEdit.getText().toString();
-
-
 
                 if(false) {
                     //Space for mandatory field checks.
@@ -123,7 +119,8 @@ public class DoctorDetails extends AppCompatActivity {
         });
     }
 
-    private boolean validateEmail(String email){//check that the email is valid
+    // Check that the email is valid
+    private boolean validateEmail(String email){
         String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" //regex magic for a valid email address
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         return Pattern.compile(regex).matcher(email).matches();
@@ -132,9 +129,9 @@ public class DoctorDetails extends AppCompatActivity {
     private static boolean isNumeric(String str){
         try {
             Double.parseDouble(str);
-            return true; //if it can be converted to an int, it is numeric
+            return true; // If it can be converted to an int, it is numeric
         } catch(NumberFormatException e){
-            return false; //if it can't be converted to an int, it is not numeric
+            return false; // If it can't be converted to an int, it is not numeric
         }
     }
 }

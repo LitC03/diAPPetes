@@ -26,17 +26,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.regex.Pattern;
 
 public class ProfileDetails extends AppCompatActivity {
-
-
-    Button cancelBtn;
-    Button saveBtn;
-    EditText firstNameEdit;
-    EditText lastNameEdit;
-    EditText emailEdit;
-    EditText typeDiaEdit;
-    EditText typeInsEdit;
-    EditText insAdmEdit;
-
+    // Create fields to associate ui components with
+    Button cancelBtn, saveBtn;
+    EditText firstNameEdit, lastNameEdit, emailEdit, typeDiaEdit, typeInsEdit, insAdmEdit;
     FirebaseAuth auth;
     FirebaseFirestore db;
 
@@ -50,9 +42,9 @@ public class ProfileDetails extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        // Associating the variables with ui components
         cancelBtn = (Button) findViewById(R.id.CancelBtn);
         saveBtn = (Button) findViewById(R.id.SaveBtn);
-
         firstNameEdit = findViewById(R.id.FirstNameEdit);
         lastNameEdit = findViewById(R.id.LastNameEdit);
         emailEdit = findViewById(R.id.EmailEdit);
@@ -60,6 +52,7 @@ public class ProfileDetails extends AppCompatActivity {
         typeInsEdit = findViewById(R.id.TypeInsEdit);
         insAdmEdit = findViewById(R.id.InsAdmEdit);
 
+        // Display current details from the database
         DocumentReference docRef = db.collection("Patients").document(global.getNhsNum());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -83,7 +76,7 @@ public class ProfileDetails extends AppCompatActivity {
             }
         });
 
-
+        // Cancel button to go back to previous menu
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +84,7 @@ public class ProfileDetails extends AppCompatActivity {
             }
         });
 
+        // Save button to check and update data to be sent to firebase database
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,11 +95,8 @@ public class ProfileDetails extends AppCompatActivity {
                 final String typeInsString = typeInsEdit.getText().toString();
                 final String insAdmString = insAdmEdit.getText().toString();
 
-                if(false) {
-
-                }
-
-                else if(TextUtils.isEmpty(firstNameString)) {
+                // Mandatory field checks
+                if(TextUtils.isEmpty(firstNameString)) {
                     Toast.makeText(ProfileDetails.this, "Please enter your first name", Toast.LENGTH_LONG).show();
                 }
 
@@ -127,12 +118,11 @@ public class ProfileDetails extends AppCompatActivity {
 
 
                 else{
-                    //All fields can be updated once the signing up is finished
+                    // All fields can be updated once the signing up is finished
                     db.collection("Patients").document(global.getNhsNum())
                             .update(
                                     "fName", firstNameString,
                                     "lName", lastNameString,
-//                                    "NHSNumber", nhsString,
                                     "email", emailString,
                                     "DType", typeDiaString,
                                     "InsType", typeInsString,
@@ -159,8 +149,8 @@ public class ProfileDetails extends AppCompatActivity {
         });
 
     }
-
-    private boolean validateEmail(String email){//check that the email is valid
+    // Check that the email is valid
+    private boolean validateEmail(String email){
         String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" //regex magic for a valid email address
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         return Pattern.compile(regex).matcher(email).matches();
@@ -169,9 +159,9 @@ public class ProfileDetails extends AppCompatActivity {
     private static boolean isNumeric(String str){
         try {
             Double.parseDouble(str);
-            return true; //if it can be converted to an int, it is numeric
+            return true; // If it can be converted to an int, it is numeric
         } catch(NumberFormatException e){
-            return false; //if it can't be converted to an int, it is not numeric
+            return false; // If it can't be converted to an int, it is not numeric
         }
     }
 }

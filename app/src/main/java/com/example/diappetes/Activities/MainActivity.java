@@ -17,7 +17,7 @@ import android.widget.Button;
 import com.example.diappetes.R;
 
 public class MainActivity extends AppCompatActivity {
-
+    // Create fields to associate ui components with
     Button logBookBtn;
     Button settingsBtn;
     Button historyBtn;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Internet Error
+        // Internet Error page opens in case of connection failure
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

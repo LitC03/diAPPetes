@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/history.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/history_search.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/medication_log.xml" value="0.209375" />
       </map>
     </option>
   </component>

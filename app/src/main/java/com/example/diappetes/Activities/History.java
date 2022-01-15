@@ -16,7 +16,7 @@ import com.example.diappetes.Activities.HistoryViewClasses.QuestionnaireHistory;
 import com.example.diappetes.R;
 
 public class History extends AppCompatActivity {
-
+    // Create fields to associate ui components with
     Button backButton,graphButton, bsHistButton;
     Button foodHistButton, medHistButton, exHistButton;
     Button noteHistButton, queHistButton;
@@ -26,6 +26,7 @@ public class History extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
 
+        // Associating the variables with ui components
         backButton = (Button) findViewById(R.id.BacktoMainBtn);
         graphButton = (Button) findViewById(R.id.graphingBtn);
         bsHistButton = (Button) findViewById(R.id.bsHistory);
@@ -35,6 +36,7 @@ public class History extends AppCompatActivity {
         noteHistButton = (Button) findViewById(R.id.extraNotesHist);
         queHistButton = (Button) findViewById(R.id.questionnaireHist);
 
+        // Button to go back to previous page
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +44,7 @@ public class History extends AppCompatActivity {
             }
         });
 
+        // Button to go to Graphing page
         graphButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +52,7 @@ public class History extends AppCompatActivity {
             }
         });
 
+        // Button to go to Blood Sugar History page
         bsHistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +60,7 @@ public class History extends AppCompatActivity {
             }
         });
 
+        // Button to go to Food History page
         foodHistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +68,7 @@ public class History extends AppCompatActivity {
             }
         });
 
+        // Button to go to Medication History page
         medHistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +76,7 @@ public class History extends AppCompatActivity {
             }
         });
 
+        // Button to go to Exercise History page
         exHistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +84,7 @@ public class History extends AppCompatActivity {
             }
         });
 
+        // Button to go to Extra Notes History page
         noteHistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +92,7 @@ public class History extends AppCompatActivity {
             }
         });
 
+        // Button to go to Questionnaire History page
         queHistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignUp2 extends AppCompatActivity {
+    // Create fields to associate ui components with
     Button backButton,continueButton;
     Spinner typeDiaSpinner, insAdmSpinner;
     EditText insTypeField,docEmailField,docPhoneField,docNameField;
@@ -44,6 +45,7 @@ public class SignUp2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup2);
 
+        // Associating the variables with ui components
         insTypeField = findViewById(R.id.instype);
         docEmailField = findViewById(R.id.docemail);
         docPhoneField = findViewById(R.id.docphone);
@@ -54,12 +56,14 @@ public class SignUp2 extends AppCompatActivity {
         typeDiaSpinner = (Spinner) findViewById(R.id.TypeDiaSpinner);
         insAdmSpinner = (Spinner) findViewById(R.id.InsAdmSpinner);
 
+        // Setting the style and item list for the drop down menu (Spinner)
         ArrayAdapter<String> typeDiaAdapter = new ArrayAdapter<String>(SignUp2.this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.DiaTypes));
         typeDiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeDiaSpinner.setAdapter(typeDiaAdapter);
 
+        // Setting the style and item list for the drop down menu (Spinner)
         ArrayAdapter<String> insAdmAdapter = new ArrayAdapter<String>(SignUp2.this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.InsulinAdm));
@@ -68,6 +72,7 @@ public class SignUp2 extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        // Back button to go back to previous page
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -75,6 +80,7 @@ public class SignUp2 extends AppCompatActivity {
             }
         });
 
+        // Continue button to get the sign up user data and send to database
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +88,7 @@ public class SignUp2 extends AppCompatActivity {
                 String emailStr,passStr,nhsNumStr,fNameStr,lNameStr;
                 emailStr = passStr = nhsNumStr = fNameStr = lNameStr = null;
 
-                //Get strings from previous activity
+                // Get strings from previous activity (Sign up page 1)
                 Bundle extras = getIntent().getExtras();
                 if (extras != null) {
                     emailStr = extras.getString("emailStr");
@@ -92,7 +98,7 @@ public class SignUp2 extends AppCompatActivity {
                     lNameStr = extras.getString("lNameStr");
                 }
 
-                //Get all the data from patient
+                // Get all the data from patient
                 final String diabetesType = typeDiaSpinner.getSelectedItem().toString();
                 final String insulinType = insTypeField.getText().toString().trim();
                 final String insulinAdm = insAdmSpinner.getSelectedItem().toString();
@@ -106,8 +112,7 @@ public class SignUp2 extends AppCompatActivity {
                 final String finalLNameStr = lNameStr;
                 final String finalNhsNumStr = nhsNumStr;
 
-                //Display an error if email/password fields are empty
-
+                // Display an error if email/password fields are empty
                 if(!diabetesType.equals("Type 1") && !diabetesType.equals("Type 2")) {
                     Toast.makeText( SignUp2.this, "Please select Diabetes type", Toast.LENGTH_SHORT).show();
                 }
@@ -119,18 +124,18 @@ public class SignUp2 extends AppCompatActivity {
                 }
                 else {
 
-                    //Check if another user already uses the same NHS number
+                    // Check if another user already uses the same NHS number
                     Task<DocumentSnapshot> checkNHSNumTask = FirebaseFirestore.getInstance().collection("Patients")
                             .document(global.getNhsNum()).get();
 
                     checkNHSNumTask.addOnCompleteListener(SignUp2.this, new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            //If there exists an account with the same NHS number, display error message
+                            // If there exists an account with the same NHS number, display error message
                             if (checkNHSNumTask.getResult().exists()) {
                                 Toast.makeText(SignUp2.this, "NHS Number already used", Toast.LENGTH_SHORT).show();
                             } else {
-                                //If no account uses the input NHS number, create new account
+                                // If no account uses the input NHS number, create new account
                                 auth.createUserWithEmailAndPassword(finalEmailStr, finalPassStr).addOnCompleteListener(SignUp2.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -158,7 +163,7 @@ public class SignUp2 extends AppCompatActivity {
                                   String nhsNum, String UID, String diabetesType, String insulinType,
                                   String insulinAdm, String docEmail, String docPhone, String docName) {
 
-        //Create empty array for alerts
+        // Create empty array for alerts
         ArrayList<String> list = new ArrayList<String>();
 
         Map<String, Object> patient = new HashMap<>(); //Data is submitted to Firestore as hashmaps
@@ -178,7 +183,7 @@ public class SignUp2 extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        //Add user to Firestore
+        // Add user to Firestore
         db.collection("Patients").document(nhsNum).set(patient).addOnFailureListener(SignUp2.this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {

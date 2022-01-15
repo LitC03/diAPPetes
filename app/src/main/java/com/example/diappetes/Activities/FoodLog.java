@@ -36,17 +36,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FoodLog extends AppCompatActivity {
-
+    // Create fields to associate ui components with
     TextView datepick,timepick;
     Button cancelButton,saveButton;
     EditText mealEdit, carbEdit, sugarEdit, calEdit;
     DatePickerDialog.OnDateSetListener datelistener;
     TimePickerDialog.OnTimeSetListener timelistener;
-
     FirebaseAuth auth;
     FirebaseFirestore db;
 
-    //Create date & time constants
+    // Create date & time constants
     final Calendar calendar= Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
@@ -61,7 +60,7 @@ public class FoodLog extends AppCompatActivity {
 
         final Global global = (Global) getApplicationContext();
 
-        // Cancel button to go back to log menu
+        // Associating the variables with ui components
         cancelButton = (Button) findViewById(R.id.cancelBtn);
         saveButton = findViewById(R.id.saveBtn);
         datepick = findViewById(R.id.datePick);
@@ -81,7 +80,7 @@ public class FoodLog extends AppCompatActivity {
             }
         });
 
-        //Selected date is saved as string and appears on screen
+        // Selected date is saved as string and appears on screen
         datelistener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -92,7 +91,7 @@ public class FoodLog extends AppCompatActivity {
         };
 
 
-        //Clock appears on screen
+        // Clock appears on screen
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +102,7 @@ public class FoodLog extends AppCompatActivity {
             }
         });
 
-        //Selected time is saved as string and appears on screen
+        // Selected time is saved as string and appears on screen
         timelistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
@@ -112,7 +111,7 @@ public class FoodLog extends AppCompatActivity {
             }
         };
 
-
+        // Cancel button to go back to log menu
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +119,7 @@ public class FoodLog extends AppCompatActivity {
             }
         });
 
+        // Save button to get user logged data and send to the database
         saveButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -132,9 +132,10 @@ public class FoodLog extends AppCompatActivity {
                 final String timeString = timepick.getText().toString();
                 String timeStampString = dateString + " " + timeString + ":00";
 
-                //Following are checks that all required fields have values
+                // Checking that all required fields have values
                 if(TextUtils.isEmpty(mealString) || TextUtils.isEmpty(carbString)){
-                    Toast.makeText( FoodLog.this, "Please enter what you ate and the carbohydrates it contained", Toast.LENGTH_SHORT).show();
+                    // Informing the user of the missing information
+                    Toast.makeText( FoodLog.this, "Please enter what you ate and the carbohydrates content", Toast.LENGTH_SHORT).show();
                 }
 
                 else if(TextUtils.isEmpty(dateString) || TextUtils.isEmpty(timeString)){
@@ -149,6 +150,7 @@ public class FoodLog extends AppCompatActivity {
                         auth = FirebaseAuth.getInstance();
                         db = FirebaseFirestore.getInstance();
 
+                        // Create hashmap for database
                         final Map<String, Object> Food_data = new HashMap<>();
                         Food_data.put("Meal", mealString);
                         Food_data.put("Carbs", carbString);
@@ -156,17 +158,21 @@ public class FoodLog extends AppCompatActivity {
                         Food_data.put("Calories", calString);
                         Food_data.put("Time", timestamp);
 
+                        // Fetch collection of previous collections to get index for new collection
                         db.collection("Patients").document(global.getNhsNum()).collection("FoodLog").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     int collectionSize = task.getResult().size();
                                     collectionSize++;
+
+                                    // Add new entry to database
                                     db.collection("Patients").document(global.getNhsNum()).collection("FoodLog").document("FL" + collectionSize)
                                             .set(Food_data)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
+                                                    // Alert user data was submitted correctly
                                                     Toast.makeText(FoodLog.this, "Your entry has been added", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(getApplicationContext(), LogMenu.class));
                                                 }
@@ -174,6 +180,7 @@ public class FoodLog extends AppCompatActivity {
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
+                                                    // Alert user data submission failed
                                                     Toast.makeText(FoodLog.this, "Failed to save entry", Toast.LENGTH_SHORT).show();
                                                 }
                                             });

@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Graph extends AppCompatActivity {
+    // Create fields to associate ui components with
     Button backButton,exportButton;
     private GraphView graph;
     TextView xView, yView;
@@ -60,16 +61,17 @@ public class Graph extends AppCompatActivity {
         final Global global = (Global) getApplicationContext();
         db = FirebaseFirestore.getInstance();
 
+        // Associating the variables with ui components
         backButton = findViewById(R.id.BackBtn);
         graph = findViewById(R.id.idGraphView);
         xView = findViewById(R.id.xValue);
         yView = findViewById(R.id.yValue);
         exportButton = findViewById(R.id.ExportBtn);
 
-        //Create series where data point will be added
+        // Create series where data point will be added
         series = new LineGraphSeries<>();
 
-        //Button to go back to "History" activity
+        // Button to go back to "History" activity
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +80,7 @@ public class Graph extends AppCompatActivity {
         });
 
 
-        //Get patient's blood sugar entries from oldest to newest
+        // Get patient's blood sugar entries from oldest to newest
         db.collection("Patients").document(global.getNhsNum()).collection("BloodSugar")
                 .orderBy("Time", Query.Direction.ASCENDING)
                 .get()
@@ -92,17 +94,17 @@ public class Graph extends AppCompatActivity {
                             }
                             else{
 
-                                //Initialise lists to use in csv exporting
+                                // Initialise lists to use in csv exporting
                                 csvListBS = new ArrayList<String>();
                                 csvListDate = new ArrayList<String>();
                                 cvsListTime = new ArrayList<String>();
                                 cvsListEaten = new ArrayList<String>();
 
 
-                                //Inspect every blood sugar entry
+                                // Inspect every blood sugar entry
                                 for (DocumentSnapshot documentSnapshot : task.getResult()) {
 
-                                    //Get x and y coordinates from firestore
+                                    // Get x and y coordinates from firestore
                                     double y = documentSnapshot.getDouble("BS");
                                     String yStr = documentSnapshot.getDouble("BS").toString();
 
@@ -113,7 +115,7 @@ public class Graph extends AppCompatActivity {
                                     String timeStr = timeFormat.format(x);
 
 
-                                    //Get EatIn2h string to use in csv export
+                                    // Get EatIn2h string to use in csv export
                                     String eaten2hStr = documentSnapshot.getString("EatenIn2h");
 
                                     Log.d("DB_GRAPH", "added value " + y);
@@ -124,18 +126,18 @@ public class Graph extends AppCompatActivity {
                                     cvsListTime.add(timeStr);
                                     cvsListEaten.add(eaten2hStr);
 
-                                    //Append data point to series
+                                    // Append data point to series
                                     series.appendData(new DataPoint(x, y), true, 500);
 
                                 }
 
-                                //format series
+                                // Format series
                                 formatSeries(series);
 
-                                //Add series to graph
+                                // Add series to graph
                                 graph.addSeries(series);
 
-                                //Format graph
+                                // Format graph
                                 formatGraph(graph,collectionSize);
                             }
 
@@ -145,7 +147,7 @@ public class Graph extends AppCompatActivity {
                     }
                 });
 
-        //When data point is clicked, TextViews set to corresponding value
+        // When data point is clicked, TextViews set to corresponding value
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
@@ -161,7 +163,7 @@ public class Graph extends AppCompatActivity {
             }
         });
 
-        //Export data to CSV file
+        // Export data to CSV file
         exportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,7 +175,7 @@ public class Graph extends AppCompatActivity {
 
     private void exportCVS(List<String> csvListDate, List<String> csvListBS, ArrayList<String> cvsListEaten, ArrayList<String> cvsListTime) {
 
-        //Create new CSV file and save in device
+        // Create new CSV file and save on device
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
 
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -182,7 +184,7 @@ public class Graph extends AppCompatActivity {
         startActivityForResult(intent,1);
     }
 
-
+    // Set content for csv file
     @Override protected void onActivityResult(int requestCode,int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode,data);
         if (requestCode==1){
@@ -190,8 +192,9 @@ public class Graph extends AppCompatActivity {
                 Uri uri = data.getData();
                 try {
                     String dateStr,BSStr,eatenStr,timeStr;
-                    //Write csv file
+                    // Write csv file
                     OutputStream out = getContentResolver().openOutputStream(uri);
+                    // Set titles for columns
                     out.write(("Date,Time,Blood Sugar (mmol/l), Eaten in last 2h\n").getBytes());
                     Log.d("DB_GRAPH","Size of list: "+csvListBS.size());
                     for (int i = 0; i < csvListBS.size(); i++) {
@@ -200,7 +203,6 @@ public class Graph extends AppCompatActivity {
                         timeStr = cvsListTime.get(i);
                         BSStr = csvListBS.get(i);
                         eatenStr = cvsListEaten.get(i);
-
 
                         out.write((dateStr + "," + timeStr+ "," + BSStr +","+eatenStr + "\n").getBytes());
                     }
@@ -213,10 +215,10 @@ public class Graph extends AppCompatActivity {
     }
 
     private void displayProblemDialog(){
-        //Prompt a Dialog Box
+        // Prompt a Dialog Box
         AlertDialog.Builder builder = new AlertDialog.Builder(Graph.this);
 
-        //Inform user there isn't any data to graph
+        // Inform user there isn't any data to graph
         builder.setTitle("Not enough data!");
         builder.setMessage("It appears like you have not entered any blood sugar entries in our " +
                 "database. Please add your blood sugar levels and try again.");
@@ -225,7 +227,7 @@ public class Graph extends AppCompatActivity {
         // Dialog Box will NOT disappear if user clicks outside of it
         builder.setCancelable(false);
 
-        //Go back to history menu
+        // Go back to history menu
         builder.setPositiveButton("Back", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -241,7 +243,7 @@ public class Graph extends AppCompatActivity {
 
 
     private void formatSeries(LineGraphSeries<DataPoint> series) {
-        //Format series
+        // Format series
         series.setDrawDataPoints(true);
         series.setDataPointsRadius(15);
         series.setColor(Color.WHITE);
@@ -253,12 +255,12 @@ public class Graph extends AppCompatActivity {
         GridLabelRenderer labelRend = graph.getGridLabelRenderer();
 
         if (collectionSize != 1){
-            //Dispay full range of plot
+            // Display full range of plot
             viewPort.setMaxX(series.getHighestValueX());
             viewPort.setMinX(series.getLowestValueX());
         }
         else{
-            //If only one entry is found in the database, center it
+            // If only one entry is found in the database, center it
             viewPort.setMaxX(series.getHighestValueX()+1000);
             viewPort.setMinX(series.getLowestValueX()-1000);
         }
@@ -274,11 +276,11 @@ public class Graph extends AppCompatActivity {
         labelRend.setTextSize(30);
         labelRend.reloadStyles();
 
-        //Correct x axis so that it displays dates
+        // Correct x axis so that it displays dates
         final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy \n HH:mm");
         viewPort.setBackgroundColor(Color.argb(20, 0, 0, 0));
 
-        //Set date label formatter
+        // Set date label formatter
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {

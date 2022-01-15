@@ -25,14 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class Login extends AppCompatActivity {
-
-    Button loginButton;
-    Button createButton;
-    Button forgotButton;
-
-    EditText emailField;
-    EditText passwordField;
-
+    // Create fields to associate ui components with
+    Button loginButton, createButton,  forgotButton;
+    EditText emailField, passwordField;
     FirebaseAuth auth;
     FirebaseFirestore db;
 
@@ -41,6 +36,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        // Associating the variables with ui components
         loginButton = findViewById(R.id.LoginBtn);
         createButton = findViewById(R.id.CreateAccBtn);
         forgotButton = findViewById(R.id.ForgotPWBtn);
@@ -49,10 +45,7 @@ public class Login extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-/*        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build();
-        db.setFirestoreSettings(settings); */
+
         final Global global = (Global) getApplicationContext();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +55,7 @@ public class Login extends AppCompatActivity {
                 String txt_email = emailField.getText().toString();
                 String txt_password = passwordField.getText().toString();
 
+                // Check log in details
                 auth.signInWithEmailAndPassword(txt_email, txt_password).addOnCompleteListener( Login.this,new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -69,8 +63,6 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(Login.this, "Success", Toast.LENGTH_SHORT).show();
                             Log.d("DBACCESS", "Auth Successful");
                             global.setUID(auth.getCurrentUser().getUid());
-
-
 
                             db.collection("Patients").whereEqualTo("UID", auth.getCurrentUser().getUid())
                                     .get()
@@ -82,6 +74,7 @@ public class Login extends AppCompatActivity {
                                             } else {
                                                 Log.d("DBACCESS", task.getResult().getDocuments().get(0).getId());
                                                 global.setNhsNum(task.getResult().getDocuments().get(0).getId());
+                                                // Successful login leads user to Main Menu
                                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                             }
                                         }
@@ -121,12 +114,13 @@ public class Login extends AppCompatActivity {
                 passwordResetDialog.setMessage("Enter your email");
                 passwordResetDialog.setView(resetMail);
 
-                //user has entered email address
+                // If the user has entered email address
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        // Get email address
                         String email = resetMail.getText().toString();
-
+                        // Send email with reset link
                         auth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
@@ -144,7 +138,7 @@ public class Login extends AppCompatActivity {
                     }
                 });
 
-                // if the user cancels
+                // If the user cancels
                 passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
