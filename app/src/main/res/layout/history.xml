@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Activities.History">
+
+    <ImageView
+        android:id="@+id/LogoView"
+        android:layout_width="85dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:text="History"
+        android:textAlignment="center"
+        android:textColor="@color/colorNeutralWhite"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.077" />
+
+    <Button
+        android:id="@+id/graphingBtn"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Graphing"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/bsHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LogoView" />
+
+    <Button
+        android:id="@+id/bsHistory"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Blood Sugar History"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/foodHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graphingBtn" />
+
+    <Button
+        android:id="@+id/foodHistory"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Food History"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/medHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bsHistory" />
+
+    <Button
+        android:id="@+id/medHistory"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Medication History"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/exerciseHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodHistory" />
+
+    <Button
+        android:id="@+id/exerciseHistory"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Exercise History"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/extraNotesHist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medHistory" />
+
+    <Button
+        android:id="@+id/extraNotesHist"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Notes History"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/questionnaireHist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseHistory" />
+
+    <Button
+        android:id="@+id/questionnaireHist"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorNeutralWhite"
+        android:text="Questionnaire History"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/BacktoMainBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/extraNotesHist" />
+
+
+    <Button
+        android:id="@+id/BacktoMainBtn"
+        android:layout_width="160dp"
+        android:layout_height="57dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/roundbutton"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="Back"
+        android:textColor="@color/colorNeutralWhite"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

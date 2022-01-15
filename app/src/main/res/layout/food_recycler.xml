@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="16dp"
+    android:background="@color/colorPrimary">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginVertical="8dp"
+        android:layout_marginEnd = "8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date and Time: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/timeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TIME"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meal: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/mealView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Value"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carbohydrates: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/carbView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boolean"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sugars: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/sugarView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="value"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/calView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Value"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorNeutralBlack"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Activities.DoctorDetails">
+
+    <ImageView
+        android:id="@+id/LogoView"
+        android:layout_width="85dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:text="Change\n Doctor Details"
+        android:textAlignment="center"
+        android:textColor="@color/colorNeutralWhite"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/LogoView">
+
+        <TextView
+            android:id="@+id/DocNameView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name of Doctor"
+            android:textColor="@color/colorNeutralWhite"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/DocNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundtext"
+            android:backgroundTint="@color/colorNeutralWhite"
+            android:hint=" Current Name of Doctor"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHint="@color/colorNeutralDarkGray"
+            app:layout_constraintTop_toBottomOf="@id/DocNameView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp" />
+
+        <TextView
+            android:id="@+id/DocPhoneNumView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone Number of Doctor"
+            android:textColor="@color/colorNeutralWhite"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DocNameEdit"
+            android:layout_marginTop="30dp" />
+
+        <EditText
+            android:id="@+id/DocPhoneNumEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundtext"
+            android:backgroundTint="@color/colorNeutralWhite"
+            android:hint=" Current Phone Number of Doctor"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHint="@color/colorNeutralDarkGray"
+            app:layout_constraintTop_toBottomOf="@id/DocPhoneNumView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp" />
+
+        <TextView
+            android:id="@+id/DocEmailView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Address of Doctor"
+            android:textColor="@color/colorNeutralWhite"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DocPhoneNumEdit"
+            android:layout_marginTop="30dp" />
+
+        <EditText
+            android:id="@+id/DocEmailEdit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/roundtext"
+            android:backgroundTint="@color/colorNeutralWhite"
+            android:hint=" Current Email Address of Doctor"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="@color/colorTextBlack"
+            android:textColorHint="@color/colorNeutralDarkGray"
+            app:layout_constraintTop_toBottomOf="@id/DocEmailView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp" />
+
+        <Button
+            android:id="@+id/SaveBtn"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundbutton"
+            android:backgroundTint="@color/save"
+            android:textColor="@color/colorPrimary"
+            android:text="Save Changes"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DocEmailEdit"
+            android:layout_marginTop="68dp" />
+
+        <Button
+            android:id="@+id/CancelBtn"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundbutton"
+            android:text="Cancel"
+            android:textColor="@color/save"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/SaveBtn"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

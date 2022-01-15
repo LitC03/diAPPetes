@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Activities.ProfileDetails">
+
+    <ImageView
+        android:id="@+id/LogoView"
+        android:layout_width="85dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:text="Change\n Profile Details"
+        android:textAlignment="center"
+        android:textColor="@color/colorNeutralWhite"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/LogoView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <LinearLayout
+        android:layout_width="342dp"
+        android:layout_height="575dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="139dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="17dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/FirstNameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="First Name"
+                    android:textColor="@color/colorNeutralWhite"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/FirstNameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundtext"
+                    android:backgroundTint="@color/colorNeutralWhite"
+                    android:hint=" Current First Name"
+                    android:inputType="textPersonName"
+                    android:padding="15dp"
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp" />
+                <TextView
+                    android:id="@+id/LastNameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Last Name"
+                    android:textColor="@color/colorNeutralWhite"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/LastNameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundtext"
+                    android:backgroundTint="@color/colorNeutralWhite"
+                    android:hint=" Current Last Name"
+                    android:inputType="textPersonName"
+                    android:padding="15dp"
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp" />
+                <TextView
+                    android:id="@+id/EmailView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email Address"
+                    android:textColor="@color/colorNeutralWhite"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/EmailEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundtext"
+                    android:backgroundTint="@color/colorNeutralWhite"
+                    android:hint=" Current Email Address"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp"
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp" />
+
+                <TextView
+                    android:id="@+id/TypeDiaView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type of Diabetes"
+                    android:textColor="@color/colorNeutralWhite"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/TypeDiaEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundtext"
+                    android:backgroundTint="@color/colorNeutralWhite"
+                    android:hint=" Current Type of Diabetes"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp" />
+
+                <TextView
+                    android:id="@+id/TypeInsView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type of Insulin"
+                    android:textColor="@color/colorNeutralWhite"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/TypeInsEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundtext"
+                    android:backgroundTint="@color/colorNeutralWhite"
+                    android:hint=" Current Type of Insulin"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp" />
+
+                <TextView
+                    android:id="@+id/InsAdmView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Insulin Administration"
+                    android:textColor="@color/colorNeutralWhite"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/InsAdmEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundtext"
+                    android:backgroundTint="@color/colorNeutralWhite"
+                    android:hint=" Current Insulin Administration"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    android:textColor="@color/colorTextBlack"
+                    android:textColorHint="@color/colorNeutralDarkGray" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <Button
+                    android:id="@+id/SaveBtn"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundbutton"
+                    android:backgroundTint="@color/save"
+                    android:text="Save Changes"
+                    android:textAllCaps="false"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="81dp"
+                    android:layout_marginEnd="81dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <Button
+                    android:id="@+id/CancelBtn"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="Cancel"
+                    android:textColor="@color/save"
+                    android:textAllCaps="false"
+                    android:textSize="20sp"
+                    android:layout_marginStart="81dp"
+                    android:layout_marginEnd="81dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
