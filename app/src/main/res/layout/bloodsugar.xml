@@ -70,7 +70,7 @@
             android:layout_height="50dp"
             android:background="@drawable/roundtext"
             android:hint="Enter blood sugar"
-            android:inputType="textPersonName"
+            android:inputType="numberDecimal"
             android:padding="15dp"
             android:backgroundTint="@color/colorNeutralWhite"
             android:textColor="@color/colorTextBlack"
